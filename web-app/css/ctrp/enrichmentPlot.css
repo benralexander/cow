@@ -1,0 +1,61 @@
+
+.box {
+    font: 10px sans-serif;
+}
+
+.box line,
+.box rect,
+.box circle {
+    fill: #fff;
+    stroke: #000;
+    stroke-width: 1.5px;
+}
+
+.box .center {
+    stroke-dasharray: 3,3;
+}
+
+.box .outlier {
+    fill: #f00;
+    stroke: #111;
+}
+
+.y .domain {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1.2px;
+    shape-rendering: crispEdges;
+}
+.x .domain {
+    fill: none;
+    stroke: #000;
+    stroke-width: 1.2px;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-size: 10pt;
+}
+.label {
+    font-size: 14pt;
+    font-weight: bold;
+}
+.legend {
+    font-size: 10pt;
+}
+#doseResponseCloser button  {
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border: 3px solid #800000;
+}
+.toolTextAppearance {
+    font: 14px serif;
+    font-weight: bold;
+    margin: 5px;
+    padding: 10px;
+    background: #eeeeee;
+    border: 1px solid blue;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+}

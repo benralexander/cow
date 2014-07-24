@@ -1,0 +1,18 @@
+polygon {
+    fill: rgba(255, 0, 0, 0.2);
+    stroke: rgb(0, 0, 255);
+    stroke-width: 0.5px;
+}
+#controlWidgets {
+    position: relative;
+    border: 1.5px solid #000000;
+    width: 230px;
+}
+#moveAroundButton {
+    margin: 10px;
+    padding-left: 10px;
+}
+#levelSpinner {
+    margin: 10px;
+    padding-top: 2px;
+}

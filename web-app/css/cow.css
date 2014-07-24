@@ -1,0 +1,366 @@
+#leftcol {
+    display: block;
+    position: absolute;
+    left: 0px;
+    width: 500px;
+    margin-top: 50px;
+    margin-right: 0px;
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 0px;
+    border: 0;
+    background: #FFFFFF;
+    float: left;
+}
+#rightcol {
+    display: block;
+    position: absolute;
+    left: 440px;
+    width: 500px;
+    margin-top: 50px;
+    margin-left: 0;
+    padding-top: 15px;
+    padding-left: 0px;
+    background: #FFFFFF;
+    float: right;
+}
+.crossproduct {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 260px;
+    top: 435px;
+    width: 350px;
+    margin-top: 0px;
+    padding: 0;
+    background: #efefFF;
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+}
+#leftcol_angle {
+    display: block;
+    position: absolute;
+    top: 150px;
+    left: 0px;
+    width: 500px;
+    margin-top: 50px;
+    margin-right: 0px;
+    padding-top: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 0;
+    /*background: #FFFFFF;*/
+    float: left;
+}
+#rightcol_angle {
+    display: block;
+    position: absolute;
+    top: 150px;
+    left: 512px;
+    width: 500px;
+    margin-top: 50px;
+    margin-left: 0;
+    padding-top: 15px;
+    padding-left: 0px;
+    /*background: #FFFFFF;*/
+    float: right;
+}
+.crossproduct_angle {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 337px;
+    top: 347px;
+    width: 350px;
+    margin-top: 0px;
+    padding: 0;
+    background: #ffffFF;
+    -webkit-transform:rotate(45deg);
+    -moz-transform:rotate(45deg);
+}
+.pagehead {
+    display: inline-block;
+    position: absolute;
+    width: 1014px;
+    height: 180px;
+    left: 15px;
+    top: 15px;
+    background-color: #ADD8E6;
+}
+th.cprod {
+    background: #00ff00;
+    padding: 15px;
+    height:70px;
+    border-bottom: 2px solid #000000;
+    border-top: 0;
+    border-collapse: collapse;
+}
+.revspin {
+    -webkit-transform:rotate(-45deg);
+    -moz-transform:rotate(-45deg);
+    padding: 0px;
+    margin: 0;
+}
+td.cprod {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border: 2px solid  #000000;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+
+}
+td.cprodlt  {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border-left: 0;
+    border-top: 0;
+    border-bottom:  2px solid  #000000;;
+    border-right:  2px solid  #000000;;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+}
+td.cprodt {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border-top: 0;
+    border-bottom:  2px solid  #000000;;
+    border-right:  2px solid  #000000;;
+    border-left:  2px solid  #000000;;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+}
+td.cprodrt {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border-right: 0;
+    border-top: 0;
+    border-bottom:  2px solid  #000000;;
+    border-left:  2px solid  #000000;;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+}
+td.cprodr {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border-top:  2px solid  #000000;;
+    border-bottom:  2px solid  #000000;;
+    border-left:  2px solid  #000000;;
+    border-right: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+}
+td.cprodrb {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border-right: 0;
+    border-bottom: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+}
+td.cprodb {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border-bottom: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+}
+td.cprodlb {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border-top:  2px solid  #000000;;
+    border-bottom:  2px solid  #000000;;
+    border-right:  2px solid  #000000;;
+    border-left: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+}
+td.cprodl {
+    text-align:center;
+    height:85px;
+    width:85px;
+    border-bottom:  2px solid  #000000;;
+    border-right:  2px solid  #000000;;
+    border-top:  2px solid  #000000;;
+    border-left: 0;
+    border-collapse: collapse;
+    padding: 0px;
+    margin: 0;
+}
+.tableHeaders {
+    position: relative;
+    font-family: Helvetica,Arial,sans-serif;
+    color: #871F78;
+    font-size: 20px;
+    vertical-align: bottom;
+}
+.tableHeaderRow {
+    position: relative;
+    vertical-align: bottom;
+}
+.tableRow {
+    position: relative;
+    text-align: center;
+    font-family: Helvetica,Arial,sans-serif;
+    color: #0000ff;
+    font-size: 16px;
+}
+.tableElems {
+    position: absolute;
+}
+.diamond_elements{
+    font: bold 16px Helvetica,Arial,sans-serif;
+}
+th.cmptbl_angle {
+    text-align:center;
+    height:60px;
+    width:20px;
+    border-right: 0;
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+}
+td.cmptbl_angle {
+    text-align:center;
+    height:60px;
+    width:20px;
+    overflow: hidden;
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    color: #0000ff;
+    font-size: 18px;
+    line-height: 20px;
+}
+.prettybutton{
+    -webkit-border-radius: 0 3px 3px 0;
+    -moz-border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 2px 14px;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    background-color: #006dcc;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+    background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+    background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+    background-image: linear-gradient(to bottom, #0088cc, #0044cc);
+    background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+    background-repeat: repeat-x;
+    border-color: #0044cc #0044cc #002a80;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+}
+.badge {
+    background-color: #3a87ad;
+    font-size: 11.844px;
+    font-weight: bold;
+    line-height: 14px;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+    white-space: nowrap;
+    vertical-align: baseline;
+    padding: 1px 9px 2px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+td.cmptbll_angle {
+    text-align:left;
+
+    height:60px;
+    width:20px;
+    overflow: hidden;
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+}
+th.cmprtbl_angle {
+    text-align:center;
+    height:60px;
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+td.cmprtbl_angle {
+    text-align:center;
+    height:60px;
+    width:25px;
+    overflow: hidden;
+    /*text-overflow: clip;*/
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #0000ff;
+    line-height: 20px;
+}
+td.cmprtblp_angle {
+    text-align:right;
+    height:60px;
+    width:25px;
+    overflow: hidden;
+    /*text-overflow: clip;*/
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #0000ff;
+    line-height: 20px;
+}
+th.cmptbl {
+    text-align:center;
+    height:60px;
+    border-right: 1px solid  #000000;
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+}
+td.cmptbl {
+    text-align:center;
+    height:60px;
+    border-right: 1px solid  #000000;
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+}
+th.cmprtbl {
+    text-align:center;
+    height:60px;
+    border-left: 1px solid  #000000;
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+td.cmprtbl {
+    text-align:center;
+    height:60px;
+    border-left: 1px solid  #000000;
+    border-bottom:  2px solid  #000000;
+    border-collapse: collapse;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #0000ff;
+    line-height: 20px;
+}
+
+

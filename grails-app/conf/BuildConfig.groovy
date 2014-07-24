@@ -1,4 +1,4 @@
-grails.servlet.version = "2.5" // Change depending on target container compliance (2.5 or 3.0)
+grails.servlet.version = "3.0" // Change depending on target container compliance (2.5 or 3.0)
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -6,6 +6,7 @@ grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
+grails.project.dependency.resolver = "maven"
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -14,20 +15,21 @@ grails.project.dependency.resolution = {
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
+    legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
     repositories {
         inherit(false) // don't repositories from plugins
         grailsPlugins()
         grailsHome()
 
-        if (useBroadRepo) {
-            mavenRepo "http://bard-repo.broadinstitute.org:8081/artifactory/bard-virtual-repo"
-            grailsRepo("http://bard-repo.broadinstitute.org:8081/artifactory/bard-virtual-repo", "grailsCentral")
-        } else {
+//        if (useBroadRepo) {
+//            mavenRepo "http://bard-repo.broadinstitute.org:8081/artifactory/bard-virtual-repo"
+//            grailsRepo("http://bard-repo.broadinstitute.org:8081/artifactory/bard-virtual-repo", "grailsCentral")
+//        } else {
             grailsCentral()
             mavenLocal()
             mavenCentral()
-        }
+ //       }
     }
 
     dependencies {
@@ -37,25 +39,26 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        test(":spock:0.7") {
-            exclude "spock-grails-support"
+        build (":tomcat:7.0.54",
+                ":rest-client-builder:2.0.3") {
+            export = false
         }
 
-        compile ":rest:0.5"
+        // plugins for the compile step
+        compile ":scaffolding:2.1.2"
+        compile ':cache:1.1.7'
+        compile ":asset-pipeline:1.8.11"
+        compile ':resources:1.2.8'
+        compile ':rest-client-builder:2.0.3'
+        compile ":cache:1.0.1"
 
-        runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.8.0"
-        runtime ":resources:1.1.6"
+        // plugins needed at runtime but not for compilation
+        runtime ":hibernate4:4.3.5.4" // or ":hibernate:3.6.10.16"
+        runtime ":database-migration:1.4.0"
+        runtime ":jquery:1.11.1"
+        runtime ':resources:1.2.8'
 
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0"
-        //runtime ":cached-resources:1.0"
-        //runtime ":yui-minify-resources:0.1.4"
+        test ":codenarc:0.18.1"
 
-        build ":tomcat:$grailsVersion"
-
-        runtime ":database-migration:1.1"
-
-        compile ':cache:1.0.0'
     }
 }

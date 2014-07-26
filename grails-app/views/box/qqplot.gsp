@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Array as Data</title>
+    <title>QQ plot</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
     <script type="text/javascript" src="../js/d3.js"></script>
 </head>
@@ -18,7 +18,7 @@
 <script>
 
     var margin = {top: 30, right: 20, bottom: 50, left: 70},
-            width = 600 - margin.left - margin.right,
+            width = 700 - margin.left - margin.right,
             height = 400 - margin.top - margin.bottom;
 
     data = [
@@ -35,62 +35,34 @@
             popup:'more information'
         }
     ];
-    var significanceValue = 100,
-            newSignificanceValue = significanceValue;
-    var qqPlot;
+    var significanceValue = 100;
+    var qqPlot ;
     d3.json("http://localhost:8028/cow/box/qqPlotData", function (error, json) {
-
-
-
-         qqPlot  =gew.qqPlot()
+         console.log (' what the fark') ;
+         qqPlot=gew.qqPlot()
                  .selectionIdentifier("#scatterPlot1")
                  .width(width)
                  .height(height)
                  .margin(margin)
-                 .xAxisLabel('expected')
-                 .yAxisLabel('observed')
-                 .xAxisAccessor(function (d) {
-                     return d.x;
-                 })
-                 .yAxisAccessor(function (d) {
-                     return d.y;
-                 })
-                 .tooltipAccessor(function (d) {
-                     return d.popup
-                 })
+//                 .xAxisLabel('expected')
+//                 .yAxisLabel('observed')
+//                 .xAxisAccessor(function (d) {
+//                     return d.x;
+//                 })
+//                 .yAxisAccessor(function (d) {
+//                     return d.y;
+//                 })
+//                 .tooltipAccessor(function (d) {
+//                     return d.popup
+//                 })
                  .displayIdentityLine (true)
-                 .significanceLine (significanceValue)
+//                 .significanceLine (significanceValue)
                  .assignData(json);
          qqPlot.render();
 
 
 
 
-
-
-
-
-
-//        qqPlot = gew.qqPlot()
-//                .selectionIdentifier("#scatterPlot1")
-//                .width(width)
-//                .height(height)
-//                .margin(margin)
-//                .xAxisLabel('expected')
-//                .yAxisLabel('observed')
-//                .xAxisAccessor(function (d) {
-//                    return d.x;
-//                })
-//                .yAxisAccessor(function (d) {
-//                    return d.y;
-//                })
-//                .tooltipAccessor(function (d) {
-//                    return d.popup
-//                })
-//                .displayIdentityLine (true)
-//                .significanceLine (significanceValue)
-//                .assignData(json);
-//        qqPlot.render();
     } );
 
 
@@ -98,14 +70,13 @@
         console.log('a'+ d.toString());
     };
     var onBrushMoveDoThis = function(d){
-        console.log('b'+ d.toString());
-        newSignificanceValue=  d;
+        significanceValue=  d;
     };
-    var onBrushEndDoThis = function(d){
-        qqPlot.oldSignificanceLine (significanceValue) ;
-        qqPlot.significanceLine (newSignificanceValue) ;
-        qqPlot.render();
-        significanceValue =   newSignificanceValue;
+    var onBrushEndDoThis = function(){
+        if (typeof(qqPlot) !=="undefined") {
+            qqPlot//.significanceLine(significanceValue)
+                    .render();
+        }
     };
     var minimumInterquartileMultiplier = 180,
             maximumInterquartileMultiplier = 0,

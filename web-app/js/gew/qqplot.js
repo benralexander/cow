@@ -11,13 +11,19 @@ var gew = gew || {};
             margin = {},
             selectionIdentifier = '',
             data = {},
-            xAxisLabel = '',
-            yAxisLabel = '',
-            xAxisAccessor,
-            yAxisAccessor,
+            xAxisLabel = 'expected',  // default X axis label
+            yAxisLabel = 'observed',  // default Y axis label
+            xAxisAccessor = function (d) {
+                return d.x;   //    default key name for the JSON field holding X values
+            },
+            yAxisAccessor = function (d) {
+                 return d.y;    //    default key name for the JSON field holding Y values
+            },
+            tooltipAccessor = function (d) {
+                 return d.popup;      //    default key name for the JSON field holding tooltip values
+            },
             displayIdentityLine = true,
             significanceLine,
-            oldSignificanceLine,
             clickCallback = function (d, i) {
                 console.log ('default callback function for dot click')
             },
@@ -72,7 +78,7 @@ var gew = gew || {};
                 .range([height, 0]);
 
             color = function (d){
-                if (typeof significanceLine!=="undefined") {
+                if (typeof(significanceLine) !=="undefined") {
                     if (yAxisAccessor (d) > significanceLine){
                         return d3.rgb("#ff00ff");
                     } else {
@@ -214,9 +220,6 @@ var gew = gew || {};
                 .style("fill", function (d) {
                     return color(d);
                 });
-            dataDots.transition()
-                    .duration(1000)
-                    .style("opacity", 0.1);
 
 //                .style("opacity", 0)
 //                .transition()
@@ -225,7 +228,7 @@ var gew = gew || {};
 //                .style("opacity", 1);
 
             dataDots.transition()
-                .duration(2000)
+                .duration(1000)
                 .style("fill", function (d) {
                     return color(d);
                 });
@@ -330,13 +333,6 @@ var gew = gew || {};
             significanceLine = x;
             return instance;
         };
-
-        instance.oldSignificanceLine = function (x) {
-            if (!arguments.length) return oldSignificanceLine;
-            oldSignificanceLine = x;
-            return instance;
-        };
-
 
         instance.selectionIdentifier = function (x) {
             if (!arguments.length) return selectionIdentifier;

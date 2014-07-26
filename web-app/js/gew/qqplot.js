@@ -137,34 +137,32 @@ var gew = gew || {};
             }
 
             if (significanceLine) {
-                var significanceDifferentiator  =  svg.append("line");
-                significanceDifferentiator.attr("x1", x(x.domain()[0]))
-                    .attr("y1", function(){
-                        if (oldSignificanceLine){
-                            return y(oldSignificanceLine);
-                        }else{
-                            return y(significanceLine);
-                        }
+                var significanceDifferentiator  =  svg.selectAll(".significanceLine").data([significanceLine]);
 
-                    })
+                significanceDifferentiator.enter().append("line")
+                    .attr("class", "significanceLine")
+                    .attr("x1", x(x.domain()[0]))
+                    .attr("y1", function(d){
+                            return y(d);
+                     })
                     .attr("x2", x(x.domain()[1]))
-                    .attr("y2", function(){
-                        if (oldSignificanceLine){
-                            return y(oldSignificanceLine);
-                        }else{
-                            return y(significanceLine);
-                        }
-
+                    .attr("y2", function(d){
+                        return y(d);
                     })
                     .attr("stroke-width", 2)
                     .attr("stroke", "red");
+
                 significanceDifferentiator.transition()
                     .duration(1000)
-                    .attr("y1", y(significanceLine))
-                    .attr("y2", y(significanceLine));
-               // significanceDifferentiator.exit().transition()
-//                .style("opacity", 1e-6)
-//                .remove();
+                    .attr("y1", function(d){
+                        console.log('t2');
+                        return y(d);
+                    })
+                    .attr("y2", function(d){
+                        return y(d);
+                    });
+
+                significanceDifferentiator.exit().remove();
 
             }
 
@@ -206,7 +204,7 @@ var gew = gew || {};
                 .on('click', clickCallback)
 
                 .attr("class", "dot")
-                .attr("r", 3.5)
+                .attr("r", 3)
                 .attr("cx", function (d) {
                     return x(xAxisAccessor(d));
                 })
@@ -216,6 +214,15 @@ var gew = gew || {};
                 .style("fill", function (d) {
                     return color(d);
                 });
+            dataDots.transition()
+                    .duration(1000)
+                    .style("opacity", 0.1);
+
+//                .style("opacity", 0)
+//                .transition()
+//                .duration(1000)
+//                .attr("r", 3.5)
+//                .style("opacity", 1);
 
             dataDots.transition()
                 .duration(2000)

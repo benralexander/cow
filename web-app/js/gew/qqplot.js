@@ -16,6 +16,8 @@ var gew = gew || {};
             xAxisAccessor,
             yAxisAccessor,
             displayIdentityLine = true,
+            significanceLine,
+            oldSignificanceLine,
             clickCallback = function (d, i) {
                 console.log ('default callback function for dot click')
             },
@@ -27,6 +29,7 @@ var gew = gew || {};
             x,
             y,
             color,
+            legendColor = d3.scale.category10(),
             xAxis,
             yAxis,
             svg,
@@ -68,7 +71,18 @@ var gew = gew || {};
             y = d3.scale.linear()
                 .range([height, 0]);
 
-            color = d3.scale.category10();
+            color = function (d){
+                if (typeof significanceLine!=="undefined") {
+                    if (yAxisAccessor (d) > significanceLine){
+                        return d3.rgb("#ff00ff");
+                    } else {
+                        return d3.rgb("#ffffff");
+                    }
+                } else {
+                    return d3.rgb("#ffffff");
+                }
+            }
+
 
             xAxis = d3.svg.axis()
                 .scale(x)
@@ -78,10 +92,10 @@ var gew = gew || {};
                 .scale(y)
                 .orient("left");
 
-            var previouslyExistingScatterPlot = selection.selectAll("svg");
-            if (previouslyExistingScatterPlot) {
-                previouslyExistingScatterPlot.remove();
-            }
+//            var previouslyExistingScatterPlot = selection.selectAll("svg");
+//            if (previouslyExistingScatterPlot) {
+//                previouslyExistingScatterPlot.remove();
+//            }
 
             if (!svg) {
                 svg = selection
@@ -116,6 +130,42 @@ var gew = gew || {};
                     .attr("stroke-width", 2)
                     .attr("stroke", "black");
 
+//                identityLine.transition()
+//                    .duration(2000)
+//                    .style("opacity", 0.5);
+
+            }
+
+            if (significanceLine) {
+                var significanceDifferentiator  =  svg.append("line");
+                significanceDifferentiator.attr("x1", x(x.domain()[0]))
+                    .attr("y1", function(){
+                        if (oldSignificanceLine){
+                            return y(oldSignificanceLine);
+                        }else{
+                            return y(significanceLine);
+                        }
+
+                    })
+                    .attr("x2", x(x.domain()[1]))
+                    .attr("y2", function(){
+                        if (oldSignificanceLine){
+                            return y(oldSignificanceLine);
+                        }else{
+                            return y(significanceLine);
+                        }
+
+                    })
+                    .attr("stroke-width", 2)
+                    .attr("stroke", "red");
+                significanceDifferentiator.transition()
+                    .duration(1000)
+                    .attr("y1", y(significanceLine))
+                    .attr("y2", y(significanceLine));
+               // significanceDifferentiator.exit().transition()
+//                .style("opacity", 1e-6)
+//                .remove();
+
             }
 
             svg.append("g")
@@ -143,9 +193,13 @@ var gew = gew || {};
                 .style("font-weight", "bold")
                 .text(yAxisLabel);
 
-            svg.selectAll(".dot")
-                .data(data)
-                .enter()
+            /***
+             * data.handling
+             */
+            var dataDots = svg.selectAll(".dot")
+                .data(data);
+
+            dataDots.enter()
                 .append("circle")
                 .on('mouseover', tip.show)
                 .on('mouseout', tip.hide)
@@ -160,11 +214,27 @@ var gew = gew || {};
                     return y(yAxisAccessor(d));
                 })
                 .style("fill", function (d) {
-                    return d3.rgb("#ffffff");
+                    return color(d);
                 });
 
+            dataDots.transition()
+                .duration(2000)
+                .style("fill", function (d) {
+                    return color(d);
+                });
+
+            dataDots.exit().transition()
+                .style("fill", function (d) {
+                    return color(d);
+                })
+                .remove();
+
+
+            /***
+             * legend handling
+             */
             var legend = svg.selectAll(".legend")
-                .data(color.domain())
+                .data(legendColor.domain())
                 .enter().append("g")
                 .attr("class", "legend")
                 .attr("transform", function (d, i) {
@@ -175,7 +245,7 @@ var gew = gew || {};
                 .attr("x", width - 18)
                 .attr("width", 18)
                 .attr("height", 18)
-                .style("fill", color);
+                .style("fill", legendColor);
 
             legend.append("text")
                 .attr("x", width - 24)
@@ -245,6 +315,18 @@ var gew = gew || {};
         instance.displayIdentityLine = function (x) {
             if (!arguments.length) return displayIdentityLine;
             displayIdentityLine = x;
+            return instance;
+        };
+
+        instance.significanceLine = function (x) {
+            if (!arguments.length) return significanceLine;
+            significanceLine = x;
+            return instance;
+        };
+
+        instance.oldSignificanceLine = function (x) {
+            if (!arguments.length) return oldSignificanceLine;
+            oldSignificanceLine = x;
             return instance;
         };
 

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="ba">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="../../baget.ico">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,6 +28,12 @@
 <script src="../js/baget/qqplot.js"></script>
 <script src="../js/baget/d3tooltip.js"></script>
 <script src="../js/baget/slider.js"></script>
+<script>
+   var displaySignificanceIndicator  =  function ()  {
+       console.log ('gg');
+       d3.select('#slider').style('display','none');
+   };
+</script>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -64,7 +70,18 @@
 
         <div class="row">
             <div class="col-md-8"><div id="scatterPlot1"></div></div>
-            <div class="col-md-2"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-1">
+                <div class='buttonHolder' height="100%">
+                <div id="btnmgr" class="btn-group-vertical" style="vertical-align: bottom">
+                    <button type="button" class="btn btn-default btn-sm" onclick="displaySignificanceIndicator ()">significance indicator
+                    </button>
+                    %{--<button type="button" class="btn btn-default btn-sm">--}%
+                        %{--<span class="glyphicon glyphicon-star"></span>--}%
+                    %{--</button>--}%
+                </div>
+                </div>
+            </div>
             <div class="col-md-2 qqcontrols"><div id='slider'></div></div>
         </div>
 
@@ -72,10 +89,6 @@
 
     </div>
 </div>
-
-<div id="scatterPlot1"></div>
-<div id="scatterPlot2"></div>
-<div id='slider'></div>
 <script>
 
     var margin = {top: 30, right: 20, bottom: 50, left: 70},

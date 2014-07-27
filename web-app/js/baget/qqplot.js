@@ -9,7 +9,7 @@ var baget = baget || {};
             width = 1,
             height = 1,
             margin = {},
-            selectionIdentifier = '',
+            selectionIdentifier = '',  // string to identify the Dom object that will serve as our route
             data = {},
             xAxisLabel = 'expected',  // default X axis label
             yAxisLabel = 'observed',  // default Y axis label
@@ -31,8 +31,8 @@ var baget = baget || {};
 
 
         // private variables
-            instance = {},
-            selection = {},
+            instance = {},// this is our self identifier object.  Sort of like a 'this'
+            selection, // the Dom object from which we are rooted
             x,
             y,
             color,
@@ -60,13 +60,6 @@ var baget = baget || {};
                     return "<strong><span>" + textToPresent + "</span></strong> ";
                 });
 
-
-        // assign data to the DOM
-        instance.assignData = function (x) {
-            if (!arguments.length) return data;
-            data = x;
-            return instance;
-        };
 
 
         // Now walk through the DOM and create the enrichment plot
@@ -130,17 +123,20 @@ var baget = baget || {};
                 globalMaximum = (x.domain()[1] < y.domain()[1])? x.domain()[1]:  y.domain()[1],
 
                 identityLine = svg.append("line")
+                    .attr("id","identityLine")
                     .attr("x1", x(globalMinimum))
                     .attr("y1", y(globalMinimum))
                     .attr("x2", x(globalMaximum))
                     .attr("y2", y(globalMaximum))
-                    .attr("stroke-width", 2)
+                    .attr("stroke-width", 0)
                     .attr("stroke", "black");
 
-//                identityLine.transition()
-//                    .duration(2000)
-//                    .style("opacity", 0.5);
+                identityLine.transition()
+                    .duration(500)
+                    .attr("stroke-width", 1.5);
 
+            } else {
+                svg.selectAll("#identityLine").remove();
             }
 
             if ((displaySignificanceLine)  && (typeof(significanceLineValue) !=="undefined")){
@@ -271,6 +267,14 @@ var baget = baget || {};
                 });
 
         };
+
+        // assign data to the DOM
+        instance.assignData = function (x) {
+            if (!arguments.length) return data;
+            data = x;
+            return instance;
+        };
+
         instance.xAxisAccessor = function (x) {
             if (!arguments.length) return xAxisAccessor;
             xAxisAccessor = x;

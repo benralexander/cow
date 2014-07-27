@@ -30,7 +30,6 @@
 <script src="../js/baget/slider.js"></script>
 <script>
    var displaySignificanceIndicator  =  function ()  {
-       console.log ('gg='+d3.select('.qqcontrols').style('display'));
        if (d3.select('.qqcontrols').style('display')==='block') {
            d3.select('.qqcontrols').style('display','none');
            qqPlot.displaySignificanceLine(false).render();
@@ -42,6 +41,15 @@
        }
 
    };
+
+    var displayIdentityLine =  function () {
+        if (qqPlot.displayIdentityLine()) {
+            qqPlot.displayIdentityLine(false).render();
+        }else {
+            qqPlot.displayIdentityLine(true).render();
+        }
+    }
+
 </script>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -84,6 +92,8 @@
                 <div class='buttonHolder' height="100%">
                 <div id="btnmgr" class="btn-group-vertical" style="vertical-align: bottom">
                     <button type="button" class="btn btn-default btn-sm" onclick="displaySignificanceIndicator ()">significance indicator
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm" onclick="displayIdentityLine ()">identity line
                     </button>
                     %{--<button type="button" class="btn btn-default btn-sm">--}%
                         %{--<span class="glyphicon glyphicon-star"></span>--}%
@@ -138,7 +148,7 @@
 //                 .tooltipAccessor(function (d) {
 //                     return d.popup
 //                 })
-                .displayIdentityLine (true)
+                .displayIdentityLine (false)
                 .displaySignificanceLine(false)
                // .significanceLineValue (significanceValue)
                 .assignData(json);

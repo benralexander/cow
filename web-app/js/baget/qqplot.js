@@ -1,8 +1,8 @@
-var gew = gew || {};
+var baget = baget || {};
 
 (function () {
 
-    gew.qqPlot = function () {
+    baget.qqPlot = function () {
 
         // the variables we intend to surface
         var

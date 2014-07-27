@@ -1,5 +1,14 @@
+var baget = baget || {};
+
 (function () {
-    d3.slider = function (domainStart, domainEnd, rangeStart, rangeEnd, orientation/*must be either 'vertical' or 'horizontal'*/, initialSliderValue, onBrushMoveDoThis, onBrushEndDoThis) {
+    baget.slider = function (domainStart,
+                             domainEnd,
+                             rangeStart,
+                             rangeEnd,
+                             orientation/*must be either 'vertical' or 'horizontal'*/,
+                             initialSliderValue,
+                             onBrushMoveDoThis,
+                             onBrushEndDoThis) {
         // public variables
         var
 
@@ -172,6 +181,13 @@
             // slider.call(brush.event);
         };
 
+        instance.sliderLocation = function (value) {
+            if (!arguments.length) return brush.extent()[0];
+           // value = scale.invert(d3.mouse(this)[1]);
+            brush.extent([value, value]);
+            handle.attr("cy", scale(value));
+            return instance;
+        };
         return instance;
 
     };

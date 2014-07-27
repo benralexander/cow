@@ -37,6 +37,8 @@
        }  else {
            d3.select('.qqcontrols').style('display','block');
            qqPlot.displaySignificanceLine(true).render();
+           var significanceLineValue = qqPlot.significanceLineValue();
+           slider.sliderLocation(significanceLineValue);
        }
 
    };
@@ -120,7 +122,7 @@
     var qqPlot ;
     d3.json("http://localhost:8028/cow/box/qqPlotData", function (error, json) {
 
-        qqPlot=gew.qqPlot()
+        qqPlot=baget.qqPlot()
                 .selectionIdentifier("#scatterPlot1")
                 .width(width)
                 .height(height)
@@ -166,11 +168,11 @@
             onScreenStart = 10,
             onScreenEnd = 200;
 
-    var slider = d3.slider(minimumInterquartileMultiplier,
+    var slider = baget.slider(minimumInterquartileMultiplier,
             maximumInterquartileMultiplier,
             onScreenStart,
             onScreenEnd,
-            'vertical',defaultInterquartileMultiplier,onBrushMoveDoThis,onBrushEndDoThis) ;
+            'vertical',3300,onBrushMoveDoThis,onBrushEndDoThis) ;
 
 
 

@@ -30,8 +30,15 @@
 <script src="../js/baget/slider.js"></script>
 <script>
    var displaySignificanceIndicator  =  function ()  {
-       console.log ('gg');
-       d3.select('#slider').style('display','none');
+       console.log ('gg='+d3.select('.qqcontrols').style('display'));
+       if (d3.select('.qqcontrols').style('display')==='block') {
+           d3.select('.qqcontrols').style('display','none');
+           qqPlot.displaySignificanceLine(false).render();
+       }  else {
+           d3.select('.qqcontrols').style('display','block');
+           qqPlot.displaySignificanceLine(true).render();
+       }
+
    };
 </script>
 
@@ -82,7 +89,7 @@
                 </div>
                 </div>
             </div>
-            <div class="col-md-2 qqcontrols"><div id='slider'></div></div>
+            <div class="col-md-2"><div class='qqcontrols'><div id='slider'></div></div></div>
         </div>
 
 
@@ -130,7 +137,8 @@
 //                     return d.popup
 //                 })
                 .displayIdentityLine (true)
-                .significanceLine (significanceValue)
+                .displaySignificanceLine(false)
+               // .significanceLineValue (significanceValue)
                 .assignData(json);
         qqPlot.render();
 
@@ -144,12 +152,13 @@
         console.log('a'+ d.toString());
     };
     var onBrushMoveDoThis = function(d){
-        significanceValue=  d;
+        if (typeof(qqPlot) !=="undefined") {
+            qqPlot.significanceLineValue(d);
+        }
     };
     var onBrushEndDoThis = function(){
         if (typeof(qqPlot) !=="undefined") {
-            qqPlot.significanceLine(significanceValue)
-                    .render();
+            qqPlot.render();
         }
     };
     var minimumInterquartileMultiplier = 180,

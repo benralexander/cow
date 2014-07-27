@@ -22,8 +22,9 @@ var gew = gew || {};
             tooltipAccessor = function (d) {
                  return d.popup;      //    default key name for the JSON field holding tooltip values
             },
-            displayIdentityLine = true,
-            significanceLine,
+            displayIdentityLine = true,// By default we will display the identity line
+            displaySignificanceLine = false,  // By default we will not display the Significance line
+            significanceLineValue,            // There is no default significance line value
             clickCallback = function (d, i) {
                 console.log ('default callback function for dot click')
             },
@@ -78,8 +79,8 @@ var gew = gew || {};
                 .range([height, 0]);
 
             color = function (d){
-                if (typeof(significanceLine) !=="undefined") {
-                    if (yAxisAccessor (d) > significanceLine){
+                if ((displaySignificanceLine)  && (typeof(significanceLineValue) !=="undefined")) {
+                    if (yAxisAccessor (d) > significanceLineValue){
                         return d3.rgb("#ff00ff");
                     } else {
                         return d3.rgb("#ffffff");
@@ -142,8 +143,9 @@ var gew = gew || {};
 
             }
 
-            if (significanceLine) {
-                var significanceDifferentiator  =  svg.selectAll(".significanceLine").data([significanceLine]);
+            if ((displaySignificanceLine)  && (typeof(significanceLineValue) !=="undefined")){
+
+                var significanceDifferentiator  =  svg.selectAll(".significanceLine").data([significanceLineValue]);
 
                 significanceDifferentiator.enter().append("line")
                     .attr("class", "significanceLine")
@@ -170,6 +172,8 @@ var gew = gew || {};
 
                 significanceDifferentiator.exit().remove();
 
+            } else {
+                svg.selectAll(".significanceLine").data([significanceLineValue]).remove();
             }
 
             svg.append("g")
@@ -328,9 +332,22 @@ var gew = gew || {};
             return instance;
         };
 
-        instance.significanceLine = function (x) {
-            if (!arguments.length) return significanceLine;
-            significanceLine = x;
+        instance.displaySignificanceLine = function (x) {
+            if (!arguments.length) return displaySignificanceLine;
+            displaySignificanceLine = x;
+            var newSignificanceValue;
+            if (displaySignificanceLine) {
+                newSignificanceValue =  (y.domain()[0] +  y.domain()[1])/2.0;
+            }  else {
+                newSignificanceValue =  undefined;
+            }
+            instance.significanceLineValue (newSignificanceValue); //significanceLineValue
+            return instance;
+        };
+
+        instance.significanceLineValue = function (x) {
+            if (!arguments.length) return significanceLineValue;
+            significanceLineValue = x;
             return instance;
         };
 

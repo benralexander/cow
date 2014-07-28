@@ -33,6 +33,7 @@ var baget = baget || {};
         // private variables
             instance = {},// this is our self identifier object.  Sort of like a 'this'
             selection, // the Dom object from which we are rooted
+            dataDots,
             x,
             y,
             color,
@@ -60,6 +61,28 @@ var baget = baget || {};
                     return "<strong><span>" + textToPresent + "</span></strong> ";
                 });
 
+        function zoomed() {
+            console.log('zooooom');
+            svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+            selection.select(".x.axis").call(xAxis);
+            selection.select(".y.axis").call(yAxis);
+//            dataDots.attr('x', function(d,i) {
+//                console('d='+d);
+//                return x(data[d.index].x);
+//            })
+
+
+
+//                .attr('width', function(d,i) {
+//                    return  calculateWidth(dVector,d,i,xScale, averageWidth) ;
+//                }) ;
+//            featuremap.attr('x', function(d,i) {
+//                return x(dVector[d.index].value);
+//            })
+//                .attr('width', function(d,i) {
+//                    return  calculateWidth(dVector,d,i,xScale, averageWidth) ;
+//                });
+        }
 
 
         // Now walk through the DOM and create the enrichment plot
@@ -139,6 +162,16 @@ var baget = baget || {};
                 svg.selectAll("#identityLine").remove();
             }
 
+
+            var zoom = d3.behavior.zoom()
+                .x(x)
+                .y(y)
+                .scaleExtent([1, 100])
+                .on("zoom", zoomed);
+
+            selection.call(zoom);
+
+
             if ((displaySignificanceLine)  && (typeof(significanceLineValue) !=="undefined")){
 
                 var significanceDifferentiator  =  svg.selectAll(".significanceLine").data([significanceLineValue]);
@@ -200,7 +233,7 @@ var baget = baget || {};
             /***
              * data.handling
              */
-            var dataDots = svg.selectAll(".dot")
+            dataDots = svg.selectAll(".dot")
                 .data(data);
 
             dataDots.enter()
@@ -221,11 +254,6 @@ var baget = baget || {};
                     return color(d);
                 });
 
-//                .style("opacity", 0)
-//                .transition()
-//                .duration(1000)
-//                .attr("r", 3.5)
-//                .style("opacity", 1);
 
             dataDots.transition()
                 .duration(1000)

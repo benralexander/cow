@@ -41,6 +41,7 @@ var baget = baget || {};
             xAxis,
             yAxis,
             svg,
+            groupHolder,
 
         //  private variable
             tip = d3.tip()
@@ -61,11 +62,17 @@ var baget = baget || {};
                     return "<strong><span>" + textToPresent + "</span></strong> ";
                 });
 
+
         function zoomed() {
             console.log('zooooom');
-            svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+//            svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
             selection.select(".x.axis").call(xAxis);
             selection.select(".y.axis").call(yAxis);
+            selection.selectAll(".dot").attr("cx",function(d,i) {
+                return x(xAxisAccessor(d));
+            }).attr("cy",function(d,i) {
+                return y(yAxisAccessor(d));
+            });
 //            dataDots.attr('x', function(d,i) {
 //                console('d='+d);
 //                return x(data[d.index].x);
@@ -115,11 +122,6 @@ var baget = baget || {};
                 .scale(y)
                 .orient("left");
 
-//            var previouslyExistingScatterPlot = selection.selectAll("svg");
-//            if (previouslyExistingScatterPlot) {
-//                previouslyExistingScatterPlot.remove();
-//            }
-
             if (!svg) {
                 svg = selection
                     .append("svg")
@@ -130,6 +132,12 @@ var baget = baget || {};
                     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
                     .call(tip);
             }
+
+            groupHolder = svg.selectAll('#groupHolder')
+                .data([{}])
+                .enter()
+                .append('g')
+                .attr('id','groupHolder');
 
             // find the maximum in the minimums in order to scale the plot
             x.domain(d3.extent(data, xAxisAccessor)).nice();
@@ -145,7 +153,7 @@ var baget = baget || {};
                 var globalMinimum = (x.domain()[0] > y.domain()[0])? x.domain()[0]:  y.domain()[0],
                 globalMaximum = (x.domain()[1] < y.domain()[1])? x.domain()[1]:  y.domain()[1],
 
-                identityLine = svg.append("line")
+                identityLine = d3.select('#groupHolder').append("line")
                     .attr("id","identityLine")
                     .attr("x1", x(globalMinimum))
                     .attr("y1", y(globalMinimum))
@@ -174,7 +182,7 @@ var baget = baget || {};
 
             if ((displaySignificanceLine)  && (typeof(significanceLineValue) !=="undefined")){
 
-                var significanceDifferentiator  =  svg.selectAll(".significanceLine").data([significanceLineValue]);
+                var significanceDifferentiator  =  d3.select('#groupHolder').selectAll(".significanceLine").data([significanceLineValue]);
 
                 significanceDifferentiator.enter().append("line")
                     .attr("class", "significanceLine")
@@ -205,7 +213,11 @@ var baget = baget || {};
                 svg.selectAll(".significanceLine").data([significanceLineValue]).remove();
             }
 
-            svg.append("g")
+            svg.selectAll("#xAxis")
+                .data([1])
+                .enter()
+                .append("g")
+                .attr("id", "xAxis")
                 .attr("class", "x axis")
                 .attr("transform", "translate(0," + height + ")")
                 .call(xAxis)
@@ -217,7 +229,11 @@ var baget = baget || {};
                 .style("font-weight", "bold")
                 .text(xAxisLabel);
 
-            svg.append("g")
+            svg.selectAll("#yAxis")
+                .data([1])
+                .enter()
+                .append("g")
+                .attr("id", "yAxis")
                 .attr("class", "y axis")
                 .call(yAxis)
                 .append("text")
@@ -229,11 +245,23 @@ var baget = baget || {};
                 .style("text-anchor", "middle")
                 .style("font-weight", "bold")
                 .text(yAxisLabel);
+//            svg.append("g")
+//                .attr("class", "y axis")
+//                .call(yAxis)
+//                .append("text")
+//                .attr("class", "label")
+//                .attr("transform", "rotate(-90)")
+//                .attr("y", 6)
+//                .attr("dy", "-3em")
+//                .attr("x", -height / 2)
+//                .style("text-anchor", "middle")
+//                .style("font-weight", "bold")
+//                .text(yAxisLabel);
 
             /***
              * data.handling
              */
-            dataDots = svg.selectAll(".dot")
+            dataDots = d3.select('#groupHolder').selectAll(".dot")
                 .data(data);
 
             dataDots.enter()

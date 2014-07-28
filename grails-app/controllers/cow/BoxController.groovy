@@ -424,6 +424,9 @@ class BoxController {
     def scatter() {
         render(view:'scatter')
     }
+
+
+
     def qqplot() {
         render(view:'qqplot')
     }
@@ -431,6 +434,10 @@ class BoxController {
         response.setContentType("application/json")
         render(rawJson)
     }
+
+
+
+
     def doseResponse() {
         render(view:'doseResponse')
     }

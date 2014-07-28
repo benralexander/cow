@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/cow.iml" filepath="$PROJECT_DIR$/cow.iml" />
       <module fileurl="file://$PROJECT_DIR$/cow-grailsPlugins.iml" filepath="$PROJECT_DIR$/cow-grailsPlugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cow-grailsPlugins.iml" filepath="$PROJECT_DIR$/cow-grailsPlugins.iml" />
     </modules>
   </component>
 </project>

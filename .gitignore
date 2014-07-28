@@ -5,3 +5,4 @@
 /target/test-reports/*.xml
 **/test-reports
 stacktrace.log
+.idea/workspace.xml

@@ -42,6 +42,8 @@ var baget = baget || {};
             yAxis,
             svg,
             groupHolder,
+            globalMinimum,
+            globalMaximum,
 
         //  private variable
             tip = d3.tip()
@@ -64,8 +66,7 @@ var baget = baget || {};
 
 
         function zoomed() {
-            console.log('zooooom');
-//            svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+
             selection.select(".x.axis").call(xAxis);
             selection.select(".y.axis").call(yAxis);
             selection.selectAll(".dot").attr("cx",function(d,i) {
@@ -73,23 +74,53 @@ var baget = baget || {};
             }).attr("cy",function(d,i) {
                 return y(yAxisAccessor(d));
             });
-//            dataDots.attr('x', function(d,i) {
-//                console('d='+d);
-//                return x(data[d.index].x);
-//            })
 
+            selection.selectAll(".significanceLine").attr("x1",function(d,i) {
+                return x(x.domain()[0]);
+            })
+            .attr("x2",function(d,i) {
+                return x(x.domain()[1]);
+            })
+            .attr("y1",function(d,i) {
+                return y(d);
+            })
+            .attr("y2",function(d,i) {
+                return y(d);
+            });
 
-
-//                .attr('width', function(d,i) {
-//                    return  calculateWidth(dVector,d,i,xScale, averageWidth) ;
-//                }) ;
-//            featuremap.attr('x', function(d,i) {
-//                return x(dVector[d.index].value);
-//            })
-//                .attr('width', function(d,i) {
-//                    return  calculateWidth(dVector,d,i,xScale, averageWidth) ;
-//                });
+            selection.select('#identityLine')
+                .attr("x1", function (d) {
+                    return x(d.min)
+                })
+                .attr("y1",function (d) {
+                    return y(d.min)
+                })
+                .attr("x2",  function (d) {
+                    return x(d.max)
+                })
+                .attr("y2",  function (d) {
+                    return y(d.max)
+                });
         }
+
+
+        function defineBodyClip(svg,xStart,yStart,xEnd,yEnd) {
+            var padding = 5,
+
+            bodyClip = svg.select('#groupHolder').selectAll('#body-clip')
+                .data([{}]);
+
+            bodyClip.enter().append("defs")
+                .append("clipPath")
+                .attr("id", "body-clip")
+                .append("rect")
+                .attr("x", xStart)
+                .attr("y", yStart)
+                .attr("width", xEnd)
+                .attr("height", yEnd);
+
+          }
+
 
 
         // Now walk through the DOM and create the enrichment plot
@@ -137,7 +168,10 @@ var baget = baget || {};
                 .data([{}])
                 .enter()
                 .append('g')
-                .attr('id','groupHolder');
+                .attr('id','groupHolder')
+                .attr("clip-path", "url(#body-clip)");
+
+
 
             // find the maximum in the minimums in order to scale the plot
             x.domain(d3.extent(data, xAxisAccessor)).nice();
@@ -150,15 +184,25 @@ var baget = baget || {};
                 //  those extremes against one another to generate 'the minimum of the maximums'
                 //  and 'the maximum of the minimums'.  These points defined the identity line
                 //  in the qqplot
-                var globalMinimum = (x.domain()[0] > y.domain()[0])? x.domain()[0]:  y.domain()[0],
-                globalMaximum = (x.domain()[1] < y.domain()[1])? x.domain()[1]:  y.domain()[1],
+                globalMinimum = (x.domain()[0] > y.domain()[0])? x.domain()[0]:  y.domain()[0],
+                globalMaximum = (x.domain()[1] < y.domain()[1])? x.domain()[1]:  y.domain()[1];
 
-                identityLine = d3.select('#groupHolder').append("line")
+                identityLine = d3.select('#groupHolder').selectAll('#identityLine').data([{min:globalMinimum,max:globalMaximum}]);
+
+                identityLine.enter().append("line")
                     .attr("id","identityLine")
-                    .attr("x1", x(globalMinimum))
-                    .attr("y1", y(globalMinimum))
-                    .attr("x2", x(globalMaximum))
-                    .attr("y2", y(globalMaximum))
+                    .attr("x1", function (d) {
+                        return x(d.min)
+                    })
+                    .attr("y1",function (d) {
+                        return y(d.min)
+                    })
+                    .attr("x2",  function (d) {
+                        return x(d.max)
+                    })
+                    .attr("y2",  function (d) {
+                        return y(d.max)
+                    })
                     .attr("stroke-width", 0)
                     .attr("stroke", "black");
 
@@ -245,18 +289,6 @@ var baget = baget || {};
                 .style("text-anchor", "middle")
                 .style("font-weight", "bold")
                 .text(yAxisLabel);
-//            svg.append("g")
-//                .attr("class", "y axis")
-//                .call(yAxis)
-//                .append("text")
-//                .attr("class", "label")
-//                .attr("transform", "rotate(-90)")
-//                .attr("y", 6)
-//                .attr("dy", "-3em")
-//                .attr("x", -height / 2)
-//                .style("text-anchor", "middle")
-//                .style("font-weight", "bold")
-//                .text(yAxisLabel);
 
             /***
              * data.handling
@@ -321,6 +353,8 @@ var baget = baget || {};
                 .text(function (d) {
                     return d;
                 });
+
+            defineBodyClip(svg,x(x.domain()[0]),y(y.domain()[1]),x(x.domain()[1]),y(y.domain()[0]));
 
         };
 

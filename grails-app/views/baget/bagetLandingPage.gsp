@@ -57,7 +57,34 @@
         }else {
             qqPlot.displayIdentityLine(true).render();
         }
-    }
+    };
+
+   var extractDataRange  = function(incoming) {
+       var maxX = d3.max(incoming,function(d){return d.x}),
+               maxY = d3.max(incoming,function(d){return d.y}),
+               minX = d3.min(incoming,function(d){return d.x}),
+               minY = d3.min(incoming,function(d){return d.y}),
+               overallMax  =  d3.max([maxX,maxY]),
+               overallMin  =  d3.min([minX,minY]),
+               median = d3.median([overallMin,overallMax]);
+       return { max:overallMax, min:overallMin, median:median }
+   };
+
+
+   data = [
+       {x:3.5,
+           y:3.5,
+           p:'rs79716074'
+       },
+       {x:4.9,
+           y:4.99,
+           p:'more useful information'
+       },
+       {x:7,
+           y:8,
+           p:'more information'
+       }
+   ];
 
 </script>
 
@@ -74,7 +101,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
+                <li class="active"><a href="/cow/baget/qqplot">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -127,23 +154,12 @@
 
     var margin = {top: 30, right: 20, bottom: 50, left: 70},
             width = 700 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom;
+            height = 400 - margin.top - margin.bottom,
+            sliderOnScreenTop = 10,
+            sliderOnScreenBottom = 200;
 
-    data = [
-        {x:3.5,
-            y:3.5,
-            popup:'rs79716074'
-        },
-        {x:4.9,
-            y:4.99,
-            popup:'more useful information'
-        },
-        {x:7,
-            y:8,
-            popup:'more information'
-        }
-    ];
-    var significanceValue = 100;
+
+
     var qqPlot ;
     <g:if test="${dataFileBased}">
     d3.json("/cow/baget/qqPlotData?id=1", function (error, json) {
@@ -151,6 +167,8 @@
     <g:else>
     d3.json("/cow/baget/qqPlotData", function (error, json) {
     </g:else>
+
+        var dataRange = extractDataRange(json);
 
 
         qqPlot=baget.qqPlot()
@@ -171,29 +189,23 @@
 //                 })
                 .displayIdentityLine (false)
                 .displaySignificanceLine(false)
-               // .significanceLineValue (significanceValue)
+                .significanceLineValue (dataRange.median)
                 .assignData(json);
         qqPlot.render();
 
-        var minimumInterquartileMultiplier = d3.max(json,function(d){return d.x}) ,
-                maximumInterquartileMultiplier =  d3.min(json,function(d){return d.x}),
-                onScreenStart = 10,
-                onScreenEnd = 200;
 
-        var slider = baget.slider(minimumInterquartileMultiplier,
-                maximumInterquartileMultiplier,
-                onScreenStart,
-                onScreenEnd,
-                'vertical',3300,onBrushMoveDoThis,onBrushEndDoThis) ;
+        var slider = baget.slider(dataRange.max,
+                dataRange.min,
+                sliderOnScreenTop,
+                sliderOnScreenBottom,
+                'vertical',dataRange.median ,onBrushMoveDoThis,onBrushEndDoThis) ;
+        slider.sliderLocation(dataRange.median);
 
 
 
     } );
 
 
-//    var defaultInterquartileMultiplier = function(d){
-//        console.log('a'+ d.toString());
-//    };
     var onBrushMoveDoThis = function(d){
         if (typeof(qqPlot) !=="undefined") {
             qqPlot.significanceLineValue(d);
@@ -204,16 +216,6 @@
             qqPlot.render();
         }
     };
-//    var minimumInterquartileMultiplier = 180,
-//            maximumInterquartileMultiplier = 0,
-//            onScreenStart = 10,
-//            onScreenEnd = 200;
-//
-//    var slider = baget.slider(minimumInterquartileMultiplier,
-//            maximumInterquartileMultiplier,
-//            onScreenStart,
-//            onScreenEnd,
-//            'vertical',3300,onBrushMoveDoThis,onBrushEndDoThis) ;
 
 
 

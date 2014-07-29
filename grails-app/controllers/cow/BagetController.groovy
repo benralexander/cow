@@ -1,19 +1,31 @@
 package cow
 
-class BagetController {
+import baget.BagetService
 
-    LinkedHashMap tempDataStore = [:]
+class BagetController {
+    BagetService bagetService
+    String tempDataStore = null
+
 
     def upload() {
         println('got a file')
-        def f = request.getFile('myFile')
-        if (f.empty) {
+        println('delete old one')
+        new File('./tempStorage.txt').delete()
+        def incomingFile = request.getFile('myFile')
+        if (incomingFile.empty) {
             flash.message = 'file cannot be empty'
             render(view: 'bagetLandingPage')
             return
         }
-        //f.transferTo(new File('/some/local/dir/myfile.txt'))
-        //response.sendError(200, 'Done')
+        println('type='+incomingFile.getClass().name+'.')
+        incomingFile.transferTo(new File('./tempStorage.txt'))
+        println('transferred.')
+        render(view: 'bagetLandingPage',model:[dataFileBased:1])
+    }
+
+
+    def returnToDefaultJsonData() {
+        tempDataStore = null
         render(view: 'bagetLandingPage')
     }
 
@@ -131,12 +143,12 @@ class BagetController {
 {"x":89.17256952,"y":97},
 {"x":91.21512701,"y":97},
 {"x":93.46539229,"y":108},
-{"x":95.98361411,"y":110},
-{"x":98.86164141,"y":115},
-{"x":102.2504013,"y":118,"popup":"rs79716074"},
-{"x":106.4263918,"y":122,"popup":"s104893897"},
-{"x":111.9926,"y":135,"popup":"rs79716074"},
-{"x":120.7948347,"y":168,"popup":"rs104893892"}
+{"x":95.98361411,"y":110,"u":"http://www.ncbi.nlm.nih.gov/snp/?term=rs104893892"},
+{"x":98.86164141,"y":115,"u":"http://www.ncbi.nlm.nih.gov/snp/?term=rs104893892"},
+{"x":102.2504013,"y":118,"p":"rs79716074","u":"http://www.ncbi.nlm.nih.gov/snp/?term=rs79716074"},
+{"x":106.4263918,"y":122,"p":"rs104893897","u":"http://www.ncbi.nlm.nih.gov/snp/?term=rs104893897"},
+{"x":111.9926,"y":135,"p":"rs79716074","u":"http://www.ncbi.nlm.nih.gov/snp/?term=rs79716074"},
+{"x":120.7948347,"y":168,"p":"rs104893892","u":"http://www.ncbi.nlm.nih.gov/snp/?term=rs104893892"}
 ]
 """
 
@@ -148,11 +160,20 @@ class BagetController {
 
 
     def qqplot() {
-        render(view:'bagetLandingPage')
+        render(view:'bagetLandingPage',model:[dataFileBased:0])
     }
     def qqPlotData(){
+        String dataFileBased = params.id
         response.setContentType("application/json")
-        render(rawJson)
+        if (!dataFileBased) {
+            render(rawJson)
+        } else {
+            File readFileOfDisk = new File('./tempStorage.txt')
+            int howManyLines =  bagetService.howManyLines(readFileOfDisk)
+            tempDataStore = bagetService.convertFileToJson (readFileOfDisk,howManyLines)
+            render(tempDataStore)
+        }
+
     }
 
 

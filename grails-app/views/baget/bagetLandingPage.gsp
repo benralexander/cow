@@ -44,6 +44,7 @@
    var prepareForUpload  =  function ()  {
        if (d3.select('#uploadButtonHider').style('display')==='block') {
            d3.select('#uploadButtonHider').style('display','none');
+           window.location.href = '/cow/baget/returnToDefaultJsonData';
        }  else {
            d3.select('#uploadButtonHider').style('display','block');
        }
@@ -69,7 +70,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="#">BAGET project</a>
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -144,7 +145,13 @@
     ];
     var significanceValue = 100;
     var qqPlot ;
+    <g:if test="${dataFileBased}">
+    d3.json("/cow/baget/qqPlotData?id=1", function (error, json) {
+    </g:if>
+    <g:else>
     d3.json("/cow/baget/qqPlotData", function (error, json) {
+    </g:else>
+
 
         qqPlot=baget.qqPlot()
                 .selectionIdentifier("#scatterPlot1")
@@ -168,15 +175,25 @@
                 .assignData(json);
         qqPlot.render();
 
+        var minimumInterquartileMultiplier = d3.max(json,function(d){return d.x}) ,
+                maximumInterquartileMultiplier =  d3.min(json,function(d){return d.x}),
+                onScreenStart = 10,
+                onScreenEnd = 200;
+
+        var slider = baget.slider(minimumInterquartileMultiplier,
+                maximumInterquartileMultiplier,
+                onScreenStart,
+                onScreenEnd,
+                'vertical',3300,onBrushMoveDoThis,onBrushEndDoThis) ;
 
 
 
     } );
 
 
-    var defaultInterquartileMultiplier = function(d){
-        console.log('a'+ d.toString());
-    };
+//    var defaultInterquartileMultiplier = function(d){
+//        console.log('a'+ d.toString());
+//    };
     var onBrushMoveDoThis = function(d){
         if (typeof(qqPlot) !=="undefined") {
             qqPlot.significanceLineValue(d);
@@ -187,16 +204,16 @@
             qqPlot.render();
         }
     };
-    var minimumInterquartileMultiplier = 180,
-            maximumInterquartileMultiplier = 0,
-            onScreenStart = 10,
-            onScreenEnd = 200;
-
-    var slider = baget.slider(minimumInterquartileMultiplier,
-            maximumInterquartileMultiplier,
-            onScreenStart,
-            onScreenEnd,
-            'vertical',3300,onBrushMoveDoThis,onBrushEndDoThis) ;
+//    var minimumInterquartileMultiplier = 180,
+//            maximumInterquartileMultiplier = 0,
+//            onScreenStart = 10,
+//            onScreenEnd = 200;
+//
+//    var slider = baget.slider(minimumInterquartileMultiplier,
+//            maximumInterquartileMultiplier,
+//            onScreenStart,
+//            onScreenEnd,
+//            'vertical',3300,onBrushMoveDoThis,onBrushEndDoThis) ;
 
 
 

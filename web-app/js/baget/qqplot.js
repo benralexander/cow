@@ -20,13 +20,23 @@ var baget = baget || {};
                  return d.y;    //    default key name for the JSON field holding Y values
             },
             tooltipAccessor = function (d) {
-                 return d.popup;      //    default key name for the JSON field holding tooltip values
+                 return d.p;      //    default key name for the JSON field holding tooltip values
+            },
+            externalLinkAccessor = function (d) {
+                return d.u;      //    default key name for the JSON field holding tooltip values
             },
             displayIdentityLine = true,// By default we will display the identity line
             displaySignificanceLine = false,  // By default we will not display the Significance line
             significanceLineValue,            // There is no default significance line value
             clickCallback = function (d, i) {
-                console.log ('default callback function for dot click')
+                if (( typeof(d) !==  "undefined") &&
+                    ( typeof(externalLinkAccessor) !==  "undefined")  &&
+                    ( typeof(externalLinkAccessor(d)) !==  "undefined")){
+                    window.open(externalLinkAccessor(d))
+                }  else {
+                    console.log ('default callback function for dot click. Missing external link or else link accessor is incorrectly defined.')
+                }
+
             },
 
 
@@ -376,11 +386,19 @@ var baget = baget || {};
             yAxisAccessor = x;
             return instance;
         };
+
         instance.tooltipAccessor = function (x) {
             if (!arguments.length) return tooltipAccessor;
             tooltipAccessor = x;
             return instance;
         };
+
+        instance.externalLinkAccessor = function (x) {
+            if (!arguments.length) return externalLinkAccessor;
+            externalLinkAccessor = x;
+            return instance;
+        };
+
 
 
         instance.width = function (x) {

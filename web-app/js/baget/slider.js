@@ -38,16 +38,24 @@ var baget = baget || {};
                 .on("brush", brushed)
                 .on("brushend", brushEnded);
 
+            // TODO: make this approach more flxible
+            // no more than one
+            var oldSliders =  d3.select("#sliderHolder");
+            if (oldSliders){
+                oldSliders.remove();
+            }
+
+
             // Define the SVG area and place the slider in the UI.  The translate call is only there to make sure
             // that the top (in the case of a vertical slider) or the left (in the case of a horizontal)
             // isn't sitting off the edge of the visible region.
             if (orientation === 'horizontal') {
-                svg = d3.select("#slider").append("svg")
+                svg = d3.select("#slider").append("svg").attr('id','sliderHolder')
                     .attr("width", rangeEnd + 20).attr("height", "50")
                     .append("g")
                     .attr("transform", "translate(10,10)");
             } else {
-                svg = d3.select("#slider").append("svg")
+                svg = d3.select("#slider").append("svg").attr('id','sliderHolder')
                     .attr("width", "50").attr("height", rangeEnd + 20)
                     .append("g")
                     .attr("transform", "translate(10,10)");

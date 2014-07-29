@@ -41,8 +41,16 @@
        }
 
    };
+   var prepareForUpload  =  function ()  {
+       if (d3.select('#uploadButtonHider').style('display')==='block') {
+           d3.select('#uploadButtonHider').style('display','none');
+       }  else {
+           d3.select('#uploadButtonHider').style('display','block');
+       }
 
-    var displayIdentityLine =  function () {
+   };
+
+   var displayIdentityLine =  function () {
         if (qqPlot.displayIdentityLine()) {
             qqPlot.displayIdentityLine(false).render();
         }else {
@@ -76,8 +84,8 @@
 <div class="container">
 
     <div class="starter-template">
-        <h1>QQ Plot</h1>
-        <p class="lead">Initial product of the Broad Accumulated Graphical Elements Team <it>(BAGET)</it><br></p>
+        <h1 style="font-weight: bold">QQ Plot</h1>
+        <p class="lead">Product of the <span class="bagetTitle">Broad Accumulated Graphical Elements Team (BAGET)</span><br></p>
     </div>
 
 </div><!-- /.container -->
@@ -87,7 +95,14 @@
 
         <div class="row">
             <div class="col-md-8"><div id="scatterPlot1"></div></div>
-            <div class="col-md-1"></div>
+            <div class="col-md-1">
+                <div id="uploadButtonHider" style="display:none">
+                    <g:uploadForm action="upload">
+                        <input type="file"  class="btn btn-default btn-sm" name="myFile" />
+                        <input type="submit"   class="btn btn-default btn-sm" />
+                    </g:uploadForm>
+                </div>
+             </div>
             <div class="col-md-1">
                 <div class='buttonHolder' height="100%">
                 <div id="btnmgr" class="btn-group-vertical" style="vertical-align: bottom">
@@ -95,9 +110,8 @@
                     </button>
                     <button type="button" class="btn btn-default btn-sm" onclick="displayIdentityLine ()">identity line
                     </button>
-                    %{--<button type="button" class="btn btn-default btn-sm">--}%
-                        %{--<span class="glyphicon glyphicon-star"></span>--}%
-                    %{--</button>--}%
+                    <button type="button" class="btn btn-default btn-sm" onclick="prepareForUpload ()">uploadFile
+                    </button>
                 </div>
                 </div>
             </div>
@@ -130,7 +144,7 @@
     ];
     var significanceValue = 100;
     var qqPlot ;
-    d3.json("http://localhost:8028/cow/box/qqPlotData", function (error, json) {
+    d3.json("/cow/baget/qqPlotData", function (error, json) {
 
         qqPlot=baget.qqPlot()
                 .selectionIdentifier("#scatterPlot1")

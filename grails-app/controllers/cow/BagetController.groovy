@@ -2,6 +2,24 @@ package cow
 
 class BagetController {
 
+    LinkedHashMap tempDataStore = [:]
+
+    def upload() {
+        println('got a file')
+        def f = request.getFile('myFile')
+        if (f.empty) {
+            flash.message = 'file cannot be empty'
+            render(view: 'bagetLandingPage')
+            return
+        }
+        //f.transferTo(new File('/some/local/dir/myfile.txt'))
+        //response.sendError(200, 'Done')
+        render(view: 'bagetLandingPage')
+    }
+
+
+
+
     def rawJson = """
 [{"x":-36.53621405,"y":1},
 {"x":-27.73397927,"y":4},

@@ -13,6 +13,9 @@ body {
     border: 1px solid #0000ff;
     display: none;
 }
+.bagetTitle  {
+   font-family: 'Gravitas One', 'Arial Black';
+}
 #slider {}
 .scatter .axis path,
 .scatter .axis line {

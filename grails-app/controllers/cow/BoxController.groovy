@@ -426,10 +426,6 @@ class BoxController {
     }
 
 
-
-    def qqplot() {
-        render(view:'qqplot')
-    }
     def qqPlotData(){
         response.setContentType("application/json")
         render(rawJson)

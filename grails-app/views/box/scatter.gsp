@@ -2,15 +2,17 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="layout" content="core"/>
     <title>Array as Data</title>
-    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
-    <script type="text/javascript" src="../js/d3.js"></script>
+    %{--<link rel="stylesheet" type="text/css" href="../css/styles.css"/>--}%
+    %{--<script type="text/javascript" src="../js/d3.js"></script>--}%
 </head>
 <body>
-<link media="all" rel="stylesheet" href="../css/ctrp/scatter.css">
-<script src="../js/d3.js"></script>
-<script src="../js/ctrp/scatter.js"></script>
-<script src="../js/ctrp/d3tooltip.js"></script>
+<link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'scatter.css')}" type="text/css">
+
+<g:javascript src="ctrp/d3.js"/>
+<g:javascript src="ctrp/scatter.js"/>
+<g:javascript src="ctrp/d3tooltip.js"/>
 <div id="scatterPlot1"></div>
 <div id="scatterPlot2"></div>
 <script>

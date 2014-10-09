@@ -5,8 +5,7 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"><!--<![endif]-->
 <head>
-    <title>Sunburst</title>
-    <title>BARD : Compound Bio-Activity Summary</title>
+<meta name="layout" content="core"/>
 
     %{--<script src="/bardwebclient/static/plugins/jquery-1.7.1/js/jquery/jquery-1.7.1.min.js" type="text/javascript" ></script>--}%
 

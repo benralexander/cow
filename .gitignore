@@ -2,7 +2,7 @@
 *.iml
 *.ipr
 *.iws
-/target/test-reports/*.xml
+/target/**
 **/test-reports
 stacktrace.log
 .idea/workspace.xml

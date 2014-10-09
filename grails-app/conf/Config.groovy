@@ -11,6 +11,9 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
+site.title = 'Small-scale graphics demos'  // could be 'SIGMA T2D' or 'Type 2 Diabetes Genetics'
+
+
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
@@ -65,7 +68,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://graphicsdemo.elasticbeanstalk.com"
     }
 }
 

@@ -1,15 +1,18 @@
 
 <head>
-    <script src="../js/ctrp/d3.js"></script>
-    <script src="../js/histocruise.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/histocruise.css"/>
+
+    <g:javascript src="ctrp/d3.js"/>
+    <g:javascript src="histocruise.js"/>
+    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'histocruise.css')}" type="text/css">
+
 
 </head>
 
 <body>
+
 <script>
 
-    d3.json("/cow/cookin/retrieveJson", function (error, inData) {
+    d3.json("${createLink(controller: 'cookin', action:'retrieveJson')}", function (error, inData) {
 
         var swirlyHistogram = cbbo.swirlyHistogram().selectionIdentifier('#histogramGoesHere');
 

@@ -10,8 +10,10 @@
 <html>
 <head>
   <title>Mandelbrot set</title>
-    <link rel="stylesheet" type="text/css" href="../css/ctrp/doseResponse.css"/>
-    <script type="text/javascript" src="../js/d3.js"></script>
+    <meta name="layout" content="core"/>
+    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'doseResponse.css')}" type="text/css">
+
+    <g:javascript src="d3.js"/>
 </head>
 <body>
 

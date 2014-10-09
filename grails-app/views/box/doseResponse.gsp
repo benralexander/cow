@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta name="layout" content="core"/>
     <title>Line Chart</title>
 
-    <link rel="stylesheet" type="text/css" href="../css/ctrp/doseResponse.css"/>
-    <script type="text/javascript" src="../js/d3.js"></script>
-    <script src="../js/ctrp/d3tooltip.js"></script>
-    <script src="../js/ctrp/doseResponse.js"></script>
+    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'doseResponse.css')}" type="text/css">
+    %{--<script type="text/javascript" src="../js/d3.js"></script>--}%
+    %{--<script type="text/javascript" src="../js/d3.js"></script>--}%
+    <g:javascript src="d3.js"/>
+    <g:javascript src="ctrp/d3tooltip.js"/>
+    <g:javascript src="ctrp/doseResponse.js"/>
 
     <style>
         .errorbar {

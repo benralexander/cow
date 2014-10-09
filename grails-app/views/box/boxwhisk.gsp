@@ -10,16 +10,17 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
   <title>boxwhisk</title>
-    %{--<script src="../js/jquery-1.7.1.min.js"></script>--}%
+    <meta name="layout" content="core"/>
     <script src="../js/jquery-2.0.3.min.js"></script>
         %{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>--}%
-    <link media="all" rel="stylesheet" href="../css/ctrp/boxWhiskerPlot.css">
-    <link media="all" rel="stylesheet" href="../css/ctrp/clickablePopUp.css">
-    <link media="all" rel="stylesheet" href="../css/ctrp/slider.css">
-    <link media="all" rel="stylesheet" href="../css/ctrp/d3tooltip.css">
-    <link media="all" rel="stylesheet" href="../css/ctrp/scatter.css">
-    <script src="../js/ctrp/d3.js"></script>
-    <script src="../js/ctrp/d3tooltip.js"></script>
+    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'boxWhiskerPlot.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'clickablePopUp.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'slider.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'd3tooltip.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'scatter.css')}" type="text/css">
+    <g:javascript src="ctrp/d3.js"/>
+    <g:javascript src="ctrp/d3tooltip.js"/>
+
 </head>
 <!DOCTYPE html>
 <meta charset="utf-8">

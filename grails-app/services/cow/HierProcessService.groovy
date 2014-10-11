@@ -13,6 +13,7 @@ class HierProcessService {
     ///  This will be the structure we recursively descend
     class  HierarchyElement {
         String position
+        String elementName
         String fullForm
         int  redundancy = 0
         List<HierarchyElement>  children = []
@@ -112,6 +113,34 @@ class HierProcessService {
     }
 
 
+
+
+
+    void assignNamesToTree(HierarchyElement hierarchyElement, LinkedHashMap<String,String> map){
+        if  (hierarchyElement  ==  null ) {
+            println("  Big trouble.  One of the incoming pointers expected by the recursive routine  was unexpectedly null ")
+        }
+        if  (map  ==  null )  {
+            println("  Big trouble.  map was emptyl ")
+        }
+        // take care of your children first
+        for (HierarchyElement childHierarchyElement in hierarchyElement.children)  {
+            assignNamesToTree(childHierarchyElement,  map)
+        }
+        // and now for yourself…
+        String  position  =   hierarchyElement.position
+        if (!map.containsKey(position))  {
+            println "Not good! We don't seem to have a name for index ${position}"
+        }  else {
+            hierarchyElement.elementName  =  map[position]
+        }
+    }
+
+
+
+
+
+
     // pparse the JSON and then walk through every element, adding elements to the tree as we go
     RootedTree convertHierarchyIntoTree() {
         String fileContents = readHierarchyFile()
@@ -130,13 +159,13 @@ class HierProcessService {
 
 
 
-    // pparse the JSON and then walk through every element, adding elements to the tree as we go
+    // parse the JSON and then walk through every element, adding elements to the tree as we go
     LinkedHashMap<String,String>  convertNamesIntoMap() {
         String fileContents = readNamesFile()
         JsonSlurper slurper = new JsonSlurper()
         def parsedObjects = slurper.parseText(fileContents)
         LinkedHashMap<String,String> map = [:]
-        for  (element in parsedObjects)  {
+        for  (element in (parsedObjects['categories']))  {
             if (map.containsKey(element.index))  {
                 println "Big trouble. We have the duplicated index in the names file = ${element.index}"
             }
@@ -148,10 +177,36 @@ class HierProcessService {
 
 
 
+    String constructStringDescriptionForTree(HierarchyElement hierarchyElement){
+        if  (hierarchyElement  ==  null ) {
+            println("  Big trouble.  One of the incoming pointers expected by the recursive routine  was unexpectedly null ")
+        }
+        if  (map  ==  null )  {
+            println("  Big trouble.  map was emptyl ")
+        }
+        // take care of your children first
+        for (HierarchyElement childHierarchyElement in hierarchyElement.children)  {
+            assignNamesToTree(childHierarchyElement,  map)
+        }
+        // and now for yourself…
+        String  position  =   hierarchyElement
+        if (!map.containsKey(position))  {
+            println "Not good! We don't seem to have a name for index ${position}"
+        }  else {
+            hierarchyElement.elementName  =  map[position]
+        }
+    }
+
+
+
+
+
 
     String buildJsonRepresentationOfTree ()   {
         RootedTree rootedTree = convertHierarchyIntoTree()
         LinkedHashMap<String,String>  map = convertNamesIntoMap()
+        assignNamesToTree(rootedTree.root,  map)
+        return  constructStringDescriptionForTree (rootedTree.root)
     }
 
 

@@ -8,6 +8,6 @@ class ProbeController {
     def probe_targets() {}
     def HierCat() {
         //hierProcessService.readHierarchyFile()
-        hierProcessService.convertHierarchyIntoTree()
+        hierProcessService.buildJsonRepresentationOfTree()
         render(view: 'HierCat')}
 }

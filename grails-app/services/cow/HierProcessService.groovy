@@ -142,8 +142,8 @@ class HierProcessService {
 
 
     // pparse the JSON and then walk through every element, adding elements to the tree as we go
-    RootedTree convertHierarchyIntoTree() {
-        String fileContents = readHierarchyFile()
+    RootedTree convertHierarchyIntoTree(String fileContents) {
+
         JsonSlurper slurper = new JsonSlurper()
         def parsedObjects = slurper.parseText(fileContents)
         RootedTree rootedTree = new RootedTree  ()
@@ -177,36 +177,51 @@ class HierProcessService {
 
 
 
-    String constructStringDescriptionForTree(HierarchyElement hierarchyElement){
+    String constructStringDescriptionForTree(HierarchyElement hierarchyElement,StringBuilder sb){
         if  (hierarchyElement  ==  null ) {
             println("  Big trouble.  One of the incoming pointers expected by the recursive routine  was unexpectedly null ")
         }
-        if  (map  ==  null )  {
-            println("  Big trouble.  map was emptyl ")
+         // take care of your children first
+
+        if (hierarchyElement.children.size()>0)  {
+            int numberOfChildren  =  hierarchyElement.children.size()
+            sb << """{"name":"${hierarchyElement.elementName}", "descr":".","size": 1,"col": 1,"children": [\n"""
+            for (int  i = 0 ; i < numberOfChildren; i++  )  {
+                HierarchyElement childHierarchyElement =  hierarchyElement.children [i]
+                constructStringDescriptionForTree(childHierarchyElement,sb)
+                if (i+1 < numberOfChildren) {  //+1
+                    sb << """,\n"""
+                }  else {
+                    sb << """\n"""
+                }
+            }
+            sb << """]}\n"""
+        } else {
+            sb << """{"name":"${hierarchyElement.elementName}", "descr":".","col": 1,"size":${hierarchyElement.redundancy}}"""
         }
-        // take care of your children first
-        for (HierarchyElement childHierarchyElement in hierarchyElement.children)  {
-            assignNamesToTree(childHierarchyElement,  map)
-        }
-        // and now for yourself…
-        String  position  =   hierarchyElement
-        if (!map.containsKey(position))  {
-            println "Not good! We don't seem to have a name for index ${position}"
-        }  else {
-            hierarchyElement.elementName  =  map[position]
-        }
+
+//        // and now for yourself…
+        return sb.toString()
+     }
+
+
+    String generateBracketedJson(HierarchyElement hierarchyElement){
+        StringBuilder sb = new StringBuilder()
+        sb << "[\n"
+        constructStringDescriptionForTree (hierarchyElement,sb)
+        sb << "]"
+        return sb.toString()
     }
 
 
 
-
-
-
     String buildJsonRepresentationOfTree ()   {
-        RootedTree rootedTree = convertHierarchyIntoTree()
+        String fileContents =  readHierarchyFile()
+        RootedTree rootedTree = convertHierarchyIntoTree(fileContents)
         LinkedHashMap<String,String>  map = convertNamesIntoMap()
         assignNamesToTree(rootedTree.root,  map)
-        return  constructStringDescriptionForTree (rootedTree.root)
+        StringBuilder sb = new StringBuilder()
+        return  generateBracketedJson (rootedTree.root)
     }
 
 

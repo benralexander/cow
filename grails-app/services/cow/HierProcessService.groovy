@@ -137,7 +137,7 @@ class HierProcessService {
         // and now for yourself…
         String  position  =   hierarchyElement.position
         if (!map.containsKey(position))  {
-            println "Not good! We don't seem to have a name for index ${position}"
+            println "Missing name for index ${hierarchyElement.fullForm?:position}"
         }  else {
             hierarchyElement.elementName  =  map[position]
         }
@@ -229,7 +229,7 @@ class HierProcessService {
             if (hierarchyElement?.elementName?.startsWith("zzull")){
                 sb << """{"name":"${hierarchyElement.elementName}", "descr":"invisible","size": ${hierarchyElement.redundancy},"col": 0,"children": [\n"""
             } else {
-                sb << """{"name":"${hierarchyElement.elementName}", "descr":"elements=${hierarchyElement.redundancy}","size": ${hierarchyElement.redundancy},"col": 1,"children": [\n"""
+                sb << """{"name":"${hierarchyElement.elementName}", "descr":"${hierarchyElement.fullForm?:hierarchyElement.position}","size": ${hierarchyElement.redundancy},"col": 1,"children": [\n"""
             }
             for (int  i = 0 ; i < numberOfChildren; i++  )  {
                 HierarchyElement childHierarchyElement =  hierarchyElement.children [i]
@@ -243,7 +243,7 @@ class HierProcessService {
             sb << """]}\n"""
         } else {
             if (hierarchyElement.elementName.startsWith("zzull")) {
-                sb << """{"name":"${hierarchyElement.elementName}", "descr":"elements=${hierarchyElement.redundancy}","col": 1,"size":${hierarchyElement.redundancy}}"""
+                sb << """{"name":"${hierarchyElement.elementName}", "descr":"${hierarchyElement.fullForm}","col": 1,"size":${hierarchyElement.redundancy}}"""
             }  else {
                 sb << """{"name":"${hierarchyElement.elementName}", "descr":"invisible","col": 0,"size":${hierarchyElement.redundancy}}"""
             }

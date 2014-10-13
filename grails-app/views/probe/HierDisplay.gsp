@@ -795,7 +795,7 @@
 
     <div class="span6" style="text-align: center; vertical-align: bottom;">
         <br/>
-        <h2>Class hierarchy for for targets of active assays using MLPCN probe</h2>
+        <h2>Class hierarchy</h2>
         <br/>
     </div>
 

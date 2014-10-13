@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
  <head>
-     <script src="../js/d3.min.js"></script>
-     <script src="../js/dc.js"></script>
-     <script src="../js/crossfilter.min.js"></script>
+
+     <g:javascript src="crossfilter.js" />
+     <g:javascript src="d3.js" />
+     <g:javascript src="dc.js" />
      <script>
          var format = d3.time.format("%Y-%m-%dT%H:%M:%S"),
                  histogramChart = dc.barChart("#histogram"),

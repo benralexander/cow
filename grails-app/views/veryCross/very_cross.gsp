@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-
+<meta name="layout" content="minimal"/>
 
 
 
@@ -204,12 +204,12 @@
 
 
     <title>Linked pies</title>
+<g:javascript src="jquery-2.0.3.min.js" />
+<g:javascript src="crossfilter.js" />
+<g:javascript src="d3.js" />
+<g:javascript src="bootstrap.js" />
+<g:javascript src="dc.js" />
 
-<script src="../js/jquery-2.0.3.min.js"></script>
-<script src="../js/crossfilter.js"></script>
-<script src="../js/d3.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/dc.js"></script>
 <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'dc.css')}" />
 <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'bootstrap.css')}" />
     <style>

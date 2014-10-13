@@ -87,6 +87,18 @@ class CookinController {
     def fundamental() {
         render (view: 'fundamental')
     }
+    def simp() {
+        render (view: 'simp')
+    }
+    def simp2() {
+        render (view: 'simp2')
+    }
+    def simp3() {
+        render (view: 'simp3')
+    }
+    def simp4() {
+        render (view: 'simp4')
+    }
 
 
 

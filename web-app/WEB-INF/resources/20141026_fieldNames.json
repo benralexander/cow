@@ -1,0 +1,306 @@
+{“categories”: [
+	{
+		"index" : "1",
+		"name" : "protein"
+	},
+	{
+		"index" : "2",
+		"name" : "chaperone"
+	},
+	{
+		"index" : "3",
+		"name" : "cytoskeletal protein"
+	},
+	{
+		"index" : "4",
+		"name" : "enzyme modulator"
+	},
+	{
+		"index" : "5",
+		"name" : "hydrolase"
+	},
+	{
+		"index" : "6",
+		"name" : "isomerase"
+	},
+	{
+		"index" : "7",
+		"name" : "ligase"
+	},
+	{
+		"index" : "8",
+		"name" : "lyase"
+	},
+	{
+		"index" : "9",
+		"name" : "membrane traffic protein"
+	},
+	{
+		"index" : "10",
+		"name" : "oxidoreductase"
+	},
+	{
+		"index" : "11",
+		"name" : "receptor"
+	},
+	{
+		"index" : "12",
+		"name" : "signaling molecule"
+	},
+	{
+		"index" : "13",
+		"name" : "transcription factor"
+	},
+	{
+		"index" : "14",
+		"name" : "transferase"
+	},
+	{
+		"index" : "15",
+		"name" : "translation factor"
+	},
+	{
+		"index" : "16",
+		"name" : "transporter"
+	},
+	{
+		"index" : "17",
+		"name" : "ATP-binding cassette (ABC) transporter"
+	},
+	{
+		"index" : "18",
+		"name" : "DNA topoisomerase"
+	},
+	{
+		"index" : "19",
+		"name" : "G-protein"
+	},
+	{
+		"index" : "20",
+		"name" : "G-protein coupled receptor"
+	},
+	{
+		"index" : "21",
+		"name" : "G-protein modulator"
+	},
+	{
+		"index" : "22",
+		"name" : "Hsp70 family chaperone"
+	},
+	{
+		"index" : "23",
+		"name" : "Hsp90 family chaperone"
+	},
+	{
+		"index" : "24",
+		"name" : "acetyltransferase"
+	},
+	{
+		"index" : "25",
+		"name" : "actin family cytoskeletal protein"
+	},
+	{
+		"index" : "26",
+		"name" : "acyltransferase"
+	},
+	{
+		"index" : "27",
+		"name" : "amino acid transporter"
+	},
+	{
+		"index" : "28",
+		"name" : "carbohydrate transporter"
+	},
+	{
+		"index" : "29",
+		"name" : "deacetylase"
+	},
+	{
+		"index" : "30",
+		"name" : "dehydratase"
+	},
+	{
+		"index" : "31",
+		"name" : "dehydrogenase"
+	},
+	{
+		"index" : "32",
+		"name" : "glycosyltransferase"
+	},
+	{
+		"index" : "33",
+		"name" : "helicase"
+	},
+	{
+		"index" : "34",
+		"name" : "ion channel"
+	},
+	{
+		"index" : "35",
+		"name" : "kinase"
+	},
+	{
+		"index" : "36",
+		"name" : "lipase"
+	},
+	{
+		"index" : "37",
+		"name" : "methyltransferase"
+	},
+	{
+		"index" : "38",
+		"name" : "microtubule family cytoskeletal protein"
+	},
+	{
+		"index" : "39",
+		"name" : "nuclear hormone receptor"
+	},
+	{
+		"index" : "40",
+		"name" : "nucleic acid binding"
+	},
+	{
+		"index" : "41",
+		"name" : "nucleotidyltransferase"
+	},
+	{
+		"index" : "42",
+		"name" : "oxygenase"
+	},
+	{
+		"index" : "43",
+		"name" : "phosphatase"
+	},
+	{
+		"index" : "44",
+		"name" : "phosphodiesterase"
+	},
+	{
+		"index" : "45",
+		"name" : "protease"
+	},
+	{
+		"index" : "46",
+		"name" : "protease inhibitor"
+	},
+	{
+		"index" : "47",
+		"name" : "reductase"
+	},
+	{
+		"index" : "48",
+		"name" : "reverse transcriptase"
+	},
+	{
+		"index" : "49",
+		"name" : "transaminase"
+	},
+	{
+		"index" : "50",
+		"name" : "transfer/carrier protein"
+	},
+	{
+		"index" : "51",
+		"name" : "ubiquitin-protein ligase"
+	},
+	{
+		"index" : "52",
+		"name" : "vesicle coat protein"
+	},
+	{
+		"index" : "53",
+		"name" : "zinc finger transcription factor"
+	},
+	{
+		"index" : "54",
+		"name" : ""
+	},
+	{
+		"index" : "55",
+		"name" : "DNA helicase"
+	},
+	{
+		"index" : "56",
+		"name" : "DNA methyltransferase"
+	},
+	{
+		"index" : "57",
+		"name" : "aspartic protease"
+	},
+	{
+		"index" : "58",
+		"name" : "carbohydrate kinase"
+	},
+	{
+		"index" : "59",
+		"name" : "cation transporter"
+	},
+	{
+		"index" : "60",
+		"name" : "cysteine protease"
+	},
+	{
+		"index" : "61",
+		"name" : "guanyl-nucleotide exchange factor"
+	},
+	{
+		"index" : "62",
+		"name" : "ligand-gated ion channel"
+	},
+	{
+		"index" : "63",
+		"name" : "metalloprotease"
+	},
+	{
+		"index" : "64",
+		"name" : "microtubule binding motor protein"
+	},
+	{
+		"index" : "65",
+		"name" : "nucleotide kinase"
+	},
+	{
+		"index" : "66",
+		"name" : "phospholipase"
+	},
+	{
+		"index" : "67",
+		"name" : "protein kinase"
+	},
+	{
+		"index" : "68",
+		"name" : "protein phosphatase"
+	},
+	{
+		"index" : "69",
+		"name" : "serine protease"
+	},
+	{
+		"index" : "70",
+		"name" : "small GTPase"
+	},
+	{
+		"index" : "71",
+		"name" : "tubulin"
+	},
+	{
+		"index" : "72",
+		"name" : "voltage-gated ion channel"
+	},
+	{
+		"index" : "73",
+		"name" : "anion channel"
+	},
+	{
+		"index" : "74",
+		"name" : "non-receptor serine/threonine protein kinase"
+	},
+	{
+		"index" : "75",
+		"name" : "non-receptor tyrosine protein kinase"
+	},
+	{
+		"index" : "76",
+		"name" : "protein kinase receptor"
+	}
+]

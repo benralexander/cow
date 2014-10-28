@@ -4,6 +4,9 @@ import grails.transaction.Transactional
 import groovy.json.JsonSlurper
 import org.codehaus.groovy.grails.commons.GrailsApplication
 
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 @Transactional
 class HierProcessService {
 
@@ -35,7 +38,8 @@ class HierProcessService {
      */
     String readHierarchyFile() {
 
-        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/elements_ccls_json.txt").file.toString()
+      //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/elements_ccls_json.txt").file.toString()
+        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_cpd_elements.txt").file.toString()
         println "Actively loading hhierarchy from file = ${fileLocation}"
         File file = new File(fileLocation)
         int counter = 1
@@ -57,7 +61,7 @@ class HierProcessService {
      */
     String readNamesFile() {
 
-        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/fieldNames.json").file.toString()
+        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_fieldNames.json").file.toString()
         println "Actively loading names from file = ${fileLocation}"
         File file = new File(fileLocation)
         int counter = 1
@@ -70,8 +74,24 @@ class HierProcessService {
             }
         }
 
-        return sb.toString()
+        String temp =  sb.toString()
+        String temp2 =  "{\"categories\":"+temp.substring(15)
+        return temp2
     }
+
+    public static StringBuffer removeUTFCharacters(String data){
+        Pattern p = Pattern.compile("\\\\u(\\p{XDigit}{4})");
+        Matcher m = p.matcher(data);
+        StringBuffer buf = new StringBuffer(data.length());
+        while (m.find()) {
+            String ch = String.valueOf((char) Integer.parseInt(m.group(1), 16));
+            m.appendReplacement(buf, Matcher.quoteReplacement(ch));
+        }
+        m.appendTail(buf);
+        return buf;
+    }
+
+
 
     /***
      *  Add an element  to the tree. Each element is specified with a path containing several numbers. This method

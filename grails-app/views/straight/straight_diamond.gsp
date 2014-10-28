@@ -6,10 +6,10 @@
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'cow.css')}" />
     <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'styles.css')}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="../js/d3.min.js"></script>
-    <script src="../js/dc.js"></script>
-    <script src="../js/crossfilter.min.js"></script>
+    <g:javascript src="crossfilter.js" />
+    <g:javascript src="d3.js" />
+    <g:javascript src="bootstrap.js" />
+    <g:javascript src="dc.js" />
     <style>
     body {
         font: 12px Arial;

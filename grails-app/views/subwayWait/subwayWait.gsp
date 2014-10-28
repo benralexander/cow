@@ -11,11 +11,13 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="layout" content="core"/>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-<script src="../js/d3.min.js"></script>
-<script src="../js/dc.js"></script>
-<script src="../js/crossfilter.min.js"></script>
+<g:javascript src="crossfilter.js" />
+<g:javascript src="d3.js" />
+<g:javascript src="bootstrap.js" />
+<g:javascript src="dc.js" />
 
 <style>
 body{

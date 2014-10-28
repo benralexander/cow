@@ -9,9 +9,6 @@ Minimal coding example in D3 for May 22 demo
     <meta name="layout" content="core"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'styles.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'sierpinski.css')}" type="text/css">
-    %{--<link rel="stylesheet" type="text/css" href="../css/styles.css"/>--}%
-    %{--<link rel="stylesheet" type="text/css" href="../css/sierpinski.css"/>--}%
-    %{--<script type="text/javascript" src="../js/d3.js"></script>--}%
     <g:javascript src="d3.js"/>
     <g:javascript src="sierpinski.js"/>
     %{--<script type="text/javascript" src="../js/sierpinski.js"></script>--}%

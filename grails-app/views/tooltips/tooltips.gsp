@@ -5,45 +5,49 @@
   Time: 8:34 AM
   To change this template use File | Settings | File Templates.
 --%>
-
 <!DOCTYPE html>
 <meta charset="utf-8">
-<style> /* set the CSS */
+<head>
+    <meta name="layout" content="core"/>
 
-body { font: 12px Arial;}
+    <style> /* set the CSS */
 
-path {
-    stroke: steelblue;
-    stroke-width: 2;
-    fill: none;
-}
+    body { font: 12px Arial;}
 
-.axis path,
-.axis line {
-    fill: none;
-    stroke: grey;
-    stroke-width: 1;
-    shape-rendering: crispEdges;
-}
+    path {
+        stroke: steelblue;
+        stroke-width: 2;
+        fill: none;
+    }
 
-div.tooltip {					/* set the CSS for tooltip divs */
-    position: absolute;			/* reference for measurement */
-    text-align: center;			/* align the text to the center */
-    width: 60px;					/* set the width of the rectangle */
-    height: 28px;					/* set the height of the rectangle */
-    padding: 2px;					/* set a border around the rectangle */
-    font: 12px sans-serif;		/* set the font type for the tooltips */
-    background: lightsteelblue;	/* set the colour of the rectangle */
-    border: 0px;					/* turn off the border (0px) */
-    border-radius: 8px;			/* set how rounded the edges of the rectangle is */
-    pointer-events: none;			/* 'none' tells the mouse to ignore the rectangle */
-}
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: grey;
+        stroke-width: 1;
+        shape-rendering: crispEdges;
+    }
 
-</style>
+    div.tooltip {					/* set the CSS for tooltip divs */
+        position: absolute;			/* reference for measurement */
+        text-align: center;			/* align the text to the center */
+        width: 60px;					/* set the width of the rectangle */
+        height: 28px;					/* set the height of the rectangle */
+        padding: 2px;					/* set a border around the rectangle */
+        font: 12px sans-serif;		/* set the font type for the tooltips */
+        background: lightsteelblue;	/* set the colour of the rectangle */
+        border: 0px;					/* turn off the border (0px) */
+        border-radius: 8px;			/* set how rounded the edges of the rectangle is */
+        pointer-events: none;			/* 'none' tells the mouse to ignore the rectangle */
+    }
+
+    </style>
+
+</head>
 <body>
 
 <!-- load the d3.js library -->
-<script src="../js/d3.js"></script>
+<g:javascript src="d3.js" />
 
 <div>Hello</div>
 <div rel="tooltip" data-container="body" data-html="true" title="&lt;nobr&gt;R-squared : 0.9888  &lt;/nobr&gt;&lt;br /&gt;&lt;nobr&gt;percent activity : -95.5809  &lt;/nobr&gt;&lt;br /&gt;&lt;nobr&gt;activity type : Inhibitor  &lt;/nobr&gt;&lt;br /&gt;&lt;nobr&gt;efficacy : 84.0177  &lt;/nobr&gt;&lt;br /&gt;&lt;nobr&gt;QC analyst : QC\'d by Chem Div  &lt;/nobr&gt;&lt;br /&gt;&lt;nobr&gt;curve-fit class : =-1.1  &lt;/nobr&gt;&lt;br /&gt;&lt;nobr&gt;curve-fit specification : Complete curve; high efficacy  &lt;/nobr&gt;&lt;br /&gt;&lt;nobr&gt;excluded points : 0 0 0 0 0 0  &lt;/nobr&gt;&lt;br /&gt;" data-trigger="hover"><font color="#F62217"><nobr>0.282 </nobr></font></div>

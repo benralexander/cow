@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Area Chart</title>
-    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
-    <script type="text/javascript" src="../js/d3.js"></script>
-</head>
+    <meta name="layout" content="core"/>
+    <link rel="stylesheet" type="text/css" href="${resource(dir: 'css', file: 'styles.css')}" />
+    <g:javascript src="d3.js" /></head>
 
 <body>
 

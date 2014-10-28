@@ -3,8 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Scatter Plot Chart</title>
-    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
-    <script type="text/javascript" src="../js/d3.js"></script>
+    <meta name="layout" content="core"/>
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'styles.css')}" type="text/css">
+     <g:javascript src="d3.js"/>
 </head>
 
 <body>

@@ -135,7 +135,7 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
     onBrushMoveDoThis(minimumInterquartileMultiplier);
 
     // get your data
-    d3.json("http://localhost:8028/cow/box/retrieveBoxData", function (error, json) {
+    d3.json("<g:createLink controller='box' action='retrieveBoxData'/>", function (error, json) {
 
         var data = [];
         var stubDataGenes = [

@@ -104,7 +104,7 @@
     render(data);
 
     function load(){ // <-E
-        d3.json("http://localhost:8028/cow/straight/feedMeJson", function(error, json){ // <-F
+        d3.json("<g:createLink controller='straight' action='feedMeJson'/>", function(error, json){ // <-F
             data = data.concat(json);
             render(data);
         });

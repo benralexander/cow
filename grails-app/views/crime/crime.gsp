@@ -10,7 +10,7 @@
                  histogramChart = dc.barChart("#histogram"),
                  data,
                  cases,
-                 url = "http://localhost:8028/cow/crime/data",
+                 url = "<g:createLink controller='crime' action='data'/>", // http://localhost:8028/cow/crime/data
                  days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
                  times = ["12-3 AM", "4-7 AM", "8-11 AM", "12-3 PM", "4-7 PM", "8-11 PM"],
                  colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', "#8c564b", "#e377c2", "#7f7f7f"];

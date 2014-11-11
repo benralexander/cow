@@ -93,7 +93,7 @@
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // Get the data
-    d3.tsv("http://localhost:8028/cow/tooltips/feedMeTsv", function(error, data) {
+    d3.tsv("<g:createLink controller='tooltips' action='feedMeTsv'/>", function(error, data) {
         data.forEach(function(d) {
             d.date = parseDate(d.date);
             d.close = +d.close;

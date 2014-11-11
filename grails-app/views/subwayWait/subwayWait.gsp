@@ -81,7 +81,7 @@ path{
         var ts = d3.select('#'+id)
         // toggle
         if (ts.empty()){
-            d3.json('http://localhost:8028/cow/subwayWait/feedMeSubwayWait', function(data){
+            d3.json('<g:createLink controller="subwayWait" action="feedMeSubwayWait"/>', function(data){
                 filtered_data = data.filter(function(d){return d.line_id === id})
                 draw_timeseries(filtered_data, id)
             })
@@ -262,7 +262,7 @@ path{
 
 
 <script>
-    d3.json('http://localhost:8028/cow/subwayWait/feedMeSubwayWaitMean', draw);
+    d3.json('<g:createLink controller="subwayWait" action="feedMeSubwayWait"/>', draw);
 </script>
 </body>
 </html>

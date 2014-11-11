@@ -2198,7 +2198,7 @@
                    verifyLinkedData = function (cid) {
                        console.log('beginning Linked Hierarchy with cid = '+cid+'.');
 
-                       d3.json("http://localhost:8028/cow/veryCross/feedMeLinkedData", function (incomingData) {
+                       d3.json("<g:createLink controller='veryCross' action='feedMeLinkedData'/>", function (incomingData) {
 
 
 //                       d3.json("/bardwebclient/bardWebInterface/linkedData/"+cid, function (incomingData) {

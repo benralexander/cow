@@ -198,7 +198,7 @@ line {
                 .ticks(5)
     }
                 // Get the data
-    d3.tsv("http://localhost:8028/cow/graph/feedMeJson", function (error, data) {
+    d3.tsv("<g:createLink controller='graph' action='feedMeJson'/>", function (error, data) {
         data.forEach(function (d) {
             d.date = parseDate(d.date);
             d.close = +d.close;

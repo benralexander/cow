@@ -39,7 +39,8 @@ class HierProcessService {
     String readHierarchyFile() {
 
       //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/elements_ccls_json.txt").file.toString()
-        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_cpd_elements.txt").file.toString()
+      //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_cpd_elements.txt").file.toString()
+        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_elements_CCLs.txt").file.toString()
         println "Actively loading hhierarchy from file = ${fileLocation}"
         File file = new File(fileLocation)
         int counter = 1
@@ -61,7 +62,8 @@ class HierProcessService {
      */
     String readNamesFile() {
 
-        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_fieldNames.json").file.toString()
+     //   String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_fieldNames.json").file.toString()
+        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_categories_CCLs.txt").file.toString()
         println "Actively loading names from file = ${fileLocation}"
         File file = new File(fileLocation)
         int counter = 1
@@ -74,9 +76,9 @@ class HierProcessService {
             }
         }
 
-        String temp =  sb.toString()
-        String temp2 =  "{\"categories\":"+temp.substring(15)
-        return temp2
+//        String temp =  sb.toString()
+//        String temp2 =  "{\"categories\":"+temp.substring(15)
+        return sb.toString()
     }
 
     public static StringBuffer removeUTFCharacters(String data){
@@ -221,7 +223,7 @@ class HierProcessService {
         JsonSlurper slurper = new JsonSlurper()
         def parsedObjects = slurper.parseText(fileContents)
         LinkedHashMap<String,String> map = [:]
-        for  (element in (parsedObjects['categories']))  {
+        for  (element in (parsedObjects))  {
             if (map.containsKey(element.index))  {
                 println "Big trouble. We have the duplicated index in the names file = ${element.index}"
             }

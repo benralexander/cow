@@ -7,9 +7,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>${grailsApplication.config.site.title}</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cow graphics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Graphics examples, d3, benralexander, scientific graphics, bovine contemplation, Styrofoam heads, left nostril">
+    <meta name="description" content="Assorted graphics examples">
+    <meta name="author" content="Ben R Alexander">
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'baget.ico')}" type="image/x-icon">
     <link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
     <link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-retina.png')}">

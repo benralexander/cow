@@ -386,7 +386,7 @@ color: #000000;
 
 </script>
 <script>
-        d3.json("<g:createLink controller='histogram' action='feedMeTripleJson'/>", function(error,dataFromServer) {
+        d3.json("<g:createLink controller='histogram' action='feedMeDoubleJson'/>", function(error,dataFromServer) {
     //    d3.json("http://localhost:8028/cow/histogram/feedMeDoubleJson", function(error,dataFromServer) {
     //    d3.json("http://localhost:8028/cow/histogram/feedMeJson", function(error,dataFromServer) {
 

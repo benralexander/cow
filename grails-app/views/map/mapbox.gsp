@@ -6,6 +6,8 @@
     <g:javascript src="ctrp/d3.js"/>
     <g:javascript base="https://api.tiles.mapbox.com/" src="/mapbox.js/v1.6.2/mapbox.js"/>
     <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v1.6.2/mapbox.css" type="text/css">
+    %{--<g:javascript src="/mapbox.js"/>--}%
+    %{--<link rel="stylesheet" href="${resource(dir: 'css', file: 'mapbox.css')}" type="text/css">--}%
 
 </head>
 

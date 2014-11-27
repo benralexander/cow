@@ -40,7 +40,8 @@ class HierProcessService {
 
       //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/elements_ccls_json.txt").file.toString()
       //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_cpd_elements.txt").file.toString()
-        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_elements_CCLs.txt").file.toString()
+      //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_elements_CCLs.txt").file.toString()
+        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141123_elements_CPDs.txt").file.toString()
         println "Actively loading hhierarchy from file = ${fileLocation}"
         File file = new File(fileLocation)
         int counter = 1
@@ -63,7 +64,8 @@ class HierProcessService {
     String readNamesFile() {
 
      //   String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_fieldNames.json").file.toString()
-        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_categories_CCLs.txt").file.toString()
+     //   String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_categories_CCLs.txt").file.toString()
+        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141123_categories_CPDs.txt").file.toString()
         println "Actively loading names from file = ${fileLocation}"
         File file = new File(fileLocation)
         int counter = 1

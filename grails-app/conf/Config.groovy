@@ -68,7 +68,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        grails.serverURL = "http://graphicsdemo.elasticbeanstalk.com"
+        grails.serverURL = "http://graphicscow.org"
     }
 }
 

@@ -22,49 +22,49 @@
             height = 400 - margin.top - margin.bottom;
 
     data = [
-        {mrna_expression:50.1,
+        {mrna_expression:12.1,
             cpd_auc:3.5,
             cell_primary_name:'CALU3',
             primary_site:['colon']
 //             lineage:'colon'
         },
-        {mrna_expression:4.9,
+        {mrna_expression:9.3,
             cpd_auc:3.0,
             cell_primary_name:'CALU3',
             primary_site:['colon']
 //             lineage:'colon'
         },
-        {mrna_expression:4.2,
+        {mrna_expression:7.6,
             cpd_auc:3.2,
             cell_primary_name:'CALU3',
             primary_site:['lung']
 //             lineage:'lung'
         },
-        {mrna_expression:4.4,
+        {mrna_expression:5.0,
             cpd_auc:3.7,
             cell_primary_name:'CALU3',
             primary_site:['lung']
 //             lineage:'lung'
         },
-        {mrna_expression:5.0,
+        {mrna_expression:4.0,
             cpd_auc:3.6,
             cell_primary_name:'CALU3',
             primary_site:[]
 //             lineage:'endometrium'
         },
-        {mrna_expression:4.5,
+        {mrna_expression:3,
             cpd_auc:3.8,
             cell_primary_name:'CALU3',
             primary_site:['endometrium']
  //            lineage:'endometrium'
         },
-        {mrna_expression:4.4,
+        {mrna_expression:2.2,
             cpd_auc:3.1,
             cell_primary_name:'CALU3',
             primary_site:['endometrium']
  //            lineage:'endometrium'
         },
-        {mrna_expression:4.9,
+        {mrna_expression:2.0,
             cpd_auc:3.3,
             cell_primary_name:'CALU3',
             primary_site:['endometrium']

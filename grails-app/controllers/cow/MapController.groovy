@@ -21,6 +21,10 @@ class MapController {
         render(view: 'topology')
     }
 
+    def slc30a8() {
+        render(view: 'slc30a8')
+    }
+
     def mapbox() {
         render(view: 'mapbox')
     }

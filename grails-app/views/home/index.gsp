@@ -138,6 +138,9 @@
     <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which seems like a great book so far -- here's
     a link in case you're interested <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a>)</dd>
 
+    <dt><a href="<g:createLink controller='map' action='slc30a8'/>">slc30a8</a></dt>
+    <dd>slc30a8</dd>
+
     <dt><a href="<g:createLink controller='map' action='mapbox'/>">mapbox</a></dt>
     <dd>This was a really neat example built around mapbox.js.  Hopefully this JavaScript library will come back to life, though it seems dead as I put this page together right now</dd>
 

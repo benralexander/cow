@@ -25,7 +25,12 @@
 
 </head>
 <body>
-
+<style>
+.fileNamer > form {
+    margin: 20px;
+    padding: 20px;
+}
+</style>
 
 <div class="container-fluid">
     <div class="row-fluid">
@@ -44,7 +49,7 @@
 
 
     <div class="row-fluid">
-        <div class="span9 pull-left">
+        <div class="span9 pull-left fileNamer">
 
             <g:uploadForm action="upload1">
                 <input type="file"  class="btn btn-default btn-sm" name="myFile1" />
@@ -53,6 +58,7 @@
 
             <g:uploadForm action="upload2">
                 <input type="file"  class="btn btn-default btn-sm" name="myFile2" />
+                <input type="hidden" name="myFile1" value="${myFile1}"/>
                 <input type="submit"   class="btn btn-default btn-sm" />
             </g:uploadForm>
 

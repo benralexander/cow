@@ -6,3 +6,4 @@
 **/test-reports
 stacktrace.log
 .idea/workspace.xml
+tempStor*.txt

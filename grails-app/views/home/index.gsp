@@ -150,6 +150,11 @@
     <dt><a href="<g:createLink controller='probe' action='HierDisplay'/>">Cancer Cell Libraries</a></dt>
     <dd>Sunburst representation of a hierarchy of 860 known human Cancer Cell Lines, performed as part of the CTD2 project at the Broad Institute</dd>
 
+    <dt><a href="<g:createLink controller='probe' action='uploadPrep'/>">Custom files</a></dt>
+    <dd>Roll your own sunburst</dd>
+
+
+
     <dt><a href="<g:createLink controller='ScaledDownHomePage' action='ScaledDownHomePage'/>">Bard homepage</a></dt>
     <dd>Test harness for the Bard Homepage with mostly functional links.  This was the first time I really worked with responsive design (that is, trying to get the
     damned interface to look okay on a smart phone-sized screen</dd>

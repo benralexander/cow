@@ -32,6 +32,22 @@ class HierProcessService {
 
     int zzullCount = 0
 
+
+    String processHierarchyFile(File file) {
+        boolean headerLine = true
+        StringBuilder sb = new StringBuilder()
+        file.eachLine {
+            sb << it
+            if (headerLine) {
+                headerLine = false
+            }
+        }
+
+        return sb.toString()
+    }
+
+
+
     /***
      * read a file in from disk which describes every node in the tree, with relative positioning described with a series of paths
      * @return
@@ -42,49 +58,70 @@ class HierProcessService {
       //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_cpd_elements.txt").file.toString()
       //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_elements_CCLs.txt").file.toString()
         String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141123_elements_CPDs.txt").file.toString()
+        //File('./tempStorage1.txt')
         println "Actively loading hhierarchy from file = ${fileLocation}"
         File file = new File(fileLocation)
-        int counter = 1
-        boolean headerLine = true
-        StringBuilder sb = new StringBuilder()
-        file.eachLine {
-            sb << it
-            if (headerLine) {
-                headerLine = false
-            }
-        }
-
-        return sb.toString()
+        return processHierarchyFile(file)
     }
+
+
+    String readHierarchyFile(String fileName) {
+
+        //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/elements_ccls_json.txt").file.toString()
+        //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_cpd_elements.txt").file.toString()
+        //  String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_elements_CCLs.txt").file.toString()
+        File file = new File(fileName)
+        return processHierarchyFile(file)
+    }
+
+
+
+
+
+
+   String processNamesFile (File file) {
+       int counter = 1
+       boolean headerLine = true
+       StringBuilder sb = new StringBuilder()
+       file.eachLine {
+           sb << it
+           if (headerLine) {
+               headerLine = false
+           }
+       }
+       return sb.toString()
+
+   }
+
+
+
 
     /***
      * read a file from disk  that describes the names of every element in the graphic
      * @return
      */
     String readNamesFile() {
-
-
      //   String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_fieldNames.json").file.toString()
      //   String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_categories_CCLs.txt").file.toString()
         String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141123_categories_CPDs.txt").file.toString()
         println "Actively loading names from file = ${fileLocation}"
         File file = new File(fileLocation)
-        int counter = 1
-        boolean headerLine = true
-        StringBuilder sb = new StringBuilder()
-        file.eachLine {
-            sb << it
-            if (headerLine) {
-                headerLine = false
-            }
-        }
-
-//        String temp =  sb.toString()
-//        String temp2 =  "{\"categories\":"+temp.substring(15)
-        return sb.toString()
+        return  processNamesFile (file)
     }
 
-    public static StringBuffer removeUTFCharacters(String data){
+
+
+    String readNamesFile(String fileName) {
+        //   String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141026_fieldNames.json").file.toString()
+        //   String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/20141110_categories_CCLs.txt").file.toString()
+        File file = new File(fileName)
+        return processNamesFile(file)
+    }
+
+
+
+
+        public static StringBuffer removeUTFCharacters(String data){
         Pattern p = Pattern.compile("\\\\u(\\p{XDigit}{4})");
         Matcher m = p.matcher(data);
         StringBuffer buf = new StringBuffer(data.length());
@@ -216,13 +253,9 @@ class HierProcessService {
         return rootedTree
     }
 
-    /***
-     * We have a collection of names and a collection of matching paths. Convert these couples into a map so that
-     * we can easily go from a path to a name
-     * @return
-     */
-    LinkedHashMap<String,String>  convertNamesIntoMap() {
-        String fileContents = readNamesFile()
+
+
+    LinkedHashMap<String,String>  convertNamesIntoMapProcessing(String fileContents) {
         JsonSlurper slurper = new JsonSlurper()
         def parsedObjects = slurper.parseText(fileContents)
         LinkedHashMap<String,String> map = [:]
@@ -233,6 +266,26 @@ class HierProcessService {
             map[element.index]  = element.name
         }
         return map
+    }
+
+
+
+
+    /***
+     * We have a collection of names and a collection of matching paths. Convert these couples into a map so that
+     * we can easily go from a path to a name
+     * @return
+     */
+    LinkedHashMap<String,String>  convertNamesIntoMap() {
+        String fileContents = readNamesFile()
+        return convertNamesIntoMapProcessing(fileContents)
+    }
+
+
+
+    LinkedHashMap<String,String>  convertNamesIntoMap(String fileName) {
+        String fileContents = readNamesFile(fileName)
+        return convertNamesIntoMapProcessing(fileContents)
     }
 
     /***
@@ -340,6 +393,18 @@ class HierProcessService {
         RootedTree rootedTree = convertHierarchyIntoTree(fileContents)
         youAreOnlyAsBigAsYourChildren (rootedTree.root)
         LinkedHashMap<String,String>  map = convertNamesIntoMap()
+        assignNamesToTree(rootedTree.root,  map)
+        addInvisibleNodes(rootedTree.root)
+        return  generateBracketedJson (rootedTree.root.children[0])
+    }
+
+
+
+    String buildJsonRepresentationOfTree (String fileName1,String fileName2)   {
+        String fileContents =  readHierarchyFile(fileName1)
+        RootedTree rootedTree = convertHierarchyIntoTree(fileContents)
+        youAreOnlyAsBigAsYourChildren (rootedTree.root)
+        LinkedHashMap<String,String>  map = convertNamesIntoMap(fileName2)
         assignNamesToTree(rootedTree.root,  map)
         addInvisibleNodes(rootedTree.root)
         return  generateBracketedJson (rootedTree.root.children[0])

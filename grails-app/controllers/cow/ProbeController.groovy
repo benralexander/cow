@@ -26,12 +26,13 @@ class ProbeController {
         incomingFile.transferTo(new File('./tempStorage1.txt'))
         println('transferred.')
 
-        render(view: 'uploadPrep',model:[dataFileBased:1])
+        render(view: 'uploadPrep',model:[dataFileBased:1,myFile1: './tempStorage1.txt'])
 
     }
 
 
     def upload2() {
+        String myFile1 = params.myFile1
         println('got a file')
         println('delete old one')
         new File('./tempStorage2.txt').delete()
@@ -44,7 +45,7 @@ class ProbeController {
         println('type='+incomingFile.getClass().name+'.')
         incomingFile.transferTo(new File('./tempStorage12.txt'))
         println('transferred.')
-        redirect (action:"UploadSunburst")
+        redirect (action:"UploadSunburst",params:[filename1: myFile1,filename2: './tempStorage2.txt'])
     }
 
 
@@ -193,9 +194,24 @@ class ProbeController {
         render(view: 'HierDisplay')}
 
 
+
+   def freshData() {
+       String filename1 = params.filename1
+       String filename2 = params.filename2
+       String treeDescrip
+       if ((filename1) && (filename2)) {
+            treeDescrip = hierProcessService.buildJsonRepresentationOfTree(filename1,filename2)
+       }
+       render treeDescrip
+   }
+
+
+
     def UploadSunburst() {
-        String treeDescrip = hierProcessService.buildJsonRepresentationOfTree()
-        render(view: 'UploadSunburst')}
+        String filename1 = params.filename1
+        String filename2 = params.filename2
+        render(view: 'UploadSunburst', model:[filename1:filename1,filename2:filename2 ])
+    }
 
 
 

@@ -809,7 +809,7 @@
             <div id="sunburstdiv">
             </div>
             <script>
-                d3.json("<g:createLink controller="probe" action="HierCat" />", function (error, data) {
+                d3.json("/cow/probe/freshData?filename1=${filename1}&filename2=${filename2}", function (error, data) {
 
                     var minimumValue=0.5;
                     var maximumValue=0.5;

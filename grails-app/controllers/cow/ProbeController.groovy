@@ -7,6 +7,49 @@ class ProbeController {
     def index(){
         redirect (action:"probe_targets")
     }
+
+    def uploadPrep(){
+
+    }
+
+    def upload1() {
+        println('got a file')
+        println('delete old one')
+        new File('./tempStorage1.txt').delete()
+        def incomingFile = request.getFile('myFile1')
+        if (incomingFile.empty) {
+            flash.message = 'file cannot be empty'
+            render(view: 'uploadPrep')
+            return
+        }
+        println('type='+incomingFile.getClass().name+'.')
+        incomingFile.transferTo(new File('./tempStorage1.txt'))
+        println('transferred.')
+
+        render(view: 'uploadPrep',model:[dataFileBased:1])
+
+    }
+
+
+    def upload2() {
+        println('got a file')
+        println('delete old one')
+        new File('./tempStorage2.txt').delete()
+        def incomingFile = request.getFile('myFile2')
+        if (incomingFile.empty) {
+            flash.message = 'file cannot be empty'
+            render(view: 'uploadPrep')
+            return
+        }
+        println('type='+incomingFile.getClass().name+'.')
+        incomingFile.transferTo(new File('./tempStorage12.txt'))
+        println('transferred.')
+        redirect (action:"UploadSunburst")
+    }
+
+
+
+
     def probe_targets() {}
     def HierCat() {
         String treeDescrip = hierProcessService.buildJsonRepresentationOfTree()
@@ -148,4 +191,12 @@ class ProbeController {
     }
     def HierDisplay() {
         render(view: 'HierDisplay')}
+
+
+    def UploadSunburst() {
+        String treeDescrip = hierProcessService.buildJsonRepresentationOfTree()
+        render(view: 'UploadSunburst')}
+
+
+
 }

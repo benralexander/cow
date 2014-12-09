@@ -1,0 +1,416 @@
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+rats <- data.frame(id = paste0("rat",1:10),
+sex = factor(rep(c("female","male"),each=5)),
+weight = c(2,4,1,11,18,12,7,12,19,20),
+length = c(100,105,115,130,95,150,165,180,190,175))
+rats
+summary(rats)
+summary(rats$weight)
+str(rats)
+ratsTable <- data.frame(id = paste0("rat",c(6,9,7,3,5,1,10,4,8,2)),
+secretID = 1:10)
+ratsTable
+cbind(rats, ratsTable)
+match(ratsTable$id, rats$id)
+rats[match(ratsTable$id, rats$id),]
+match(ratsTable$id, rats$id)
+rats[1]
+rats
+rats[2]
+rats[2,2]
+rats[2,]
+rats[,2]
+rats[0,]
+rats[1,]
+x
+x<-1:3
+x
+rats[x,]
+rats[match(ratsTable$id, rats$id),]
+cbind(rats[match(ratsTable$id, rats$id),], ratsTable)
+ratsMerged <- merge(rats, ratsTable, by.x="id", by.y="id")
+ratsMerged
+ratsM2 <- merge(rats, ratsTable)
+ratsM2
+sp <- split(rats$weight, rats$sex)
+sp
+rats
+sp2 <- split(rats$sex, rats$weight)
+sp2
+sp
+lapply(sp, mean)
+tapply(rats$weight, rats$sex, mean)
+library(dplyr)
+library(SpikeInSubset)
+install.packages("SpikeInSubset")
+biocLite("SpikeInSubset")
+source("http://bioconductor.org/biocLite.R")
+biocLite("SpikeInSubset")
+library(SpikeInSubset)
+data(rma95)
+fac <- factor(rep(1:2,each=3))
+fac
+library(genefilter)
+rtt <- rowttests(exprs(rma95),fac)
+exprs(rma95)]
+exprs(rma95)
+rtt
+mask <- with(rtt, abs(dm) < .2 & p.value < .01)
+spike <- rownames(rma95) %in% colnames(pData(rma95))
+cols <- ifelse(mask,"red",ifelse(spike,"dodgerblue","black"))
+with(rtt, plot(-dm, -log10(p.value), cex=.8, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+mask <- with(rtt, abs(dm) < .2 & p.value < .0001)
+with(rtt, plot(-dm, -log10(p.value), cex=.8, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+mask
+with(rtt, plot(-dm, -log10(p.value), cex=.8, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+cols <- ifelse(mask,"red",ifelse(spike,"dodgerblue","black"))
+with(rtt, plot(-dm, -log10(p.value), cex=.8, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+mask <- with(rtt, abs(dm) < .2 & p.value < .1)
+cols <- ifelse(mask,"red",ifelse(spike,"dodgerblue","black"))
+with(rtt, plot(-dm, -log10(p.value), cex=.8, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+mask <- with(rtt, abs(dm) < .2 & p.value < .01)
+cols <- ifelse(mask,"red",ifelse(spike,"dodgerblue","black"))
+with(rtt, plot(-dm, -log10(p.value), cex=.9, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=.1, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=.01, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=1, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=.6, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=.6, pch=100,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=.6, pch=32,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=.6, pch=17,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=.6, pch=16,
+xlim=c(-1,5), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+with(rtt, plot(-dm, -log10(p.value), cex=.6, pch=17,
+xlim=c(-1,1), ylim=c(0,7),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+rtt$s <- apply(exprs(rma95), 1, function(row) sqrt(.5 * (var(row[1:3]) + var(row[4:6]))))
+with(rtt, plot(s, -log10(p.value), cex=.8, pch=16,
+log="x",xlab="estimate of standard deviation",
+col=cols))
+with(rtt, plot(-dm, -log10(p.value), cex=.8, pch=16,
+xlim=c(-1,1), ylim=c(0,5),
+xlab="difference in means",
+col=cols))
+abline(h=2,v=c(-.2,.2), lty=2)
+rtt$s <- apply(exprs(rma95), 1, function(row) sqrt(.5 * (var(row[1:3]) + var(row[4:6]))))
+with(rtt, plot(s, -log10(p.value), cex=.8, pch=16,
+log="x",xlab="estimate of standard deviation",
+col=cols))
+library(limma)
+fit <- lmFit(rma95, design=model.matrix(~ fac))
+colnames(coef(fit))
+fit <- eBayes(fit)
+tt <- topTable(fit, coef=2)
+tt
+biocLite('limma')
+library(limma)
+fit <- lmFit(rma95, design=model.matrix(~ fac))
+fit
+colnames(coef(fit))
+fit <- eBayes(fit)
+tt <- topTable(fit, coef=2)
+tt
+model.matrix(~ fac)
+fac
+~fac
+~ fac
+t(fac)
+?topTable
+dim(topTable(fit, coef=2, number=Inf, sort.by="none"))
+limmares <- data.frame(dm=coef(fit)[,"fac2"], p.value=fit$p.value[,"fac2"])
+with(limmares, plot(dm, -log10(p.value),cex=.8, pch=16,
+col=cols,xlab="difference in means",
+xlim=c(-1,1), ylim=c(0,5)))
+abline(h=2,v=c(-.2,.2), lty=2)
+n <- 40
+qs <- seq(from=0,to=.2,length=n)
+idx <- sapply(seq_len(n),function(i) which(as.integer(cut(rtt$s^2,qs)) == i)[1])
+idx <- idx[!is.na(idx)]
+par(mar=c(5,5,2,2))
+plot(1,1,xlim=c(0,.21),ylim=c(0,1),type="n",
+xlab="variance estimates",ylab="",yaxt="n")
+axis(2,at=c(.1,.9),c("before","after"),las=2)
+segments((rtt$s^2)[idx],rep(.1,n),
+fit$s2.post[idx],rep(.9,n))
+dat=read.table("http://www.biostat.jhsph.edu/bstcourse/bio751/data/babies.data",header=TRUE)
+set.seed(1)
+smokers=sample(dat$bwt[dat$smoke==1],10)
+nonsmokers=sample(dat$bwt[dat$smoke==0],10)
+cat("observed difference = ",mean(smokers)-mean(nonsmokers)," ounces")
+for(i in 1:10){
+smokers=sample(dat$bwt[dat$smoke==1],10)
+nonsmokers=sample(dat$bwt[dat$smoke==0],10)
+cat("observed difference = ",mean(smokers)-mean(nonsmokers),"ounces\n")
+}
+x-<function(a=1,b=2){}
+x<-function(a=1,b=2){a+b}
+x(3,4)
+x()
+sample(1:10,20)
+sample(1:10,2)
+dat
+describe dat
+dat$bwt
+dat$smoke
+ttestgenerator <- function(b=1000,n=10){
+sapply(1:b,function(i){
+smokers=sample(dat$bwt[dat$smoke==0],n)
+nonsmokers=sample(dat$bwt[dat$smoke==0],n)
+return((mean(smokers)-mean(nonsmokers))/sqrt((var(smokers))/n+var(nonsmokers)/n))
+})
+}
+ttests <- ttestgenerator(1000,10)
+hist(ttests)
+qqnorm(ttests)
+abline(0,1)
+ttests <- ttestgenerator(1000,3)
+qqnorm(ttests)
+abline(0,1)
+qs <- (seq(0,999)+0.5)/1000
+qqplot(qt(qs,df=2*3-2),ttests,xlim=c(-6,6),ylim=c(-6,6))
+abline(0,1)
+qs <- (seq(0,999)+0.5)/1000
+qqplot(qt(qs,df=2*3-2),ttests,xlim=c(-6,6),ylim=c(-6,6))
+abline(0,1)
+qqnorm(dat$bwt[dat$smoke==0])
+qqline(dat$bwt[dat$smoke==0])
+nonsmokerweights=rnorm(25000,123,17)
+set.seed(0)
+N=50
+smokers=sample(dat$bwt[dat$smoke==1],N)
+nonsmokers=sample(dat$bwt[dat$smoke==0],N)
+obs=mean(smokers)-mean(nonsmokers)
+avgdiff <- sapply(1:1000,function(i){
+all=sample(c(smokers,nonsmokers))
+smokersstar=all[1:N]
+nonsmokersstar=all[(N+1):(2*N)]
+return(mean(smokersstar)-mean(nonsmokersstar))
+})
+hist(avgdiff)
+abline(v=obs)
+print(mean(abs(avgdiff)> abs(obs)))
+datadir="http://www.biostat.jhsph.edu/bstcourse/bio751/data"
+library(dagdata)
+biocLite("")
+library(devtools)
+library(devtools)
+install_github("dagdata","genomicsclass")
+library(dagdata)
+data(tissuesGeneExpression)
+library(rafalib)
+group <- as.fumeric(tab$Tissue)
+library(hgfocus.db) ##get the gene chromosome
+data(GSE5859)
+library(hgfocus.db) ##get the gene chromosome
+library(rafalib)
+library(dagdata)
+data(GSE5859)
+library(hgfocus.db) ##get the gene chromosome
+a<-c(1,2,3,4,5)
+b<-(6,7,8,9,10)
+b<-c(6,7,8,9,10)
+a+b
+ab<-c(a,b)
+ab
+sd(ab)
+median(ab)
+d <- c(1:10, 30:40, 5, 7, 9, 12).
+d <- c(1:10, 30:40, 5, 7, 9, 12)
+d
+median(d)
+sum(d)
+x <- 3
+x <- NULL
+x <- c(x,3) #concatenate the item 3 to x
+x         #running the code x will return the content of x
+x <- c(x,5)
+x
+a <- c(1,2,3,4,5.5) # numeric vector
+b <- c("john","david","kumar","jane","mariam") # character vector
+c <- c(TRUE,TRUE,FALSE, T, F) #logical vector
+c
+c[3]
+c[c==T]
+a[a>1 & a<4]
+which(a>1 & a<4)
+seq(2, 100, 4)
+2:6
+paste("A", 1:6, sep= "")
+?paste
+rep(b, 5)
+rep(letters[1:5], 3)
+sample(LETTERS, 5, replace=TRUE)  #the function sample can sample with or without replacement
+sample(LETTERS, 5, replace=T)
+sample(LETTERS, 5, replace=T) #notice how sample generates a new sequence each time
+sample(LETTERS, 5, replace=TRUE)  #the function sample can sample with or without replacement
+sample(LETTERS, 5, replace=T)
+sample(LETTERS, 5, replace=F) #notice how sample generates a new sequence each time
+sample(LETTERS, 5, replace=T)
+sample(LETTERS, 26, replace=T)
+sample(LETTERS, 26, replace=F)
+sample(LETTERS, 27, replace=F)
+set.seed(200)  # sometimes it is useful to create random, but reproducible numbers
+sample(LETTERS, 5, replace=T)
+set.seed(200)
+sample(LETTERS, 5, replace=T)
+dice  <- sample(1:6, 50, replace=T)
+typeof(dice)
+dice[0]
+dice[0-20]
+str(dice)
+is.vector(dice)
+head(dice)
+tail(dice)
+length(dice)
+max(dice)
+min(dice)
+summary(dice)
+dice[5] <- 55
+plot(x)
+which(x>6)
+plot(x)
+summary(dice)
+str(dice)
+plot(x)
+plot(dice)
+M <- dice
+is.vector(M)
+dim(M)<- c(10,5)
+?dim()
+is.vector(M)
+str(M)
+M
+plot(M)
+plot(M[,1])
+plot(M[,2])
+fix(M)
+TM <- t(M)
+TM
+M
+"some text" -> M[1,1]
+M
+M+8
+M+"8"
+MyList <- list(M, a, dice)
+MyList
+MyList[[1]][2,]
+MyList
+MyList[[1]]
+MyDataFrame <- data.frame(a, b, c)
+MyDataFrame
+str(MyDataFrame)
+MyDataFrame$a
+MyDataFrame[1,]
+MyDataFrame[1,]
+MyDataFrame[,1]
+5^2 * pi
+radius <- 5
+radius^2 *pi
+CircleArea <- function(radius) {
+radius*radius*pi
+}
+CircleArea(5)
+a
+CircleArea(a)
+plot(a, CircleArea(a))
+CircleArea
+CircleArea
+h<-rnorm(100)
+histogram(h)
+hist(h)
+barplot(h)
+boxplot(h)
+pie(h)
+j<-h+5
+str(j)
+pie(j)
+c(31:50)
+x<-c(31:50)
+y<-31:50
+str(x)
+str(y)
+hist(prnorm(100))
+hist(pnorm(100))
+hist(qnorm(100))
+hist(dnorm(100))
+barchart(dnorm(100))
+barplot(dnorm(100))
+barplot(qnorm(100))
+barplot(dnorm(100))
+barplot(rnorm(100))
+get wd()
+getwd()
+setwd('d:/temp')
+ls
+ls()
+pii<=99
+pii<-99
+ls()
+data()
+head(infert)
+infert$education
+map("world")
+library("maps")
+install.package("maps")
+install.packages("maps")
+library("maps")
+map("world")
+history()

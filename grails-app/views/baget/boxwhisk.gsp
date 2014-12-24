@@ -87,14 +87,16 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
 
 </table>
 
-<script src="../js/ctrp/boxWhiskerPlot.js"></script>
+<script src="../js/baget/boxWhiskerPlot.js"></script>
 <script src="../js/ctrp/scatter.js"></script>
 <script src="../js/ctrp/slider.js"></script>
 <div id='imageHolder'></div>
 <script>
     // for stub only
     var compound = {compound_id:123456,
-        compound_name:'benzaldehyde' } ;
+        compound_name:'benzaldehyde' },
+            data = []; // must remember data we get from a json call
+                       // so that we can supply it again in case of a whisker adjustment
     $('#imageHolder').data('compound',compound);
 </script>
 
@@ -120,8 +122,8 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
             onScreenEnd = 100;
 
     // build those portions of the box whisker plot that are data independent
-    var chart = cbbo.boxWhiskerPlot()
-            .selectionIdentifier("#plot")
+    var chart = baget.boxWhiskerPlot()
+         //   .selectionIdentifier("#plot")
             .width(width)
             .height(height)
 
@@ -137,7 +139,7 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
     // get your data
     d3.json("<g:createLink controller='box' action='retrieveBoxData'/>", function (error, json) {
 
-        var data = [];
+         data = [];
         var stubDataGenes = [
             "MYC",
             "BRCA2",
@@ -228,26 +230,52 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
 
 
 
-
-//       d3.select("#scatterPlot1").selectAll("svg").datum(data).select("g.boxHolder").call(
+//        instance.assignData = function (x) {
+//            if (!arguments.length) return boxWhiskerData;
+//            boxWhiskerData = x;
+//            var bwPlot = selection
+//                    .selectAll("svg")
+//                    .data(boxWhiskerData);
 //
-//               chart
-//                       .min(globalMinimum)
-//                       .max(globalMaximum)
-//                       .scatterDataCallback( respondToScatterData )
-//                       .retrieveCorrelationData(clickCallback)
-//                       .compoundIdentifier(375788)
-//                       .render
-//        );
+//            var bwPlotExt = bwPlot.enter()
+//                    .append("svg")
+//                    .attr("class", "box")
+//                    .attr("width", width + margin.left + margin.right)
+//                    .attr("height", height + margin.bottom + margin.top);
+//
+//
+//            bwPlotExt.append("g")
+//                    .attr("class", "boxHolder")
+//                    .attr("transform", "translate(" + margin.left + ",0)")
+//                    .call(tip);
+//
+//            return instance;
+//        };
 
-        // We are finally ready to display the box whisker plot
-        chart.assignData (data)
-             .min(globalMinimum)
-             .max(globalMaximum)
+        chart
+                .min(globalMinimum)
+                .max(globalMaximum)
                 .whiskers(iqr(defaultInterquartileMultiplier))
                 .scatterDataCallback( respondToScatterData )
-                .retrieveCorrelationData(clickCallback)
-             .render();
+                .retrieveCorrelationData(clickCallback);
+
+
+
+        d3.select('#plot').selectAll('svg.data-item')
+                .data(data)
+                .enter()
+                .append('div')
+                .attr('class', 'data-item')
+                .call(chart.render);
+
+//        // We are finally ready to display the box whisker plot
+//        chart.assignData (data)
+//             .min(globalMinimum)
+//             .max(globalMaximum)
+//                .whiskers(iqr(defaultInterquartileMultiplier))
+//                .scatterDataCallback( respondToScatterData )
+//                .retrieveCorrelationData(clickCallback)
+//             .render();
 
 
 
@@ -266,7 +294,14 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
 
     //  What to do when the slider has stopped moving
     function onBrushEndDoThis () {
-       chart.render();
+
+        d3.select('#plot').selectAll('div.data-item')
+//                .data(data)
+//                .enter()
+                .call(chart.render);
+
+
+       //chart.render();
     }
 
     // Returns a function to compute the interquartile range, which is represented
@@ -290,7 +325,8 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
     $("#outlierRadius").click(function(d,x) {
         var  integerOutlierRadius = parseInt( $('input:radio[name=outlierRadius]:checked').val());
         chart.outlierRadius(integerOutlierRadius);
-        chart.render();
+        d3.select('#plot').selectAll('div.data-item')
+                .call(chart.render);
     }) ;
 
 </script>
@@ -300,31 +336,7 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
         <p><a id='scatterPlotCloser' class='close' href='/'>Close window</a></p>
     </form>
 </div>
-%{--<div class="d" id="outlierRadius" style="border: 2px outset red; width: 133px">--}%
-    %{--<span style="font-size: 10pt;padding-left: 5px; ">Outlier radius:</span>--}%
-    %{--<span style="font-size: 10pt; margin-left:5px;margin-top:5px;  text-decoration : underline">Outlier radius:</span>--}%
-    %{--<form action="" id="outlierRadius" style="padding-left: 5px;padding-left: 5px;padding-top: 5px;padding-bottom: 4px; ">--}%
-        %{--<table style ="font-size: 9pt" >--}%
-            %{--<tr>--}%
-                %{--<td>--}%
-                    %{--<input type="radio"  name="outlierRadius" value="1">tiny</input>--}%
-                %{--</td>--}%
-                %{--<td>--}%
-                    %{--<input type="radio"  name="outlierRadius" value="2">small</input>--}%
-                %{--</td>--}%
-            %{--</tr>--}%
-            %{--<tr>--}%
-                %{--<td>--}%
-                    %{--<input type="radio"  name="outlierRadius" value="4">medium</input>--}%
-                %{--</td>--}%
-                %{--<td>--}%
-                    %{--<input type="radio"  name="outlierRadius" value="6" checked>large</input>--}%
-                %{--</td>--}%
-            %{--</tr>--}%
-        %{--</table>--}%
 
-    %{--</form>--}%
-    %{--</div>--}%
 <script>
 
 </script>

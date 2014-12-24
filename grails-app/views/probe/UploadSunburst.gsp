@@ -809,34 +809,35 @@
             <div id="sunburstdiv">
             </div>
             <script>
-                d3.json("/cow/probe/freshData?filename1=${filename1}&filename2=${filename2}", function (error, data) {
+                d3.json("${createLink(controller:'probe',action:'freshData')}?filename1=${filename1}&filename2=${filename2}", function (error, data) {
 
-                    var minimumValue=0.5;
-                    var maximumValue=0.5;
+                        var minimumValue=0.5;
+                        var maximumValue=0.5;
 
-                    var continuousColorScale = d3.scale.linear()
-                            .domain([minimumValue, maximumValue])
+                        var continuousColorScale = d3.scale.linear()
+                                .domain([minimumValue, maximumValue])
 //            .interpolate(d3.interpolateRgb)
 //            .range(["#deffd9", "#74c476"]);
-                            .range(["#000", "#000"]);
+                                .range(["#000", "#000"]);
 
-                    if (data[0].children !== undefined) {
-                        createASunburst(data, 1400, 1400, 5, 1000, continuousColorScale, 'div#sunburstdiv');
-                    } else {
-                        d3.select('div#sunburstdiv')
-                                .append('div')
-                                .attr("width", 4000)
-                                .attr("height", 1400)
-                                .style("padding-top", '200px')
-                                .style("text-align", 'center')
-                                .append("h1")
-                                .html("No off-embargo assay data are  available for this compound.<br /><br />" +
-                                        "Please either choose a different compound, or else come<br />" +
-                                        "back later when more assay data may have accumulated.");
-                    }
+                        if (data[0].children !== undefined) {
+                            createASunburst(data, 1400, 1400, 5, 1000, continuousColorScale, 'div#sunburstdiv');
+                        } else {
+                            d3.select('div#sunburstdiv')
+                                    .append('div')
+                                    .attr("width", 4000)
+                                    .attr("height", 1400)
+                                    .style("padding-top", '200px')
+                                    .style("text-align", 'center')
+                                    .append("h1")
+                                    .html("No off-embargo assay data are  available for this compound.<br /><br />" +
+                                            "Please either choose a different compound, or else come<br />" +
+                                            "back later when more assay data may have accumulated.");
+                        }
 
 
-                } );
+                    } );
+                //}
             </script>
 
 

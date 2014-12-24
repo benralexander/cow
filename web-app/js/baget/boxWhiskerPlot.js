@@ -334,20 +334,23 @@ var baget = baget || {};
 
 
                 selection
-                //.select("svg").select("g.boxHolder")
                 .each(function (d, i) {
-                    d3.select(this).append("svg")
-                    d3.select(this).select("svg").attr('class','box') .attr('width','470') .attr('height','500');
-                    d3.select(this).select("svg").append("g");
-                    var g=d3.select(this).select("svg").select("g");
+                        if (d3.select(this).select("svg").empty())  {
+                            d3.select(this)
+                                .append("svg")
+                                .attr('class','box')
+                                .attr('width','470')
+                                .attr('height','500')
+                                .append("g");
+                        }
+                      var g=d3.select(this).select("svg").select("g");
                     g.attr('class','boxHolder')
                         .attr("transform", "translate(" + margin.left + ",0)")
                         .call(tip);//.class('boxHolder',true);
                     d = d.sort(function (a, b) {
                         return a.value - b.value;
                     });
-                    var //g = d3.select(this),
-                        n = d.length;
+                    var n = d.length;
 
                     // Compute quartiles. Must return exactly 3 elements.
                     var quartileData = d.quartiles = quartiles(d);

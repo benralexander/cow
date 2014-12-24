@@ -94,9 +94,8 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
 <script>
     // for stub only
     var compound = {compound_id:123456,
-        compound_name:'benzaldehyde' },
-            data = []; // must remember data we get from a json call
-                       // so that we can supply it again in case of a whisker adjustment
+        compound_name:'benzaldehyde' };
+
     $('#imageHolder').data('compound',compound);
 </script>
 
@@ -107,10 +106,10 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
       // these sizes referred to each individual bar in the bar whisker plot
       margin = {top: 50, right: 50, bottom: 20, left: 50},
             width = 420 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+            height = 500 - margin.top - margin.bottom,
 
     // minimum and maximum values across all bars
-    var globalMinimum = Infinity,
+     globalMinimum = Infinity,
             globalMaximum = -Infinity;
 
     // initial value of the interquartile multiplier. Note that this value
@@ -123,11 +122,11 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
 
     // build those portions of the box whisker plot that are data independent
     var chart = baget.boxWhiskerPlot()
-         //   .selectionIdentifier("#plot")
             .width(width)
             .height(height)
-
             .boxWhiskerName ('3,4,5-trimethoxy benzaldehyde');
+
+
     // build a slider and attach the callback methods
     var slider = d3.slider(minimumInterquartileMultiplier,
             maximumInterquartileMultiplier,
@@ -139,8 +138,8 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
     // get your data
     d3.json("<g:createLink controller='box' action='retrieveBoxData'/>", function (error, json) {
 
-         data = [];
-        var stubDataGenes = [
+        var data = [],
+         stubDataGenes = [
             "MYC",
             "BRCA2",
             "STAT6",
@@ -226,32 +225,6 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
                 });
             } ;
 
-
-
-
-
-//        instance.assignData = function (x) {
-//            if (!arguments.length) return boxWhiskerData;
-//            boxWhiskerData = x;
-//            var bwPlot = selection
-//                    .selectAll("svg")
-//                    .data(boxWhiskerData);
-//
-//            var bwPlotExt = bwPlot.enter()
-//                    .append("svg")
-//                    .attr("class", "box")
-//                    .attr("width", width + margin.left + margin.right)
-//                    .attr("height", height + margin.bottom + margin.top);
-//
-//
-//            bwPlotExt.append("g")
-//                    .attr("class", "boxHolder")
-//                    .attr("transform", "translate(" + margin.left + ",0)")
-//                    .call(tip);
-//
-//            return instance;
-//        };
-
         chart
                 .min(globalMinimum)
                 .max(globalMaximum)
@@ -267,16 +240,6 @@ removeWaitCursor=function(){console.log('stub removeWaitCursor');};
                 .append('div')
                 .attr('class', 'data-item')
                 .call(chart.render);
-
-//        // We are finally ready to display the box whisker plot
-//        chart.assignData (data)
-//             .min(globalMinimum)
-//             .max(globalMaximum)
-//                .whiskers(iqr(defaultInterquartileMultiplier))
-//                .scatterDataCallback( respondToScatterData )
-//                .retrieveCorrelationData(clickCallback)
-//             .render();
-
 
 
 

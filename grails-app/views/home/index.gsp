@@ -162,6 +162,9 @@
     <dt><a href="<g:createLink controller='slick' action='slick'/>">Slick grid</a></dt>
     <dd>And experiment with infinite scrolling on a Molecular spreadsheet.  Slick grid is a nice JavaScript project -- check it out <a href="https://github.com/mleibman/SlickGrid"> here</a></dd>
 
+    <dt><a href="<g:createLink controller='probe' action='uploadPrep'/>">Build a sunburst</a></dt>
+    <dd>Build a sunburst visualization to represent your own data.. You need only convert your data into the JSON format prescribed in this page and then upload the files through the interface</dd>
+
     <dt><a href="<g:createLink controller='veryCross' action='index'/>">Linked Hierarchies</a></dt>
     <dd>This was my original test harness as I built the Linked Hierarchies Visualization which eventually ended up in the <a class="standardLinks" href="https://bard.nih.gov/BARD/bardWebInterface/index">Bard</a>  project./dd>
 

@@ -10,11 +10,13 @@
 <body>
 
 <script type="text/javascript">
-    var id= 0, 
+    var id= 500,
         data = [], 
         duration = 500, 
         chartHeight = 500,
-        chartWidth = 680;
+        chartWidth = 680,
+        color = d3.scale.category20b(),
+        colorCycler = 1;
 
     for(var i = 0; i < 20; i++) push(data);   
 
@@ -32,7 +34,11 @@
                     .style("left", function(d, i){
                         return barLeft(i+1) + "px"; // <-B
                     })
-                    .style("height", "0px") // <-C
+                .style("height", "0px") // <-C
+                .style("background-color",  function(d, i){
+                    return d.color;
+                }
+                ) // <-C
                 .append("span");
 
         // update
@@ -61,6 +67,7 @@
 
     function push(data) {
         data.push({
+            color: color((colorCycler++)%20),
             id: ++id, 
             value: Math.round(Math.random() * chartHeight)
         });
@@ -71,8 +78,9 @@
     }
 
     function barHeight(d) {
-       // return d.value;
-        return d.id;
+        var h= (chartHeight*0.5)+(Math.sin(d.id/10)*(chartHeight*0.5));
+        console.log('h='+h);
+        return h;
     }
 
     setInterval(function () {

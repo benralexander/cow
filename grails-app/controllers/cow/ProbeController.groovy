@@ -26,7 +26,7 @@ class ProbeController {
         incomingFile.transferTo(new File('./tempStorage1.txt'))
         println('transferred.')
 
-        render(view: 'uploadPrep',model:[dataFileBased:1,myFile1: './tempStorage1.txt'])
+        render(view: 'uploadPrep',model:[dataFileBased:1,firstFileName:"${incomingFile.getClass().name}",myFile1: "./tempStorage1.txt"])
 
     }
 
@@ -43,10 +43,32 @@ class ProbeController {
             return
         }
         println('type='+incomingFile.getClass().name+'.')
-        incomingFile.transferTo(new File('./tempStorage12.txt'))
+        incomingFile.transferTo(new File('./tempStorage2.txt'))
         println('transferred.')
         redirect (action:"UploadSunburst",params:[filename1: myFile1,filename2: './tempStorage2.txt'])
     }
+
+
+
+    def  clickToDownloadCategoriesFile()  {
+        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/sampleCategories.json").file.toString()
+        File file = new File(fileLocation)
+        response.setHeader "Content-disposition", "attachment; filename=${file.name}"
+        response.contentType = 'text/json'
+        response.outputStream << file.text
+        response.outputStream.flush()
+    }
+
+
+    def  clickToDownloadElementsFile()  {
+        String fileLocation = grailsApplication.mainContext.getResource("/WEB-INF/resources/sampleElements.json").file.toString()
+        File file = new File(fileLocation)
+        response.setHeader "Content-disposition", "attachment; filename=${file.name}"
+        response.contentType = 'text/json'
+        response.outputStream << file.text
+        response.outputStream.flush()
+    }
+
 
 
 

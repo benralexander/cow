@@ -18,6 +18,9 @@ class CookinController {
     def arrayNest() {
         render (view: 'arrayNest')
     }
+    def simpleTest() {
+        render (view: 'simpleTest')
+    }
     def arrayFilter() {
         render (view: 'arrayFilter')
     }

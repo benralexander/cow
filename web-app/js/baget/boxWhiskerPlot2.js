@@ -13,6 +13,7 @@ var baget = baget || {};
          */
         var boxWhiskerData,  // All the points the box whisker plot represents ( outliers or boxed )
             selectionIdentifier = '', // String defining Dom element where the plot will hang
+            selection = {}, // DOM element inside D3 wrapper
             min = Infinity,  // min y value.  Autoscale if not set
             max = -Infinity,  // max y value.  Autoscale if not set
             whiskers = boxWhiskers, // function to set the whiskers
@@ -20,7 +21,7 @@ var baget = baget || {};
             outlierRadius = 2,  // size of outlier dots on screen
             scatterDataCallback,
 
-            // Private variables, which can be surfaced as necessary
+        // Private variables, which can be surfaced as necessary
             duration = 500,  // How many milliseconds to animations require
             quartiles = boxQuartiles, // function describing how quartiles are calculated
             value = Number,
@@ -28,11 +29,11 @@ var baget = baget || {};
 
 
         // the callback which retrieves the correlation data. Note that this callback
-            // also assigns a second callback ( scatterDataCallback ) which it uses to
-            // actually launch the scatter plot
-            //
-            // also note: I externalize this callback to support inserting a stub in the test harness.
-            // During regular usage, however, this default value should be perfectly adequate
+        // also assigns a second callback ( scatterDataCallback ) which it uses to
+        // actually launch the scatter plot
+        //
+        // also note: I externalize this callback to support inserting a stub in the test harness.
+        // During regular usage, however, this default value should be perfectly adequate
             retrieveCorrelationData = function (compoundId, geneName, dataSet) {
                 setWaitCursor();
                 var filter = collectFilterStrings();
@@ -84,9 +85,9 @@ var baget = baget || {};
         }
 
 
-        // Enforce that there is only ever one of these objects (Singleton pattern).  We presume 
+        // Enforce that there is only ever one of these objects (Singleton pattern).  We presume
         //  that calling a boxwhisker that already exists should imply that we reinitialize the plot,
-        //  so we call a clean up before returning the pointer.  
+        //  so we call a clean up before returning the pointer.
         if (typeof instance === "object") {
             cleanUpAfterYourself(true);
             return instance;
@@ -127,7 +128,7 @@ var baget = baget || {};
                 /***
                  * Mark an outlier point as selected
                  */
-                    visuallyIdentifyDot = function (currentDot) {
+                visuallyIdentifyDot = function (currentDot) {
                     d3.select(currentDot).select('circle').classed('selectedCircle', true).classed('outlier', false);
                 },
 
@@ -135,7 +136,7 @@ var baget = baget || {};
                 /***
                  * Make sure that all outlier points are deselected
                  */
-                    visuallyUnidentifyAllDots = function () {
+                visuallyUnidentifyAllDots = function () {
                     d3.selectAll('.selectedCircle').classed('outlier', true).classed('selectedCircle', false);
                 },
 
@@ -145,7 +146,7 @@ var baget = baget || {};
                  * a parameter we return a truth value answering the question of whether the scatterplot
                  * is in place
                  */
-                    scatterIsUp = function (trueOrFalse) {
+                scatterIsUp = function (trueOrFalse) {
                     var retval = false;
                     if (!arguments.length) {
                         if (!d3.select("#examineCorrelation").empty()) {
@@ -161,7 +162,7 @@ var baget = baget || {};
                  * ( simply bring down the scatterplot) then if we select a new point ( bring down the old
                  * scatterplot and put up a new one).
                  */
-                    thisDotIsAlreadySelected = function (currentDot) {
+                thisDotIsAlreadySelected = function (currentDot) {
                     var retval = false;
                     if (!d3.select(currentDot).select('circle').empty()) {
                         retval = d3.select(currentDot).select('circle').classed('selectedCircle');
@@ -312,9 +313,9 @@ var baget = baget || {};
             .attr('class', 'd3-tip')
             .offset([-10, 0])
             .html(function (d) {
-                var nodeData = d3.select(this.parentNode).datum()[d];
-                var valueToDisplay = new Number(nodeData.value);
-                return "<strong></strong> <span style='color:#00ff00'>Gene: " + nodeData.description + "<br/>" +
+                var nodeData = d3.select(this.parentNode).data()[0].data[d];
+                var valueToDisplay = new Number(nodeData.v);
+                return "<strong></strong> <span style='color:#00ff00'>Gene: " + nodeData.d + "<br/>" +
                     "Correlation: " + valueToDisplay.toPrecision(3) + "</span>";
             });
 
@@ -328,37 +329,40 @@ var baget = baget || {};
 
 
         // For each small multiple…
-        instance.render = function (selection) {
+        instance.render = function (currentSelection) {
             var xAxis,
-                yAxis;
+                yAxis,
+                boxWhiskerObjects,
+                numberOfBoxes,
+                boxWidth,
+                centerForBox,
+                leftEdgeOfBox,
+                rightEdgeOfBox;
 
+            boxWhiskerObjects  = currentSelection.selectAll('g');
+            numberOfBoxes  = boxWhiskerObjects[0].length;
+            boxWidth = width/(1.5*(numberOfBoxes +0.5));
+            boxWhiskerObjects
+                .each(function (d, i) {      // d3 each: d=datum, i=index
+                    leftEdgeOfBox =  boxWidth*(1.5*(i +0.5)) ;
+                    centerForBox =  leftEdgeOfBox+(boxWidth/2) ;
+                    rightEdgeOfBox = leftEdgeOfBox+boxWidth;
 
-                selection
-                .each(function (d, i) {
-                        if (d3.select(this).select("svg").empty())  {
-                            d3.select(this)
-                                .append("svg")
-                                .attr('class','box')
-                                .attr('width','470')
-                                .attr('height','500')
-                                .append("g");
-                        }
-                      var g=d3.select(this).select("svg").select("g");
-                    g.attr('class','boxHolder')
-                        .attr("transform", "translate(" + margin.left + ",0)")
-                        .call(tip);//.class('boxHolder',true);
-                    d = d.sort(function (a, b) {
-                        return a.value - b.value;
+                    var g = d3.select(boxWhiskerObjects[0][i]);
+
+                        g.call(tip);//.class('boxHolder',true);
+                    var d2 = d.data.sort(function (a, b) {
+                        return a.v - b.v;
                     });
-                    var n = d.length;
+                    var n = d2.length;
 
                     // Compute quartiles. Must return exactly 3 elements.
-                    var quartileData = d.quartiles = quartiles(d);
+                    var quartileData = d2.quartiles = quartiles(d2);
 
                     // Compute whiskers. Must return exactly 2 elements, or null.
-                    var whiskerIndices = whiskers && whiskers.call(this, d, i),
+                    var whiskerIndices = whiskers && whiskers.call(this, d2, i),
                         whiskerData = whiskerIndices && whiskerIndices.map(function (i) {
-                            return d[i].value;
+                            return d2[i].v;
                         });
 
                     // Compute outliers. If no whiskers are specified, all data are "outliers".
@@ -370,7 +374,7 @@ var baget = baget || {};
                     // Compute the new x-scale.
                     var xScale = d3.scale.linear()
                         .domain([0, 1])
-                        .range([width + margin.right + margin.left, 0]);
+                        .range([boxWidth + margin.right + margin.left, 0]);
 
 
                     // Compute the new y-scale.
@@ -408,11 +412,11 @@ var baget = baget || {};
 
                     center.enter().append("line", "rect")
                         .attr("class", "center")
-                        .attr("x1", width / 2)
+                        .attr("x1", centerForBox)
                         .attr("y1", function (d) {
                             return yScaleOld(d[0]);
                         })
-                        .attr("x2", width / 2)
+                        .attr("x2", centerForBox)
                         .attr("y2", function (d) {
                             return yScaleOld(d[1]);
                         })
@@ -454,11 +458,11 @@ var baget = baget || {};
 
                     box.enter().append("rect")
                         .attr("class", "box")
-                        .attr("x", 0)
+                        .attr("x", leftEdgeOfBox)
                         .attr("y", function (d) {
                             return yScaleOld(d[2]);
                         })
-                        .attr("width", width)
+                        .attr("width", boxWidth)
                         .attr("height", function (d) {
                             return yScaleOld(d[0]) - yScaleOld(d[2]);
                         })
@@ -488,9 +492,9 @@ var baget = baget || {};
 
                     medianLine.enter().append("line")
                         .attr("class", "median")
-                        .attr("x1", 0)
+                        .attr("x1", leftEdgeOfBox)
                         .attr("y1", yScaleOld)
-                        .attr("x2", width)
+                        .attr("x2", rightEdgeOfBox)
                         .attr("y2", yScaleOld)
                         .transition()
                         .duration(duration)
@@ -511,9 +515,9 @@ var baget = baget || {};
 
                     whisker.enter().append("line", "circle, text")
                         .attr("class", "whisker")
-                        .attr("x1", 0)
+                        .attr("x1", leftEdgeOfBox)
                         .attr("y1", yScaleOld)
-                        .attr("x2", width)
+                        .attr("x2", rightEdgeOfBox)
                         .attr("y2", yScaleOld)
                         .style("opacity", 1e-6)
                         .transition()
@@ -544,7 +548,7 @@ var baget = baget || {};
                         .append("a")
                         .attr("class", "clickable")
                         .attr("gpn", function (i) {
-                            return d[i].description;
+                            return d2[i].description;
                         })
                         .on('mouseover', tip.show)
                         .on('mouseout', tip.hide)
@@ -554,10 +558,10 @@ var baget = baget || {};
                             return outlierRadius;
                         })
                         .attr("cx", function (i) {
-                            return jitter.currentX(width / 2, yScaleOld(d[i].value));
+                            return jitter.currentX(centerForBox, yScaleOld(d2[i].v));
                         })
                         .attr("cy", function (i) {
-                            return jitter.currentY(width / 2, yScaleOld(d[i].value));
+                            return jitter.currentY(centerForBox, yScaleOld(d2[i].v));
                         })
                         .style("opacity", 1e-6)
 
@@ -567,10 +571,10 @@ var baget = baget || {};
                             return outlierRadius;
                         })
                         .attr("cx", function (i) {
-                            return jitter.currentX(width / 2, yScaleOld(d[i].value));
+                            return jitter.currentX(centerForBox, yScaleOld(d2[i].v));
                         })
                         .attr("cy", function (i) {
-                            return jitter.currentY(width / 2, yScaleOld(d[i].value));
+                            return jitter.currentY(centerForBox, yScaleOld(d2[i].v));
                         })
                         .style("opacity", 1)
                     ;
@@ -581,10 +585,10 @@ var baget = baget || {};
                             return outlierRadius;
                         })
                         .attr("cx", function (i) {
-                            return jitter.currentX(width / 2, yScaleOld(d[i].value));
+                            return jitter.currentX(centerForBox, yScaleOld(d2[i].v));
                         })
                         .attr("cy", function (i) {
-                            return jitter.currentY(width / 2, yScaleOld(d[i].value));
+                            return jitter.currentY(centerForBox, yScaleOld(d2[i].v));
                         })
                         .style("opacity", 1);
 
@@ -611,7 +615,7 @@ var baget = baget || {};
                             return i & 1 ? 6 : -6;
                         })
                         .attr("x", function (d, i) {
-                            return i & 1 ? width : 0;
+                            return i & 1 ? rightEdgeOfBox : leftEdgeOfBox ;
                         })
                         .attr("y", yScaleOld)
                         .attr("text-anchor", function (d, i) {
@@ -639,7 +643,7 @@ var baget = baget || {};
                         .attr("class", "whisker")
                         .attr("dy", ".3em")
                         .attr("dx", 6)
-                        .attr("x", width)
+                        .attr("x", rightEdgeOfBox)
                         .attr("y", yScaleOld)
                         .text(format)
                         .style("opacity", 1e-6)
@@ -697,30 +701,44 @@ var baget = baget || {};
 
 
         // Note:  this method will assign data to the DOM
-        instance.assignData = function (x) {
+        instance.initData = function (x) {
             if (!arguments.length) return boxWhiskerData;
             boxWhiskerData = x;
+            var bwHolderLength,
+                valueToConsider;
             var bwPlot = selection
-                .selectAll("svg")
-                .data(boxWhiskerData);
-
-            var bwPlotExt = bwPlot.enter()
                 .append("svg")
                 .attr("class", "box")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.bottom + margin.top);
+                .attr("width", "470px")
+                .attr("height", "500px")
+                .selectAll("g")
+                .data(boxWhiskerData)
+                .enter()
+                .append('g')
+                .attr("class", "boxHolder") ;
+               // .attr("transform", "translate(" + margin.left + ",0)");
 
-
-            bwPlotExt.append("g")
-                .attr("class", "boxHolder")
-                .attr("transform", "translate(" + margin.left + ",0)")
-                .call(tip);
+            // calculate the maximum and min.  The user can override these
+            // if they like.
+            min = Infinity;
+            max = -Infinity;
+            for ( var i = 0 ; i < boxWhiskerData.length ; i++ ) {
+                bwHolderLength =  boxWhiskerData[i].data.length;
+                for ( var j = 0 ; j < bwHolderLength ; j++)   {
+                    valueToConsider=boxWhiskerData[i].data[j].v;
+                    if (valueToConsider > max) { max = valueToConsider; }
+                    if (valueToConsider < min) { min = valueToConsider; }
+                }
+            }
 
             return instance;
         };
 
-
-
+        instance.hangingFrom  = function (x) {
+            if (!arguments.length) return selection;
+            selection = x;
+            return selection;
+        };
 
         // Note:  this method will assign data to the DOM
         instance.assignData = function (x) {
@@ -834,7 +852,7 @@ var baget = baget || {};
     function boxQuartiles(d) {
         var accumulator = [];
         d.forEach(function (x) {
-            accumulator.push(x.value);
+            accumulator.push(x.v);
         });
         return [
             d3.quantile(accumulator, .25),

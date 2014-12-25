@@ -21,6 +21,9 @@ class CookinController {
     def simpleTest() {
         render (view: 'simpleTest')
     }
+    def simpleTest2() {
+        render (view: 'simpleTest2')
+    }
     def arrayFilter() {
         render (view: 'arrayFilter')
     }

@@ -6,7 +6,7 @@
     <meta name="layout" content="core"/>
     <script src="../js/jquery-2.0.3.min.js"></script>
     %{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>--}%
-    <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'boxWhiskerPlot.css')}" type="text/css">
+    <link rel="stylesheet" href="${resource(dir: 'css/baget', file: 'boxWhiskerPlot.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'clickablePopUp.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'slider.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css/ctrp', file: 'd3tooltip.css')}" type="text/css">

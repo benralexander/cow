@@ -512,9 +512,9 @@ class BagetController {
 //"""
 
     def duelingDataInJsonForm = """
-[{"name":"cmpd1",
+[{"name":"compound one",
   "data": ${dataInJsonForm.toString()}},
-{"name":"cmpd2",
+{"name":"compound two",
   "data": ${dataInJsonForm2.toString()}}]
 """
 

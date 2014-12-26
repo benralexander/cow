@@ -339,7 +339,7 @@ var baget = baget || {};
                 leftEdgeOfBox,
                 rightEdgeOfBox;
 
-            boxWhiskerObjects  = currentSelection.selectAll('g');
+            boxWhiskerObjects  = currentSelection.selectAll('g.boxHolder');
             numberOfBoxes  = boxWhiskerObjects[0].length;
             boxWidth = width/(1.5*(numberOfBoxes +0.5));
             boxWhiskerObjects
@@ -664,6 +664,36 @@ var baget = baget || {};
                         .style("opacity", 1e-6)
                         .remove();
 
+
+
+                    var boxWhiskerLabel = g.selectAll("text.boxWhiskerLabel")
+                        .data(['X'] || []);
+
+                    boxWhiskerLabel.enter().append("text")
+                        .attr("class", "boxWhiskerLabel")
+                        .attr("x", centerForBox)
+                        .attr("y", height )
+                        .style("text-anchor", "middle")
+                        .style("font-weight", "bold")
+                        .text(d.name)
+                        .style("opacity", 1e-6)
+                        .transition()
+                        .duration(duration)
+                        .style("opacity", 1);
+
+                    boxWhiskerLabel.transition()
+                        .duration(duration)
+                        .style("opacity", 1);
+
+                    boxWhiskerLabel.exit().transition()
+                        .duration(duration)
+                        .style("opacity", 1)
+                        .remove();
+
+
+
+
+
                     // y axis
                     selection
                         .select("svg").selectAll("g.y").data([1]).enter()
@@ -680,19 +710,19 @@ var baget = baget || {};
                         .text('');
 
                     // x axis
-                    selection
-                        .select("svg").selectAll("g.x").data([1]).enter()
-                        .append("g")
-                        .attr("class", "x axis")
-                        .attr("transform", "translate(0," + (height) + ")")
-                        .call(xAxis)
-                        .append("text")
-                        .attr("class", "label")
-                        .attr("x", (width + margin.left + margin.right) / 2)
-                        .attr("y", margin.bottom)
-                        .style("text-anchor", "middle")
-                        .style("font-weight", "bold")
-                        .text(boxWhiskerName);
+//                    selection
+//                        .select("svg").selectAll("g.x").data([1]).enter()
+//                        .append("g")
+//                        .attr("class", "x axis")
+//                        .attr("transform", "translate(0," + (height) + ")")
+//                        .call(xAxis)
+//                        .append("text")
+//                        .attr("class", "label")
+//                        .attr("x", (width + margin.left + margin.right) / 2)
+//                        .attr("y", margin.bottom)
+//                        .style("text-anchor", "middle")
+//                        .style("font-weight", "bold")
+//                        .text(boxWhiskerName);
 
 
                 });

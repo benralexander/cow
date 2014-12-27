@@ -665,7 +665,9 @@ var baget = baget || {};
                         .remove();
 
 
-
+                    //
+                    // provide a single label underneath each box whisker
+                    //
                     var boxWhiskerLabel = g.selectAll("text.boxWhiskerLabel")
                         .data(['X'] || []);
 
@@ -762,12 +764,6 @@ var baget = baget || {};
             }
 
             return instance;
-        };
-
-        instance.hangingFrom  = function (x) {
-            if (!arguments.length) return selection;
-            selection = x;
-            return selection;
         };
 
         // Note:  this method will assign data to the DOM

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>boxwhisk</title>
+    <title>layout example</title>
     <meta name="layout" content="core"/>
     <script src="../js/jquery-2.0.3.min.js"></script>
     %{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>--}%

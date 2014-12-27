@@ -180,9 +180,10 @@
     <dd>bar code example from mastering d3.js by pablo castillo</dd>
 
     <dt><a href="<g:createLink controller='cookin' action='layoutTest'/>">layoutTest</a></dt>
-    <dd>bar code example from mastering d3.js by pablo castillo</dd>
+    <dd>layout example from mastering d3.js by pablo castillo</dd>
 
-
+    <dt><a href="<g:createLink controller='cookin' action='sliderTest'/>">sliderTest</a></dt>
+    <dd>slider example from mastering d3.js by pablo castillo</dd>
 
     <dt><a href="<g:createLink controller='veryCross' action='index'/>">Linked Hierarchies</a></dt>
     <dd>This was my original test harness as I built the Linked Hierarchies Visualization which eventually ended up in the <a class="standardLinks" href="https://bard.nih.gov/BARD/bardWebInterface/index">Bard</a>  project./dd>

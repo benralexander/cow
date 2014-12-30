@@ -1,3 +1,4 @@
+<%@ page import="temporary.BuildInfo" %>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
@@ -34,7 +35,9 @@
 <body>
 %{--<div id="grailsLogo" role="banner"><a href="http://grails.org"><img src="${resource(dir: 'images', file: 'grails_logo.png')}" alt="Grails"/></a></div>--}%
 <g:layoutBody/>
-<div class="footer" role="contentinfo"></div>
+<div class="footer" role="contentinfo">
+    Built on ${BuildInfo?.buildHost} at ${BuildInfo?.buildTime}.  Version=${BuildInfo?.appVersion}.${BuildInfo?.buildNumber}
+</div>
 <g:javascript library="application"/>
 <r:layoutResources />
 </body>

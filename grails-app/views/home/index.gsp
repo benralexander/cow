@@ -5,7 +5,7 @@
   Time: 8:50 PM
 --%>
 
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page import="temporary.BuildInfo" contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Cow graphics</title>
@@ -185,14 +185,24 @@
     <dt><a href="<g:createLink controller='cookin' action='sliderTest'/>">sliderTest</a></dt>
     <dd>slider example from mastering d3.js by pablo castillo</dd>
 
+    <dt><a href="<g:createLink controller='cookin' action='colorPicker'/>">colorPicker</a></dt>
+    <dd>colorPicker example from mastering d3.js by pablo castillo</dd>
+
+    <dt><a href="<g:createLink controller='cookin' action='highlight'/>">highlight</a></dt>
+    <dd>highlight example from mastering d3.js by pablo castillo</dd>
+
+    <dt><a href="<g:createLink controller='cookin' action='brush'/>">brush</a></dt>
+    <dd>brush example from mastering d3.js by pablo castillo</dd>
+
     <dt><a href="<g:createLink controller='veryCross' action='index'/>">Linked Hierarchies</a></dt>
-    <dd>This was my original test harness as I built the Linked Hierarchies Visualization which eventually ended up in the <a class="standardLinks" href="https://bard.nih.gov/BARD/bardWebInterface/index">Bard</a>  project./dd>
+    <dd>This was my original test harness as I built the Linked Hierarchies Visualization which eventually ended up in the <a class="standardLinks" href="https://bard.nih.gov/BARD/bardWebInterface/index">Bard</a>  project.</dd>
 
     <dt><a href="http://bovinecontemplation.org">bovine contemplation</a></dt>
     <dd>My homepage, <a href="http://bovinecontemplation.org">Bovine Contemplation</a>.  While that homepage does link back to many of the graphics linked on this page, it also
     has some other links as well, in addition to amusing pictures for cows and their friends to ponder.</dd>
 
 </dl>
+
 
 
 </body>

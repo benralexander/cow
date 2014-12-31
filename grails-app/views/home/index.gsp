@@ -194,12 +194,42 @@
     <dt><a href="<g:createLink controller='cookin' action='brush'/>">brush</a></dt>
     <dd>brush example from mastering d3.js by pablo castillo</dd>
 
+    <dt><a href="<g:createLink controller='map' action='projection'/>">projection</a></dt>
+    <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
+    I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
+
+
+    <dt><a href="<g:createLink controller='map' action='rotating'/>">rotating</a></dt>
+    <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
+    I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
+
+
+    <dt><a href="<g:createLink controller='map' action='celestialSphere'/>">celestialSphere</a></dt>
+    <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
+    I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
+
+
+    <dt><a href="<g:createLink controller='map' action='fullScreen'/>">fullScreen</a></dt>
+    <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
+    I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
+
+
+    <dt><a href="<g:createLink controller='map' action='raster'/>">raster</a></dt>
+    <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
+    I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
+
+
     <dt><a href="<g:createLink controller='veryCross' action='index'/>">Linked Hierarchies</a></dt>
     <dd>This was my original test harness as I built the Linked Hierarchies Visualization which eventually ended up in the <a class="standardLinks" href="https://bard.nih.gov/BARD/bardWebInterface/index">Bard</a>  project.</dd>
 
     <dt><a href="http://bovinecontemplation.org">bovine contemplation</a></dt>
     <dd>My homepage, <a href="http://bovinecontemplation.org">Bovine Contemplation</a>.  While that homepage does link back to many of the graphics linked on this page, it also
     has some other links as well, in addition to amusing pictures for cows and their friends to ponder.</dd>
+
+
+    <dt><a href="https://github.com/benralexander">github</a></dt>
+    <dd>The code for this page and all my others.</dd>
+
 
 </dl>
 

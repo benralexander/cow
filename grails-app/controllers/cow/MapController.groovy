@@ -44,5 +44,32 @@ class MapController {
         String dataFileContents  = generalPurposeService.retrieveDataFromDisk(dataFilename)
         render  dataFileContents
     }
+    def retrieveHyg()  {
+        String dataFilename  = "hyg.json"
+        String dataFileContents  = generalPurposeService.retrieveDataFromDisk(dataFilename)
+        render  dataFileContents
+    }
+    def retrieveLand()  {
+        String dataFilename  = "land.json"
+        String dataFileContents  = generalPurposeService.retrieveDataFromDisk(dataFilename)
+        render  dataFileContents
+    }
+
+    def projection(){
+        render(view:'projection') ;
+    }
+    def rotating(){
+        render(view:'rotating') ;
+    }
+    def celestialSphere(){
+        render(view:'celestialSphere') ;
+    }
+    def fullScreen(){
+        render(view:'fullScreen') ;
+    }
+    def raster(){
+        render(view:'raster') ;
+    }
+
 
 }

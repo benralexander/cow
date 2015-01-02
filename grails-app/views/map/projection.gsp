@@ -193,7 +193,7 @@
         // Create and configure an instance of the projection
         var conic = d3.geo.conicEquidistant()
                 .scale(0.85 * width / (Math.PI / 3))
-                .rotate([-141, 0])
+                .rotate([-121, 0])
                 .translate([width / 2, height / 2])
                 .parallels([5, -15]);
 

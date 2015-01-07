@@ -35,6 +35,16 @@
         width: 600px;
         align-content: center;
     }
+    hr {
+        width: 6%;
+        height: 2px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color:#81F7F3;
+        color:#FF0066;
+        border: 0 none;
+        margin-bottom:5px;
+    }
     </style>
 
 </head>
@@ -221,6 +231,14 @@
 
     <dt><a href="<g:createLink controller='veryCross' action='index'/>">Linked Hierarchies</a></dt>
     <dd>This was my original test harness as I built the Linked Hierarchies Visualization which eventually ended up in the <a class="standardLinks" href="https://bard.nih.gov/BARD/bardWebInterface/index">Bard</a>  project.</dd>
+
+    <hr style="margin-top: 25px">
+    <hr>
+
+    <P>Compilations:</P>
+
+    <dt><a href="http://bagetsoftware.org">baget</a></dt>
+    <dd>The place where my generalized D3/Javascript-based graphics go when the code has grown up a little.  Currently I'm providing only a few graphics on BAGET, but my goal would be to improve some of the graphics that start here on graphicscow but then migrate to BAGET.</dd>
 
     <dt><a href="http://bovinecontemplation.org">bovine contemplation</a></dt>
     <dd>My homepage, <a href="http://bovinecontemplation.org">Bovine Contemplation</a>.  While that homepage does link back to many of the graphics linked on this page, it also

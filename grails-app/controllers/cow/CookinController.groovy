@@ -1438,6 +1438,15 @@ class CookinController {
     def simp4() {
         render (view: 'simp4')
     }
+    def heatmap() {
+        render (view: 'heatmap')
+    }
+    def layout() {
+        render (view: 'layout')
+    }
+    def windmill() {
+        render (view: 'windmill')
+    }
 
 
 

@@ -228,17 +228,9 @@
     <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
     I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
 
-    <dt><a href="<g:createLink controller='map' action='raster'/>">raster</a></dt>
-    <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
-    I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
-
     <dt><a href="<g:createLink controller='cookin' action='heatmap'/>">heatmap</a></dt>
     <dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
     I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
-
-<dt><a href="<g:createLink controller='cookin' action='layout'/>">layout</a></dt>
-<dd>Some further examples taken from 'Mastering d3.js', by Pablo Castillo (which is a great book, though perhaps
-I would recommend something else if you are a D3 beginner).  Here's the link:   <a href="https://www.packtpub.com/web-development/mastering-d3js"> mastering D3.js</a></dd>
 
     <dt><a href="<g:createLink controller='veryCross' action='index'/>">Linked Hierarchies</a></dt>
     <dd>This was my original test harness as I built the Linked Hierarchies Visualization which eventually ended up in the <a class="standardLinks" href="https://bard.nih.gov/BARD/bardWebInterface/index">Bard</a>  project.</dd>

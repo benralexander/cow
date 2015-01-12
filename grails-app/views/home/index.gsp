@@ -232,6 +232,10 @@
     <dt><a href="<g:createLink controller='veryCross' action='index'/>">Linked Hierarchies</a></dt>
     <dd>This was my original test harness as I built the Linked Hierarchies Visualization which eventually ended up in the <a class="standardLinks" href="https://bard.nih.gov/BARD/bardWebInterface/index">Bard</a>  project.</dd>
 
+    <dt><a href="<g:createLink controller='cookin' action='serveVideo'/>">serve video</a></dt>
+    <dd>How hard is it to embed a video in a webpage? Let's try</dd>
+
+
     <hr style="margin-top: 25px">
     <hr>
 

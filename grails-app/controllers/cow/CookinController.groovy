@@ -1468,5 +1468,8 @@ class CookinController {
     def retrieveAapl(){
         render(aapl) ;
     }
+    def serveVideo() {
+        render (view: 'serveVideo')
+    }
     def cookin(){}
 }

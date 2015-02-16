@@ -8,3 +8,24 @@ stacktrace.log
 .idea/workspace.xml
 tempStor*.txt
 BuildInfo.groovy
+/stacktrace.log
+/test/reports
+/logs
+
+# project release file
+/*.war
+
+# plugin release files
+/*.zip
+/plugin.xml
+
+# older plugin install locations
+/plugins
+/web-app/plugins
+
+# "temporary" build files
+/target
+
+
+#Code coverage indicator
+cobertura.ser

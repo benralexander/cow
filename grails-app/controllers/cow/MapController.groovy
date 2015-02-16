@@ -71,5 +71,13 @@ class MapController {
         render(view:'raster') ;
     }
 
+    def mapboxTest1(){
+        render(view:'mapboxTest1') ;
+    }
+
+    def mapboxTest2(){
+        render(view:'mapboxTest2') ;
+    }
+
 
 }

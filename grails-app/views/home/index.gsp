@@ -238,8 +238,15 @@
     <dt><a href="<g:createLink controller='cookin' action='serveVideo'/>">serve video</a></dt>
     <dd>How hard is it to embed a video in a webpage? Let's try</dd>
 
+    <dt><a href="<g:createLink controller='map' action='mapboxTest1'/>">map box test 1</a></dt>
+    <dd>First <a href="https://www.mapbox.com">map box</a>  test.  Requires no JavaScript library, sso how they get such a thing to embed in a page I'm not quite sure.</dd>
 
-    <hr style="margin-top: 25px">
+
+    <dt><a href="<g:createLink controller='map' action='mapboxTest2'/>">map box test 2</a></dt>
+    <dd>Another test of <a href="https://www.mapbox.com">map box</a>, this time using their library (  so the result is  customizable, at least in principle)</dd>
+
+
+<hr style="margin-top: 25px">
     <hr>
 
     <P>Compilations:</P>

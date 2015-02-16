@@ -242,8 +242,15 @@
     <dd>First <a href="https://www.mapbox.com">map box</a>  test.  Requires no JavaScript library, sso how they get such a thing to embed in a page I'm not quite sure.</dd>
 
 
-    <dt><a href="<g:createLink controller='map' action='mapboxTest2'/>">map box test 2</a></dt>
-    <dd>Another test of <a href="https://www.mapbox.com">map box</a>, this time using their library (  so the result is  customizable, at least in principle)</dd>
+<dt><a href="<g:createLink controller='map' action='mapboxTest2'/>">map box test 2</a></dt>
+<dd>Another test of <a href="https://www.mapbox.com">map box</a>, this time using their library (  so the result is  customizable, at least in principle)</dd>
+
+<dt><a href="<g:createLink controller='auth' action='googleAuthentication'/>">Google auth</a></dt>
+<dd>Attempt to use  Google authentication</dd>
+
+
+<dt><a href="<g:createLink controller='auth' action='twitterAuthentication'/>">Twitter auth</a></dt>
+<dd>Attempt to use  Twitter authentication</dd>
 
 
 <hr style="margin-top: 25px">

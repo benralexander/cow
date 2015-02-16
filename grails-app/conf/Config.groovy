@@ -1,3 +1,5 @@
+import grails.util.Environment
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -12,6 +14,63 @@
 // }
 
 site.title = 'Small-scale graphics demos'  // could be 'SIGMA T2D' or 'Type 2 Diabetes Genetics'
+
+if  (Environment.current == Environment.DEVELOPMENT)  {
+    println('\n\n*** Preparing DEV environment ***\n\n')
+} else if  (Environment.current == Environment.TEST)  {
+    println('\n\n*** Preparing TEST environment ***\n\n')
+}   else if  (Environment.current == Environment.PRODUCTION)  {
+    println('\n\n*** Preparing PROD environment ***\n\n')
+}  else {
+    println("\n\n*** Preparing ${Environment.current} environment ***\n\n")
+}
+
+
+/**
+ * Loads external config files from the .grails subfolder in the user's home directory
+ * Home directory in Windows is usually: C:\Users\<username>\.grails
+ * In Unix, this is usually ~\.grails
+ *
+ * dataExport-commons-config.groovy is used to holed generic, non envrironment-specific configurations such as external api credentials, etc.
+ */
+if (appName) {
+    grails.config.locations = []
+
+    // If the developer specifies a directory for the external config files at the command line, use it.
+    // This will look like 'grails -DprimaryConfigDir=[directory name] [target]'
+    // Otherwise, look for these files in the user's home .grails/projectdb directory
+    // If there are no external config files in either location, don't override anything in this Config.groovy
+    String primaryOverrideDirName = System.properties.get('overrideConfigDir')
+    String secondaryOverrideDirName = "${userHome}/.grails/${appName}"
+
+    println (">>>>>>>>>>>Note to developers: config files may be placed in the directory  = ${secondaryOverrideDirName}")
+    println (">>>>>>>>>>>Alternatively, specify the directory you are drawing from with the grails option -DoverrideConfigDir=myDirectoryWhichMightBeNamedWhateverIWant")
+
+
+    List<String> fileNames = ["${appName}-commons-config.groovy", "${appName}-${Environment.current.name}-config.groovy"]
+    fileNames.each { fileName ->
+        String primaryFullName = "${primaryOverrideDirName}/${fileName}"
+        String secondaryFullName = "${secondaryOverrideDirName}/${fileName}"
+
+        if (new File(primaryFullName).exists()) {
+            println "Overriding Config.groovy with $primaryFullName"
+            grails.config.locations << "file:$primaryFullName"
+        } else if (new File(secondaryFullName).exists()) {
+            println "Overriding Config.groovy with $secondaryFullName"
+            grails.config.locations << "file:$secondaryFullName"
+        }
+    }
+}
+
+if (grails.config.locations.isEmpty()){
+    println "\n** No config override  in effect **"
+} else {
+    println "\n** !! config override is in effect !! **"
+    for (location in grails.config.locations )   {
+        println "!!!!! ${location} !! **"
+    }
+}
+
 
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
@@ -72,6 +131,79 @@ environments {
     }
 }
 
+
+oauth {
+
+    providers {
+
+        google {
+            api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+            key = '975413760331-d2nr5vq7sbbppjfog0cp9j4agesbeovt.apps.googleusercontent.com'
+
+            successUri = "${baseURL}/springSecurityOAuth/onSuccess"
+            failureUri = '/oauth/google/error'
+            callback = "${baseURL}/springSecurityOAuth/codeExchange?provider=google"
+            scope = 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+        }
+
+    }
+}
+auth {
+
+    providers {
+
+        twitter {
+            key = 'mAbvjXZycxMSBCXQUYttdFm5L'
+            secret = 'l3dJBs3w9QraAuivcfaqdjVGkJ4cxQSMMNNkZ6v9bwz8nXBCXQ'
+            callback = "${baseURL}/springSecurityOAuth/oauthInit"
+        }
+
+    }
+}
+
+
+googleapi {
+    baseUrl = 'www.googleapis.com'
+}
+
+
+
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'cow.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'cow.UserRole'
+grails.plugin.springsecurity.authority.className = 'cow.Role'
+
+// minimal nec. to get going
+grails.plugin.springsecurity.authority.defaultTargetUrl = '/home'
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.interceptUrlMap = [
+        '/':                        ['permitAll'],
+        '/**':                        ['permitAll'],
+        '/home':                    ['permitAll'],
+        '/home/**':                 ['permitAll']];
+
+
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+        '/':                              ['permitAll'],
+        '/index':                         ['permitAll'],
+        '/index.gsp':                     ['permitAll'],
+        '/assets/**':                     ['permitAll'],
+        '/**/js/**':                      ['permitAll'],
+        '/**/css/**':                     ['permitAll'],
+        '/**/images/**':                  ['permitAll'],
+        '/**/favicon.ico':                ['permitAll']
+]
+
+
+// Added by the Spring Security OAuth plugin:
+grails.plugin.springsecurity.oauth.domainClass = 'cow.OAuthID'
+
+
+
+
+
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console appender:
@@ -92,3 +224,27 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'cow.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'cow.UserRole'
+grails.plugin.springsecurity.authority.className = 'cow.Role'
+grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+	'/':                              ['permitAll'],
+	'/index':                         ['permitAll'],
+	'/index.gsp':                     ['permitAll'],
+	'/assets/**':                     ['permitAll'],
+	'/**/js/**':                      ['permitAll'],
+	'/**/css/**':                     ['permitAll'],
+	'/**/images/**':                  ['permitAll'],
+	'/**/favicon.ico':                ['permitAll']
+]
+
+
+// Added by the Spring Security OAuth plugin:
+grails.plugin.springsecurity.oauth.domainClass = 'cow.OAuthID'
+
+auth.providers.twitter.secret = 'ccc'
+oauth.providers.google.secret = 'bbb'
+mapbox.secret.token='aaa'

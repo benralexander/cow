@@ -306,35 +306,42 @@ time required=${(afterCall.time-beforeCall.time)/1000} seconds
     public JSONObject generateTwitterAuthenticationString () {
      int authSeconds = (int)(new Date().getTime()/1000);
         int nonce = (int)(new Date().getTime()/10);
-       // JSONObject response = requestTwitterAppAuthentication  ("https://api.twitter.com/oauth2/token",  twitterSignatureGenerator())
         JSONObject response = requestTwitterAppAuthentication  ("https://api.twitter.com/oauth2/token",  grailsApplication.config.auth.providers.twitter.key, grailsApplication.config.auth.providers.twitter.secret)
-//         JSONObject response = requestTwitterAuthentication  ("https://api.twitter.com/oauth2/request_token",
-//                nonce.toString(),
-//                URLEncoder.encode(grailsApplication.config.auth.providers.twitter.callback , "UTF-8"),
-//                authSeconds.toString(),
-//                grailsApplication.config.auth.providers.twitter.key,
-//                grailsApplication.config.auth.providers.twitter.secret
-//        )
 
         return response
  }
 
 
     public JSONObject executeTwitterRequest (String accessToken,String queryText) {
-//        int authSeconds = (int)(new Date().getTime()/1000);
-//        int nonce = (int)(new Date().getTime()/10);
         JSONObject response = searchTwitter("https://api.twitter.com/1.1/search/tweets.json", accessToken, queryText)
-//         JSONObject response = requestTwitterAuthentication  ("https://api.twitter.com/oauth2/request_token",
-//                nonce.toString(),
-//                URLEncoder.encode(grailsApplication.config.auth.providers.twitter.callback , "UTF-8"),
-//                authSeconds.toString(),
-//                grailsApplication.config.auth.providers.twitter.key,
-//                grailsApplication.config.auth.providers.twitter.secret
-//        )
-
         return response
     }
 
+
+
+
+    public String buildTwitterRequest (String queryText,String latitude,String longitude,String distance) {
+        StringBuilder sb = new  StringBuilder()
+        sb <<  "lang=en"
+        if ((queryText !=  null )   &&
+            (queryText.length()  > 0)){
+            sb <<  "&q=$queryText"
+        }
+        sb <<  "&count=100"
+        if ((latitude !=  null )   &&
+            (latitude.length()  > 0) &&
+            (longitude !=  null )   &&
+            (longitude.length()  > 0)){
+            sb <<  "&geocode=${latitude},${longitude},"
+            if ( (distance !=  null )   &&
+                 (distance.length()  > 0)){
+                sb <<  "${distance}km"
+            }  else {
+                sb <<  "100km"
+            }
+        }
+        return sb.toString()
+    }
 
 
 

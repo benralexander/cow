@@ -79,5 +79,9 @@ class MapController {
         render(view:'mapboxTest2') ;
     }
 
+    def localThoughts(){
+        render(view:'localThoughts') ;
+    }
+
 
 }

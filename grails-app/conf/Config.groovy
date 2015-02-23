@@ -131,6 +131,8 @@ environments {
     }
 }
 
+def baseURL = grails.serverURL ?: "http://127.0.0.1:${System.getProperty('server.port', '8080')}/${appName}"
+
 
 oauth {
 
@@ -154,9 +156,13 @@ auth {
 
         twitter {
             key = 'mAbvjXZycxMSBCXQUYttdFm5L'
-            secret = 'l3dJBs3w9QraAuivcfaqdjVGkJ4cxQSMMNNkZ6v9bwz8nXBCXQ'
             callback = "${baseURL}/springSecurityOAuth/oauthInit"
         }
+        twitter2 {
+            key = 'tkb60gftLj3Hn3ngYiZcBxOew'
+            callback = "${baseURL}/springSecurityOAuth/oauthInit"
+        }
+
 
     }
 }
@@ -245,6 +251,3 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 // Added by the Spring Security OAuth plugin:
 grails.plugin.springsecurity.oauth.domainClass = 'cow.OAuthID'
 
-auth.providers.twitter.secret = 'ccc'
-oauth.providers.google.secret = 'bbb'
-mapbox.secret.token='aaa'

@@ -271,7 +271,7 @@
 
 
     <dt><a href="https://github.com/benralexander">github</a></dt>
-    <dd>The code for this page and all my others.</dd>
+    <dd>The code for <a href="https://github.com/benralexander/cow">this page</a> and all my others.</dd>
 
 
 </dl>

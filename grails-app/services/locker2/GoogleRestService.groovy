@@ -298,7 +298,7 @@ time required=${(afterCall.time-beforeCall.time)/1000} seconds
         StringBuilder logStatus = new StringBuilder()
         String codedAccessToken  =  accessToken
         try {
-            response  = rest.get(targetUrl+ "?"+queryText)   {
+            response  = rest.post(targetUrl+ "?"+queryText)   {
                 contentType "application/x-www-form-urlencoded"
                 header 'Authorization', "Bearer $codedAccessToken"
                 header 'user-agent', 'Twitter Stream Reader'
@@ -312,17 +312,25 @@ time required=${(afterCall.time-beforeCall.time)/1000} seconds
             logStatus <<  "NOTE: exception on post to backend. Target=${targetUrl}"
             afterCall  = new Date()
         }
-        logStatus << """
+        if (response.statusCode.value==200){
+            logStatus << """
 SERVER CALL:
 url=${targetUrl},
 time required=${(afterCall.time-beforeCall.time)/1000} seconds
 """.toString()
-        // Create a reader to read Twitter's stream
-        BufferedReader reader = new BufferedReader(new InputStreamReader(response.getBody()));
+            // Create a reader to read Twitter's stream
+            BufferedReader reader = new BufferedReader(new InputStreamReader(response.getBody()));
 
-        String line;
-        while ((line = reader.readLine()) != null) {
-            System.out.println(line);
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+        }  else {
+            logStatus << """server call failed. code=${response.statusCode.value}
+""".toString()
+            log.error(logStatus.toString())
+            System.out.println(logStatus.toString());
         }
 
     }

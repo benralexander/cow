@@ -124,7 +124,7 @@ class SpringSecurityOAuthController {
 
     def twitterStream(){
         JSONObject searchResults = googleRestService.initiateTwitterStream(googleRestService.retrieveTwitterAccessToken (),
-                googleRestService.buildTwitterRequest (params.a,params.latitude,params.longitude,"250"))
+                "delimited=length&lang=en&geocode=13.239945499286312,-12.65625,400km")
         //  "q=${params.a}&lang=en&count=100&geocode=${params.latitude},${params.longitude},500km")
         render(status:200, contentType:"application/json") {
             [searchResults:searchResults]

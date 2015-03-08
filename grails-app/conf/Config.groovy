@@ -163,6 +163,11 @@ auth {
             callback = "${baseURL}/springSecurityOAuth/oauthInit"
         }
 
+        twitterStream {
+            consumerKey = 'moSQ4ESGi9F76VQ1K9h0fBWSb'
+            accessToken = '726669030-O8COgwUStbOMUm10pqktI0tJ69EE1zBOC9oqorhg'
+        }
+
 
     }
 }

@@ -111,9 +111,6 @@ class SpringSecurityOAuthController {
 
 
     def twitterLogin(){
-//    JSONObject authorizationObject = googleRestService.generateTwitterAuthenticationString()
-//        String  bearer =  authorizationObject ["bearer"]
-//        String  accessToken =  authorizationObject ["access_token"]
         JSONObject searchResults = googleRestService.executeTwitterRequest(googleRestService.retrieveTwitterAccessToken (),
                 googleRestService.buildTwitterRequest (params.a,params.latitude,params.longitude,params.language,params.radius))
               //  "q=${params.a}&lang=en&count=100&geocode=${params.latitude},${params.longitude},500km")
@@ -122,9 +119,18 @@ class SpringSecurityOAuthController {
         }
     }
 
+
+    //stream
     def twitterStream(){
-        JSONObject searchResults = googleRestService.initiateTwitterStream(googleRestService.retrieveTwitterAccessToken (),
-                "delimited=length&lang=en&geocode=13.239945499286312,-12.65625,400km")
+        Map parameters = [:]
+        Map body = [:]
+//        parameters['delimited']='length'
+//        parameters['lang']='en'
+//        parameters['geocode']='13.239945499286312,-12.65625,400km'
+          parameters['track']='twitter'
+//        body['track']='twitter'
+        JSONObject searchResults = googleRestService.initiateTwitterStream(parameters,body)
+               // "delimited=length&lang=en&geocode=13.239945499286312,-12.65625,400km")
         //  "q=${params.a}&lang=en&count=100&geocode=${params.latitude},${params.longitude},500km")
         render(status:200, contentType:"application/json") {
             [searchResults:searchResults]

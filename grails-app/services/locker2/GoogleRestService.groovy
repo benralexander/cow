@@ -343,13 +343,13 @@ time required=${(afterCall.time-beforeCall.time)/1000} seconds
         extendedParams['oauth_token']="${token}".toString()
         extendedParams['oauth_version']="${version}".toString()
         String  signature=twitterBigSignatureGenerator(method,url,extendedParams)
-        String retval = """OAuth oauth_consumer_key="${consumerKey}",
+        String retval = """OAuth oauth_consumer_key="${java.net.URLEncoder.encode(consumerKey)}",
  oauth_nonce="${java.net.URLEncoder.encode(nonce)}",
  oauth_signature="${java.net.URLEncoder.encode(signature)}",
  oauth_signature_method="${java.net.URLEncoder.encode(signatureMethod)}",
- oauth_timestamp="${timestamp}",
- oauth_token="${token}",
- oauth_version="${version}"
+ oauth_timestamp="${java.net.URLEncoder.encode(timestamp)}",
+ oauth_token="${java.net.URLEncoder.encode(token)}",
+ oauth_version="${java.net.URLEncoder.encode(version)}"
 """.toString().replaceAll("[\n\r]", "")
         return retval
     }
@@ -363,18 +363,17 @@ time required=${(afterCall.time-beforeCall.time)/1000} seconds
         RestBuilder rest = new grails.plugins.rest.client.RestBuilder()
         String oAuth1Materials = retrieveOauth1Materials( method, targetUrl, parms)
         MultiValueMap<String, String> form = new LinkedMultiValueMap<String, String>()
-        body.each{k,v->
-            form [k]  = v
-        }
+//        form.add("grant_type","client_credentials")
         StringBuilder logStatus = new StringBuilder()
         try {
             if (method=="POST") {
+
                 response  = rest.post(targetUrl+toUrlParameters(parms)) {
                     contentType "application/x-www-form-urlencoded"
                     header 'Authorization', "${oAuth1Materials}"
                     header 'user-agent', 'Twitter Stream Reader'
                     header 'Connection', 'keep-alive'
-                    body   (form)
+                    //       body   (form)
                 }
             } else if (method=="GET") {
                     response  = rest.get(targetUrl+toUrlParameters(parms)) {
@@ -386,9 +385,8 @@ time required=${(afterCall.time-beforeCall.time)/1000} seconds
             }
             afterCall  = new Date()
         } catch ( Exception exception){
-            log.error("NOTE: exception on post to backend. Target=${targetUrl}")
             log.error(exception.toString())
-            logStatus <<  "NOTE: exception on post to backend. Target=${targetUrl}"
+            logStatus <<  "NOTE: exception on post to backend."
             afterCall  = new Date()
         }
         if (response.statusCode.value==200){
@@ -471,7 +469,7 @@ time required=${(afterCall.time-beforeCall.time)/1000} seconds
         String sig
         String signatureBaseString
         String signatureKey
-        String encodedParmHolder
+        String encodedParmHolder = ""
         List<String> parms = []
         allParms.each{k,v->
             parms << java.net.URLEncoder.encode(k)+"="+java.net.URLEncoder.encode(v)

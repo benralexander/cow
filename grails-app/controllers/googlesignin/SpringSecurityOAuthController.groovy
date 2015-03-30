@@ -127,8 +127,9 @@ class SpringSecurityOAuthController {
 //        parameters['delimited']='length'
 //        parameters['lang']='en'
 //        parameters['geocode']='13.239945499286312,-12.65625,400km'
+
           parameters['track']='twitter'
-//        body['track']='twitter'
+        body['track']=['twitter']
         JSONObject searchResults = googleRestService.initiateTwitterStream(parameters,body)
                // "delimited=length&lang=en&geocode=13.239945499286312,-12.65625,400km")
         //  "q=${params.a}&lang=en&count=100&geocode=${params.latitude},${params.longitude},500km")

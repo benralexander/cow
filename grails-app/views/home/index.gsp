@@ -175,6 +175,9 @@
     <dt><a href="<g:createLink controller='probe' action='uploadPrep'/>">Build a sunburst</a></dt>
     <dd>Build a sunburst visualization to represent your own data.. You need only convert your data into the JSON format prescribed in this page and then upload the files through the interface</dd>
 
+<dt><a href="<g:createLink controller='probe' action='DataHierarchy'/>">Data hierarchy</a></dt>
+<dd>Hierarchical display of the data sets we propose to use for the new version of the diabetes portal</dd>
+
     <dt><a href="<g:createLink controller='baget' action='boxwhisk'/>">Revised bw</a></dt>
     <dd>Build a new bw</dd>
 

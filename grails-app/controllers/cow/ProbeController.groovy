@@ -215,9 +215,12 @@ class ProbeController {
     def HierDisplay() {
         render(view: 'HierDisplay')}
 
+    def DataHierarchy() {
+        render(view: 'DataHierarchy')}
 
 
-   def freshData() {
+
+    def freshData() {
        String filename1 = params.filename1
        String filename2 = params.filename2
        String treeDescrip

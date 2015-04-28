@@ -627,454 +627,338 @@
 
 <script>
     var $data = [
-        {"name":"ROOT", "descr":"76","size": 83,"col": 1,"children": [
+        {"name":"ROOT", "descr":"76","size": 86,"col": 1,"children": [
             {"name":"ExSeq_13k", "descr":"76.1","size": 9,"col": 1,"children": [
                 {"name":"13k", "descr":"76.1.2","size": 8,"col": 1,"children": [
                     {"name":"13k_ea_genes", "descr":"76.1.2.3","size": 1,"col": 1,"children": [
-                        {"name":"zzull80", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull0", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"13k_aa_genes", "descr":"76.1.2.4","size": 1,"col": 1,"children": [
-                        {"name":"zzull81", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull1", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"13k_eu", "descr":"76.1.2.5","size": 3,"col": 1,"children": [
                         {"name":"13k_eu_genes", "descr":"76.1.2.5.6","size": 1,"col": 1,"children": [
-                            {"name":"zzull82", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull2", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
                         {"name":"13k_eu_go", "descr":"76.1.2.5.7","size": 1,"col": 1,"children": [
-                            {"name":"zzull83", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull3", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
-                        {"name":"zzull84", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull4", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"13k_sa_genes", "descr":"76.1.2.8","size": 1,"col": 1,"children": [
-                        {"name":"zzull85", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull5", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"13k_hs_genes", "descr":"76.1.2.9","size": 1,"col": 1,"children": [
-                        {"name":"zzull86", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull6", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
-                    {"name":"zzull87", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull7", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull88", "descr":"null","col": 1,"size":1}
+                {"name":"zzull8", "descr":"null","col": 1,"size":1}
             ]}
             ,
-            {"name":"ExSeq_26k", "descr":"76.12","size": 27,"col": 1,"children": [
-                {"name":"26k", "descr":"76.12.13","size": 26,"col": 1,"children": [
+            {"name":"ExSeq_26k", "descr":"76.12","size": 30,"col": 1,"children": [
+                {"name":"26k", "descr":"76.12.13","size": 29,"col": 1,"children": [
                     {"name":"26k_sa_genes", "descr":"76.12.13.10","size": 3,"col": 1,"children": [
                         {"name":"26k_sa_genes_sl", "descr":"76.12.13.10.14","size": 1,"col": 1,"children": [
-                            {"name":"zzull89", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull9", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
                         {"name":"26k_sa_genes_ss", "descr":"76.12.13.10.15","size": 1,"col": 1,"children": [
-                            {"name":"zzull90", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull10", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
-                        {"name":"zzull91", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull11", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"26k_ea_genes", "descr":"76.12.13.16","size": 3,"col": 1,"children": [
                         {"name":"26k_ea_genes_es", "descr":"76.12.13.16.17","size": 1,"col": 1,"children": [
-                            {"name":"zzull92", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull12", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
                         {"name":"26k_ea_genes_ek", "descr":"76.12.13.16.19","size": 1,"col": 1,"children": [
-                            {"name":"zzull93", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull13", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
-                        {"name":"zzull94", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull14", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"26k_eu", "descr":"76.12.13.18","size": 8,"col": 1,"children": [
                         {"name":"26k_eu_go", "descr":"76.12.13.18.20","size": 1,"col": 1,"children": [
-                            {"name":"zzull95", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull15", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
                         {"name":"26k_eu_esp", "descr":"76.12.13.18.21","size": 1,"col": 1,"children": [
-                            {"name":"zzull96", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull16", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
                         {"name":"26k_eu_genes", "descr":"76.12.13.18.22","size": 4,"col": 1,"children": [
                             {"name":"26k_eu_genes_ua", "descr":"76.12.13.18.22.23","size": 1,"col": 1,"children": [
-                                {"name":"zzull97", "descr":"null","col": 1,"size":1}
+                                {"name":"zzull17", "descr":"null","col": 1,"size":1}
                             ]}
                             ,
                             {"name":"26k_eu_genes_um", "descr":"76.12.13.18.22.24","size": 1,"col": 1,"children": [
-                                {"name":"zzull98", "descr":"null","col": 1,"size":1}
+                                {"name":"zzull18", "descr":"null","col": 1,"size":1}
                             ]}
                             ,
-                            {"name":"zzull99", "descr":"null","col": 1,"size":2}
+                            {"name":"zzull19", "descr":"null","col": 1,"size":2}
                         ]}
                         ,
                         {"name":"26k_eu_lucamp", "descr":"76.12.13.18.25","size": 1,"col": 1,"children": [
-                            {"name":"zzull100", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull20", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
-                        {"name":"zzull101", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull21", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
-                    {"name":"26k_aa", "descr":"76.12.13.26","size": 2,"col": 1,"children": [
+                    {"name":"26k_aa", "descr":"76.12.13.26","size": 5,"col": 1,"children": [
                         {"name":"26k_aa_esp", "descr":"76.12.13.26.27","size": 1,"col": 1,"children": [
-                            {"name":"zzull102", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull22", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
-                        {"name":"zzull103", "descr":"null","col": 1,"size":1}
+                        {"name":"26k_aa_genes", "descr":"76.12.13.26.28","size": 3,"col": 1,"children": [
+                            {"name":"26k_aa_genes_aw", "descr":"76.12.13.26.28.29","size": 1,"col": 1,"children": [
+                                {"name":"zzull23", "descr":"null","col": 1,"size":1}
+                            ]}
+                            ,
+                            {"name":"26k_aa_genes_aj", "descr":"76.12.13.26.28.30","size": 1,"col": 1,"children": [
+                                {"name":"zzull24", "descr":"null","col": 1,"size":1}
+                            ]}
+                            ,
+                            {"name":"zzull25", "descr":"null","col": 1,"size":1}
+                        ]}
+                        ,
+                        {"name":"zzull26", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"26k_hs", "descr":"76.12.13.31","size": 9,"col": 1,"children": [
                         {"name":"26k_hs_genes", "descr":"76.12.13.31.32","size": 3,"col": 1,"children": [
                             {"name":"26k_hs_genes_hs", "descr":"76.12.13.31.32.33","size": 1,"col": 1,"children": [
-                                {"name":"zzull104", "descr":"null","col": 1,"size":1}
+                                {"name":"zzull27", "descr":"null","col": 1,"size":1}
                             ]}
                             ,
                             {"name":"26k_hs_genes_ha", "descr":"76.12.13.31.32.34","size": 1,"col": 1,"children": [
-                                {"name":"zzull105", "descr":"null","col": 1,"size":1}
+                                {"name":"zzull28", "descr":"null","col": 1,"size":1}
                             ]}
                             ,
-                            {"name":"zzull106", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull29", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
                         {"name":"26k_hs_sigma", "descr":"76.12.13.31.35","size": 5,"col": 1,"children": [
                             {"name":"26k_hs_sigma_mexb2", "descr":"76.12.13.31.35.36","size": 1,"col": 1,"children": [
-                                {"name":"zzull107", "descr":"null","col": 1,"size":1}
+                                {"name":"zzull30", "descr":"null","col": 1,"size":1}
                             ]}
                             ,
                             {"name":"26k_hs_sigma_mexb3", "descr":"76.12.13.31.35.37","size": 1,"col": 1,"children": [
-                                {"name":"zzull108", "descr":"null","col": 1,"size":1}
+                                {"name":"zzull31", "descr":"null","col": 1,"size":1}
                             ]}
                             ,
                             {"name":"26k_hs_sigma_mexb1", "descr":"76.12.13.31.35.38","size": 1,"col": 1,"children": [
-                                {"name":"zzull109", "descr":"null","col": 1,"size":1}
+                                {"name":"zzull32", "descr":"null","col": 1,"size":1}
                             ]}
                             ,
                             {"name":"26k_hs_sigma_mec", "descr":"76.12.13.31.35.39","size": 1,"col": 1,"children": [
-                                {"name":"zzull110", "descr":"null","col": 1,"size":1}
+                                {"name":"zzull33", "descr":"null","col": 1,"size":1}
                             ]}
                             ,
-                            {"name":"zzull111", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull34", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
-                        {"name":"zzull112", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull35", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
-                    {"name":"zzull113", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull36", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull114", "descr":"null","col": 1,"size":1}
+                {"name":"zzull37", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"ExChip_82k_v1", "descr":"76.40","size": 2,"col": 1,"children": [
                 {"name":"82k", "descr":"76.40.41","size": 1,"col": 1,"children": [
-                    {"name":"zzull115", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull38", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull116", "descr":"null","col": 1,"size":1}
+                {"name":"zzull39", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"ExChip_82k_v2", "descr":"42","size": 3,"col": 1,"children": [
                 {"name":"82k", "descr":"76.42.41","size": 2,"col": 1,"children": [
-                    {"name":"zzull117", "descr":"null","col": 1,"size":2}
+                    {"name":"zzull40", "descr":"null","col": 1,"size":2}
                 ]}
                 ,
-                {"name":"zzull118", "descr":"null","col": 1,"size":1}
+                {"name":"zzull41", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_MAGIC_v1", "descr":"76.44","size": 2,"col": 1,"children": [
                 {"name":"MAGIC", "descr":"76.44.45","size": 1,"col": 1,"children": [
-                    {"name":"zzull119", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull42", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull120", "descr":"null","col": 1,"size":1}
+                {"name":"zzull43", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_MAGIC_v2", "descr":"76.46","size": 2,"col": 1,"children": [
                 {"name":"MAGIC", "descr":"76.46.45","size": 1,"col": 1,"children": [
-                    {"name":"zzull121", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull44", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull122", "descr":"null","col": 1,"size":1}
+                {"name":"zzull45", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_PGC_v1", "descr":"76.47","size": 2,"col": 1,"children": [
                 {"name":"PGC", "descr":"76.47.48","size": 1,"col": 1,"children": [
-                    {"name":"zzull123", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull46", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull124", "descr":"null","col": 1,"size":1}
+                {"name":"zzull47", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_PGC_v2", "descr":"49","size": 3,"col": 1,"children": [
                 {"name":"PGC", "descr":"76.49.48","size": 2,"col": 1,"children": [
-                    {"name":"zzull125", "descr":"null","col": 1,"size":2}
+                    {"name":"zzull48", "descr":"null","col": 1,"size":2}
                 ]}
                 ,
-                {"name":"zzull126", "descr":"null","col": 1,"size":1}
+                {"name":"zzull49", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_GIANT_v1", "descr":"76.51","size": 7,"col": 1,"children": [
                 {"name":"GIANT", "descr":"76.51.52","size": 6,"col": 1,"children": [
                     {"name":"GIANT_females", "descr":"76.51.52.53","size": 1,"col": 1,"children": [
-                        {"name":"zzull127", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull50", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"GIANT_males", "descr":"76.51.52.54","size": 1,"col": 1,"children": [
-                        {"name":"zzull128", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull51", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"GIANT_eu", "descr":"76.51.52.55","size": 3,"col": 1,"children": [
                         {"name":"GIANT_eu_females", "descr":"76.51.52.55.56","size": 1,"col": 1,"children": [
-                            {"name":"zzull129", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull52", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
                         {"name":"GIANT_eu_males", "descr":"76.51.52.55.57","size": 1,"col": 1,"children": [
-                            {"name":"zzull130", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull53", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
-                        {"name":"zzull131", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull54", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
-                    {"name":"zzull132", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull55", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull133", "descr":"null","col": 1,"size":1}
+                {"name":"zzull56", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_GIANT_v2", "descr":"76.50","size": 7,"col": 1,"children": [
                 {"name":"GIANT", "descr":"76.50.52","size": 6,"col": 1,"children": [
                     {"name":"GIANT_females", "descr":"76.50.52.53","size": 1,"col": 1,"children": [
-                        {"name":"zzull134", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull57", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"GIANT_males", "descr":"76.50.52.54","size": 1,"col": 1,"children": [
-                        {"name":"zzull135", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull58", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
                     {"name":"GIANT_eu", "descr":"76.50.52.55","size": 3,"col": 1,"children": [
                         {"name":"GIANT_eu_females", "descr":"76.50.52.55.56","size": 1,"col": 1,"children": [
-                            {"name":"zzull136", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull59", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
                         {"name":"GIANT_eu_males", "descr":"76.50.52.55.57","size": 1,"col": 1,"children": [
-                            {"name":"zzull137", "descr":"null","col": 1,"size":1}
+                            {"name":"zzull60", "descr":"null","col": 1,"size":1}
                         ]}
                         ,
-                        {"name":"zzull138", "descr":"null","col": 1,"size":1}
+                        {"name":"zzull61", "descr":"null","col": 1,"size":1}
                     ]}
                     ,
-                    {"name":"zzull139", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull62", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull140", "descr":"null","col": 1,"size":1}
+                {"name":"zzull63", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_CARDIoGRAM_v1", "descr":"76.58","size": 4,"col": 1,"children": [
                 {"name":"CARDIoGRAM", "descr":"76.58.59","size": 1,"col": 1,"children": [
-                    {"name":"zzull141", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull64", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
                 {"name":"C4D", "descr":"76.58.60","size": 1,"col": 1,"children": [
-                    {"name":"zzull142", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull65", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
                 {"name":"CARDIoGRAMplusC4D", "descr":"76.58.61","size": 1,"col": 1,"children": [
-                    {"name":"zzull143", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull66", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull144", "descr":"null","col": 1,"size":1}
+                {"name":"zzull67", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_CARDIoGRAM_v2", "descr":"76.62","size": 4,"col": 1,"children": [
                 {"name":"CARDIoGRAM", "descr":"76.62.59","size": 1,"col": 1,"children": [
-                    {"name":"zzull145", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull68", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
                 {"name":"C4D", "descr":"76.62.60","size": 1,"col": 1,"children": [
-                    {"name":"zzull146", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull69", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
                 {"name":"CARDIoGRAMplusC4D", "descr":"76.62.61","size": 1,"col": 1,"children": [
-                    {"name":"zzull147", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull70", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull148", "descr":"null","col": 1,"size":1}
+                {"name":"zzull71", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_CKDGen", "descr":"76.66","size": 2,"col": 1,"children": [
                 {"name":"CKDGen", "descr":"76.66.67","size": 1,"col": 1,"children": [
-                    {"name":"zzull149", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull72", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull150", "descr":"null","col": 1,"size":1}
+                {"name":"zzull73", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_GLGC_v1", "descr":"76.68","size": 2,"col": 1,"children": [
                 {"name":"GLGC", "descr":"76.68.69","size": 1,"col": 1,"children": [
-                    {"name":"zzull151", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull74", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull152", "descr":"null","col": 1,"size":1}
+                {"name":"zzull75", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_GLGC_v2", "descr":"76.70","size": 2,"col": 1,"children": [
                 {"name":"GLGC", "descr":"76.70.69","size": 1,"col": 1,"children": [
-                    {"name":"zzull153", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull76", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull154", "descr":"null","col": 1,"size":1}
+                {"name":"zzull77", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_DIAGRAM_v1", "descr":"76.72","size": 2,"col": 1,"children": [
                 {"name":"DIAGRAM", "descr":"76.72.73","size": 1,"col": 1,"children": [
-                    {"name":"zzull155", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull78", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull156", "descr":"null","col": 1,"size":1}
+                {"name":"zzull79", "descr":"null","col": 1,"size":1}
             ]}
             ,
             {"name":"GWAS_DIAGRAM_v2", "descr":"76.74","size": 2,"col": 1,"children": [
                 {"name":"DIAGRAM", "descr":"76.74.73","size": 1,"col": 1,"children": [
-                    {"name":"zzull157", "descr":"null","col": 1,"size":1}
+                    {"name":"zzull80", "descr":"null","col": 1,"size":1}
                 ]}
                 ,
-                {"name":"zzull158", "descr":"null","col": 1,"size":1}
+                {"name":"zzull81", "descr":"null","col": 1,"size":1}
             ]}
             ,
-            {"name":"zzull159", "descr":"null","col": 1,"size":1}
+            {"name":"zzull82", "descr":"null","col": 1,"size":1}
         ]}
     ]
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //    var $data = [
-    //        {"name":"/", "descr":"","children": [
-    //            {"name":"transcription factor", "descr":"A protein required for the regulation of RNA polymerase by specific regulatory sequences in or near a gene.","children": [
-    //                {"name":"zinc finger transcription factor", "descr":"A transcription factor containing zinc finger domain(s), which is composed of conserved cysteines and histidines co-ordinate with zinc ion(s).  Examples of zinc finger domains are C2H2 zinc finger, C3HC4 zinc finger, CHC2 zinc finger, etc.","size":1},
-    //                {"name":"nuclear hormone receptor", "descr":"A receptor of steroid hormones that traverses the nuclear membrane to activate transcription.","size":1},
-    //                {"name":"transcription cofactor", "descr":"A protein that has no DNA binding domains, but regulates transcription by binding to other transcription factors.","size":1},
-    //                {"name":"basic helix-loop-helix transcription factor", "descr":"A transcription factor containing helix-loop-helix (HLH) DNA binding domain.","size":1}
-    //            ]},
-    //            {"name":"nucleic acid binding", "descr":"A molecule that binds a nucleic acid.  It can be an enzyme or a binding protein.","children": [
-    //                {"name":"RNA binding protein", "descr":"A protein that binds RNA and is involved in RNA processing or metabolism.","children": [
-    //                    {"name":"mRNA processing factor", "descr":"A factor involved in mRNA processing, including capping, polyadenylation and splicing.","children": [
-    //                        {"name":"mRNA splicing factor", "descr":"A factor involved in mRNA splicing.","size":1}
-    //                    ]},
-    //                    {"name":"translation factor", "descr":"A non-ribosomal protein involved in translation initiation, elongation or termination.","children": [
-    //                        {"name":"translation elongation factor", "descr":"A non-ribosomal protein involved in translation elongation.","size":1}
-    //                    ]}
-    //                ]},
-    //                {"name":"nuclease", "descr":"An enzyme that cleaves the phosphodiester bonds of a nucleic acid.","children": [
-    //                    {"name":"exodeoxyribonuclease", "descr":"An enzyme that cleaves DNA sequentially from the free ends of a linear nucleic acid substrate.","size":1},
-    //                    {"name":"endodeoxyribonuclease", "descr":"One of a large group of enzymes that cleaves DNA at an internal position in the chain.","size":1}
-    //                ]},
-    //                {"name":"DNA binding protein", "descr":"A protein that has DNA binding domains and binds DNA.  Transcription factors are DNA binding proteins, but they are not included in this category.","children": [
-    //                    {"name":"chromatin/chromatin-binding protein", "descr":"A non-histone protein that either binds DNA to comprise chromatin or which binds chromatin.","size":1}
-    //                ]},
-    //                {"name":"helicase", "descr":"An enzyme that promotes the unwinding of duplex nucleic acids.","children": [
-    //                    {"name":"DNA helicase", "descr":"An enzyme that promotes the unwinding of duplex DNA.","size":1}
-    //                ]}
-    //            ]},
-    //            {"name":"receptor", "descr":"A molecular structure within a cell or on the cell surface characterized by selective binding of a specific substance and a specific physiologic effect that accompanies the binding.","children": [
-    //                {"name":"G-protein coupled receptor", "descr":"Cell surface receptors that are coupled to G proteins and have 7 transmembrane spanning domains.","size":1},
-    //                {"name":"protein kinase receptor", "descr":"A protein that has an extracellular ligand binding domain, a single transmembrane domain and an intracellular kinase domain.","size":1},
-    //                {"name":"cytokine receptor", "descr":"A receptor that binds to cytokines and signals through particular signaling pathways, such as STAT pathway.  The chemokine GPCRs are excluded from this group, and can be found under G-protein coupled receptor.","children": [
-    //                    {"name":"tumor necrosis factor receptor", "descr":"A transmembrane receptor protein whose ligand is tumor necrosis factor.","size":1}
-    //                ]}
-    //            ]},
-    //            {"name":"cytoskeletal protein", "descr":"Major constituent of the cytoskeleton found in the cytoplasm of eukaryotic cells. They form a flexible framework for the cell, provide attachment points for organelles and formed bodies, and make communication between parts of the cell possible.","children": [
-    //                {"name":"actin family cytoskeletal protein", "descr":"A protein that is either actin itself or binds to actin to form the cytoskeleton of the cell.","children": [
-    //                    {"name":"non-motor actin binding protein", "descr":"An actin binding protein that is not involved in motor function.","size":1}
-    //                ]},
-    //                {"name":"microtubule family cytoskeletal protein", "descr":"A protein that is either microtubule itself or binds to microtubule to form the cytoskeleton of the cell.","children": [
-    //                    {"name":"non-motor microtubule binding protein", "descr":"A nonmotor protein that binds to microtubule cytoskeletal protein.","size":1}
-    //                ]}
-    //            ]},
-    //            {"name":"hydrolase", "descr":"Enzymes catalyzing hydrolysis of a variety of bonds, such as esters, glycosides, or peptides.  Protease and phosphatases are separate categories, so they are not included here.","children": [
-    //                {"name":"protease", "descr":"Enzymes that hydrolyze peptide bonds.","children": [
-    //                    {"name":"serine protease", "descr":"One of a group of endoproteases from both animal and bacterial sources that share a common reaction mechanism based on formation of an acyl enzyme intermediate on a specific active serine residue.","size":1},
-    //                    {"name":"cysteine protease", "descr":"Peptide hydrolases that have a cysteine involved in the catalytic process. This group of enzymes is inactivated by sulfhydryl reagents.","size":1},
-    //                    {"name":"metalloprotease", "descr":"A protease whose catalytic activity requires a transition metal.","size":1}
-    //                ]},
-    //                {"name":"esterase", "descr":"Enzymes that catalyze the hydrolysis of organic esters to release an alcohol or thiol and acid.","size":1}
-    //            ]},
-    //            {"name":"transporter", "descr":"A class of transmembrane proteins that allows substances to cross plasma membranes far faster than would be possible by diffusion alone.   Please note that ion channel has its own category and is not included here.","children": [
-    //                {"name":"ion channel", "descr":"A protein creating a highly selective transmembrane pore that presents a hydrophilic channel for specific ions to cross a lipid bilayer.","children": [
-    //                    {"name":"voltage-gated ion channel", "descr":"A transmembrane ion channel whose permeability to ions is sensitive to the transmembrane potential difference.","children": [
-    //                        {"name":"voltage-gated potassium channel", "descr":"A transmembrane ion channel whose selective permeability to potassium is sensitive to the transmembrane potential difference.","size":1}
-    //                    ]},
-    //                    {"name":"potassium channel", "descr":"A transmembrane ion channel that displays selective permeability to potassium ions.","size":1}
-    //                ]}
-    //            ]},
-    //            {"name":"ligase", "descr":"A class of enzymes that catalyze the formation of a bond between two substrate molecules, coupled with the hydrolysis of a pyrophosphate bond in ATP or a similar energy donor.","children": [
-    //                {"name":"ubiquitin-protein ligase", "descr":"An enzyme that couples ubiquitin to protein by a peptide bond between the C-terminal glycine of ubiquitin and a-amino groups of lysine residues in the protein.","size":1}
-    //            ]},
-    //            {"name":"signaling molecule", "descr":"A molecule that transduces a signal between cells.","children": [
-    //                {"name":"growth factor", "descr":"A complex family of biological factors that are produced by the body to control growth, division and maturation of various cell types.","size":1}
-    //            ]},
-    //            {"name":"transferase", "descr":"Enzymes transferring a group from one compound (donor) to another compound (acceptor).  Kinase is a separate category, so it is not included here.","children": [
-    //                {"name":"kinase", "descr":"An enzyme that catalyzes the transfer of a phosphate from ATP to a second substrate (EC2.7).","children": [
-    //                    {"name":"protein kinase", "descr":"An enzyme that catalyzes the transfer of a phosphate from ATP to the hydroxyl side chains on proteins, causing changes in function.","children": [
-    //                        {"name":"tyrosine protein kinase receptor", "descr":"A protein that has an extracellular ligand binding domain, a single transmembrane domain and an intracellular tyrosine kinase domain that phosphorylates protein tyrosine residues.","size":1},
-    //                        {"name":"non-receptor tyrosine protein kinase", "descr":"A soluble protein catalyzing transfer of phosphate from ATP to tyrosine residue.","size":1},
-    //                        {"name":"non-receptor serine/threonine protein kinase", "descr":"A soluble protein catalyzing transfer of phosphate from ATP to serine or threonine residue.","size":1}
-    //                    ]},
-    //                    {"name":"carbohydrate kinase", "descr":"An enzyme that catalyzes the phosphorylation of a sugar or carbohydrate.","size":1}
-    //                ]},
-    //                {"name":"acetyltransferase", "descr":"An enzyme that catalyzes the transfer of an acetyl group, usually from acetyl coenzyme A, to another compound.","size":1}
-    //            ]},
-    //            {"name":"enzyme modulator", "descr":"A protein that modulates the activity of a select group of an enzyme such as kinases, phosphatases, protease, and G-proteins.","children": [
-    //                {"name":"G-protein", "descr":"A GTP-binding protein that is either part of the heterotrimeric G protein class or of the small GTP-binding class.","children": [
-    //                    {"name":"small GTPase", "descr":"The small G proteins are a diverse group of monomeric GTPases that include ras, rab, rac and rho and that play an important part in regulating many intracellular processes including cytoskeletal organization and secretion.","size":1},
-    //                    {"name":"heterotrimeric G-protein", "descr":"the heterotrimeric G proteins that associate with receptors of the seven transmembrane domain superfamily and are involved in signal transduction.","size":1}
-    //                ]},
-    //                {"name":"kinase modulator", "descr":"A protein that directly interacts with a kinase and affects its activity.","children": [
-    //                    {"name":"kinase activator", "descr":"A protein that directly interacts with a kinase and activates or enhance its activity.","size":1}
-    //                ]},
-    //                {"name":"G-protein modulator", "descr":"A protein that directly interacts with a G-protein and affects its activity.","size":1}
-    //            ]},
-    //            {"name":"extracellular matrix protein", "descr":"A protein that is produced and secreted by cells and forms an intricate extracellular meshwork in which cells are embedded to construct tissues.","children": [
-    //                {"name":"extracellular matrix glycoprotein", "descr":"An extracellular matrix protein which is conjugated with one or more covalently linked carbohydrate residues.","size":1}
-    //            ]},
-    //            {"name":"cell adhesion molecule", "descr":"A protein that mediates cell-to-cell adhesion.","children": [
-    //                {"name":"cadherin", "descr":"An integral membrane protein involved in calcium dependent cell adhesion.","size":1}
-    //            ]},
-    //            {"name":"oxidoreductase", "descr":"An enzyme that catalyzes a redox reaction.","children": [
-    //                {"name":"oxygenase", "descr":"An enzyme that catalyzes the incorporation of molecular oxygen into organic substrates.","size":1},
-    //                {"name":"dehydrogenase", "descr":"An enzyme that oxidizes a substrate by transferring hydrogen to an acceptor that is either NAD/NADP or a flavin enzyme.","size":1},
-    //                {"name":"oxidase", "descr":"An enzyme that removes an electron from its substrate to an electron acceptor.  The reaction is usually coupled with a reduction reaction.","size":1},
-    //                {"name":"reductase", "descr":"An enzyme that introduces an electron into its substrate from an electron donor.  The reaction is usually coupled with an oxidation reaction.","size":1}
-    //            ]},
-    //            {"name":"transfer/carrier protein", "descr":"Proteins that carry specific substances in the blood or in the cell. They usually are not involved in transmembrane transport.","children": [
-    //                {"name":"apolipoprotein", "descr":"The protein component of serum lipoproteins.","size":1}
-    //            ]},
-    //            {"name":"defense/immunity protein", "descr":"A specific protein substance that is produced to take part in various defense and immune responses of the body.","children": [
-    //                {"name":"complement component", "descr":"One of 20 distinct serum proteins that is the effector of immune cytolysis.","size":1}
-    //            ]},
-    //            {"name":"cell junction protein", "descr":"Proteins that form specialized junctions between cells.","size":1},
-    //            {"name":"membrane traffic protein", "descr":"A protein that is located on an intracellular vesicle membrane, and is responsible for the docking or fusion of the vesicle to the cytoplasma membrane.","size":1},
-    //            {"name":"chaperone", "descr":"A cytoplasmic protein that binds to nascent or unfolded polypeptides and ensures correct folding or transport.","size":1},
-    //            {"name":"isomerase", "descr":"A class of enzymes that catalyze geometric or structural changes within a molecule to form a single product. The reactions do not involve a net change in the concentrations of compounds other than the substrate and the product.","children": [
-    //                {"name":"epimerase/racemase", "descr":"Enzymes that catalyze inversion of the configuration around an asymmetric carbon in a substrate having one (racemase) or more (epimerase) center(s) of asymmetry (EC5.1).","size":1}
-    //            ]}
-    //        ]}
-    //    ]
-
-
-
-
 
     var minimumValue=0.5;
     var maximumValue=0.5;

@@ -44,10 +44,43 @@
         });
 
     };
+
+
+
+    var streamTwitter = function(text) {
+        var success = function (data){
+            var domPtr = $('#messageHolder');
+            var obj = JSON.parse(data);
+            for ( var i = 0 ; i < obj["searchResults"].statuses.length ; i++ ){
+                var individualObject= obj["searchResults"].statuses[i];
+                domPtr.append('<li>'+individualObject.text+'</li>');
+            }
+        };
+        var inputFieldText = $('#searchterms').val();
+        // let's go query twitter
+        $.ajax({
+            cache: false,
+            type: "post",
+            url: "${createLink(controller:'SpringSecurityOAuth',action:'twitterStream')}",
+            data: {a: inputFieldText},
+            async: true,
+            success: function (data) {
+                success ( data   );
+            },
+            error: function (jqXHR, exception) {
+                console.log('error!');
+            }
+        });
+
+    };
+
 </script>
 
 <button onclick="searchTwitter()">search twitter</button>
-<span>search terms<input type="text" name="tosearch" id='searchterms' maxlength="25"/></span><br>
+<span>search terms<input type="text" name="tosearch" id='searchterms' maxlength="50"/></span><br>
+
+
+<button onclick="streamTwitter()" style="margin:20px">stream twitter (doesn't work yet)</button>
 
 </body>
 </html>

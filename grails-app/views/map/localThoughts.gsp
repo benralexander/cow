@@ -43,7 +43,7 @@
     </style>
     <script>
 
-        var searchTwitterByLocale = function(searchText,latitude, longitude) {
+        var searchTwitterByLocale = function(searchText,latitude, longitude, language, radius) {
             var success = function (data){
                 var domPtr = $('#messageHolder');
                // var obj = JSON.parse(data);
@@ -60,7 +60,9 @@
                 url: "${createLink(controller:'SpringSecurityOAuth',action:'twitterLogin')}",
                 data: {a: searchText,
                        latitude: latitude,
-                       longitude: longitude},
+                       longitude: longitude,
+                language:  language,
+                radius: radius},
                 async: true,
                 success: function (data) {
                     success ( data   );
@@ -81,16 +83,43 @@
 
     <div class="starter-template">
         <div class="row">
-            <div class="col-xs-offset-1 col-xs-6">
-                <h3>Move the orange locator with your mouse. The system will then query twitter to find out what people are talking about in that geographical area</h3>
+            <div class="col-xs-offset-4 col-xs-4">
+                <h2>Search twitter by location</h2>
             </div>
-
-            <div class="col-xs-5"></div>
+            <div class="col-xs-4"></div>
         </div>
-
         <div class="row">
-            <p><em>(still under development)</em></p>
+            <div class="col-xs-12">
+                <h3>Move the orange locator anywhere on the map and you will see twitter posts originating nearby.</h3>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h3><strong>Start by refining your search with the following parameters (if you want).  Then move the marker, and a twitter search will begin immediately.</strong></h3>
+            </div>
+            <div class="col-xs-6">
+                <ul>
+                    <li>Radius around marker (in kilometers):<input class="pull-right" type="text" name="radius" id='radius' maxlength="10"/></li>
+                    <li>Tweet language<select  name="lang" id="lang">
+                        <option value="en" selected>English</option>
+                        <option value="es">Spanish</option>
+                        <option value="zh">Chinese</option>
+                        <option value="ru">Russian</option>
+                    </select>
+                    </li>
+                    <li style="margin-top:10px">Search terms(optional):<input type="text"  class="pull-right" name="tosearch" id='searchterms' maxlength="50"/></li>
+                </ul>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
     </div>
 
 
@@ -123,7 +152,10 @@
             var m = marker.getLatLng();
             if (( m.lat!==0)  &&  ( m.lng!==0) ){
                 $('#messageHolder').empty()
-                searchTwitterByLocale('',m.lat, m.lng)
+                var searchTerm = $('#searchterms').val();
+                var language = $('#lang').val();
+                var radius = $('#radius').val();
+                searchTwitterByLocale(searchTerm,m.lat, m.lng,language, radius)
                 coordinates.innerHTML = 'Investigating <br />'+
                         'Latitude: ' + m.lat + '<br />Longitude: ' + m.lng;
 

@@ -256,7 +256,7 @@
     <dd>Not graphics, but instead an example of using Twitter authentication</dd>
 
 
-    <dt><a href="<g:createLink controller='map' action='localThoughts'/>">local twitter</a></dt>
+<dt><a href="<g:createLink controller='map' action='localThoughts'/>">local twitter</a></dt>
     <dd>Can we use a map to interactively specify the geographical area from which we want to collect twitter messages?</dd>
 
 
@@ -274,7 +274,7 @@
 
 
     <dt><a href="https://github.com/benralexander">github</a></dt>
-    <dd>The code for this page and all my others.</dd>
+    <dd>The code for <a href="https://github.com/benralexander/cow">this page</a> and all my others.</dd>
 
 
 </dl>

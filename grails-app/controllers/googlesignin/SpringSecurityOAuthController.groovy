@@ -111,18 +111,36 @@ class SpringSecurityOAuthController {
 
 
     def twitterLogin(){
-    JSONObject authorizationObject = googleRestService.generateTwitterAuthenticationString()
-        String  bearer =  authorizationObject ["bearer"]
-        String  accessToken =  authorizationObject ["access_token"]
-        JSONObject searchResults = googleRestService.executeTwitterRequest(accessToken,
-                googleRestService.buildTwitterRequest (params.a,params.latitude,params.longitude,"250"))
+        JSONObject searchResults = googleRestService.executeTwitterRequest(googleRestService.retrieveTwitterAccessToken (),
+                googleRestService.buildTwitterRequest (params.a,params.latitude,params.longitude,params.language,params.radius))
               //  "q=${params.a}&lang=en&count=100&geocode=${params.latitude},${params.longitude},500km")
         render(status:200, contentType:"application/json") {
                 [searchResults:searchResults]
         }
-
-        //println "searchResults=${searchResults}"
     }
+
+
+    //stream
+    def twitterStream(){
+        Map parameters = [:]
+        Map body = [:]
+//        parameters['delimited']='length'
+//        parameters['lang']='en'
+//        parameters['geocode']='13.239945499286312,-12.65625,400km'
+
+          parameters['track']='twitter'
+        body['track']=['twitter']
+        JSONObject searchResults = googleRestService.initiateTwitterStream(parameters,body)
+               // "delimited=length&lang=en&geocode=13.239945499286312,-12.65625,400km")
+        //  "q=${params.a}&lang=en&count=100&geocode=${params.latitude},${params.longitude},500km")
+        render(status:200, contentType:"application/json") {
+            [searchResults:searchResults]
+        }
+    }
+
+
+
+
 
     /**
      * Associates an OAuthID with an existing account. Needs the user's password to ensure
@@ -296,107 +314,6 @@ class SpringSecurityOAuthController {
 
 
 
-
-
-/*
-    private def updateUser(User user, OAuthToken oAuthToken) {
-        if (!user.validate()) {
-            return
-        }
-
-        if (oAuthToken instanceof TwitterOAuthToken) {
-            TwitterOAuthToken twitterOAuthToken = (TwitterOAuthToken) oAuthToken
-
-            if (!user.username) {
-                user.username = twitterOAuthToken.twitterProfile.screenName
-                if (!user.validate()) {
-                    user.username = null
-                }
-            }
-
-            if (!user.firstName || !user.lastName) {
-                def names = twitterOAuthToken.twitterProfile.name?.split(' ')
-                if (names) {
-                    if (!user.lastName) {
-                        user.lastName = names[0]
-                        if (!user.validate()) {
-                            user.lastName = null
-                        }
-                    }
-
-                    if (!user.firstName) {
-                        user.firstName = names[-1]
-                        if (!user.validate()) {
-                            user.firstName = null
-                        }
-                    }
-                }
-            }
-        } else if (oAuthToken instanceof FacebookOAuthToken) {
-            FacebookOAuthToken facebookOAuthToken = (FacebookOAuthToken) oAuthToken
-
-            if (!user.username) {
-                user.username = facebookOAuthToken.facebookProfile.username
-                if (!user.validate()) {
-                    user.username = null
-                }
-            }
-
-            if (!user.email) {
-                user.email = facebookOAuthToken.facebookProfile.email
-                if (!user.validate()) {
-                    user.email = null
-                }
-            }
-
-            if (!user.lastName) {
-                user.lastName = facebookOAuthToken.facebookProfile.lastName
-                if (!user.validate()) {
-                    user.lastName = null
-                }
-            }
-
-            if (!user.firstName) {
-                user.firstName = facebookOAuthToken.facebookProfile.firstName
-                if (!user.validate()) {
-                    user.firstName = null
-                }
-            }
-        } else if (oAuthToken instanceof GoogleOAuthToken) {
-            GoogleOAuthToken googleOAuthToken = (GoogleOAuthToken) oAuthToken
-
-            if (!user.email) {
-                user.email = googleOAuthToken.email
-                if (!user.validate()) {
-                    user.email = null
-                }
-            }
-        } else if (oAuthToken instanceof YahooOAuthToken) {
-            YahooOAuthToken yahooOAuthToken = (YahooOAuthToken) oAuthToken
-
-            if (!user.username) {
-                user.username = yahooOAuthToken.profile.nickname
-                if (!user.validate()) {
-                    user.username = null
-                }
-            }
-
-            if (!user.lastName) {
-                user.lastName = yahooOAuthToken.profile.familyName
-                if (!user.validate()) {
-                    user.lastName = null
-                }
-            }
-
-            if (!user.firstName) {
-                user.firstName = yahooOAuthToken.profile.givenName
-                if (!user.validate()) {
-                    user.firstName = null
-                }
-            }
-        }
-    }
-*/
 
     protected Map getDefaultTargetUrl() {
         def config = SpringSecurityUtils.securityConfig

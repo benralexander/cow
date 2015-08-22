@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Working with Array</title>
+    <title>Learning curves</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
     <script type="text/javascript" src="../js/d3.js"></script>
 </head>
@@ -26,43 +26,69 @@ body {
 }
 
 .x.axis path {
-  display: none;
+    display: none;
+}
+.y .label {
+    font-family: "sans-serif";
+    font-size: 18px;
 }
 
 .line {
     fill: none;
     stroke: steelblue;
-    stroke-width: 1.5px;
+    stroke-width: 2.5px;
+    font-family: "sans-serif";
+    font-size: 28px;
+}
+.lineend {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 0.5px;
+    stroke-width: 0px;
+    font-family: "sans-serif";
+    font-size: 24px;
 }
 .line2start {
     fill: none;
     stroke: red;
     stroke-width: 0px;
+    font-family: "sans-serif";
+    font-size: 10px;
 }
 .line2end {
     fill: none;
     stroke: red;
     stroke-width: 1.5px;
+    font-family: "sans-serif";
+    font-size: 20px;
 }
 .line3start {
     fill: none;
     stroke: green;
     stroke-width: 0px;
+    font-family: "sans-serif";
+    font-size: 10px;
 }
 .line3end {
     fill: none;
     stroke: green;
     stroke-width: 1.5px;
+    font-family: "sans-serif";
+    font-size: 20px;
 }
 .line4start {
     fill: none;
     stroke: purple;
     stroke-width: 0px;
+    font-family: "sans-serif";
+    font-size: 10px;
 }
 .line4end {
     fill: none;
     stroke: purple;
     stroke-width: 1.5px;
+    font-family: "sans-serif";
+    font-size: 20px;
 }
 
 </style>
@@ -178,16 +204,27 @@ var svg = d3.select("body").append("svg")
     .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
-      .attr("dy", ".71em")
+      .attr("class", "label")
+      .attr("dy", "-1.71em")
       .style("text-anchor", "end")
-      .text("Price ($)");
+      .text("difficulty");
 
     var v=svg.selectAll("path.line").data([data]);
     v.enter().append("path").attr('class', 'line')
             .attr("d", line);
-            v.transition(5000)
+
+    v.transition(5000)
             .delay(8000)
             .attr("d", line2);
+    var t =svg.append("text")
+            .text("D3")
+            .attr('class','lineend')
+            .attr('x',width-300)
+            .attr("y",20)  ;
+    t.transition(2000)
+            .delay(8000)
+            .attr('class', 'line');
+
     var v2=svg.selectAll("path.line2start").data([data]);
     v2.enter().append("path").attr('class', 'line2start')
             .attr("d", lineP1);
@@ -197,7 +234,17 @@ var svg = d3.select("body").append("svg")
     v2.transition(2000)
             .delay(8000)
             .attr('class', 'line2start');
-
+    var t2 =svg.append("text")
+            .text("HTML")
+            .attr('class','line2start')
+            .attr('x',width-320)
+            .attr("y",height-190)  ;
+    t2.transition(2000)
+            .delay(2000)
+            .attr('class', 'line2end');
+    t2.transition(2000)
+            .delay(8000)
+            .attr('class', 'line2start');
     var v3=svg.selectAll("path.line3start").data([data]);
     v3.enter().append("path").attr('class', 'line3start')
             .attr("d", lineP2);
@@ -207,7 +254,17 @@ var svg = d3.select("body").append("svg")
     v3.transition(2000)
             .delay(8000)
             .attr('class', 'line3start');
-
+    var t3 =svg.append("text")
+            .text("CSS")
+            .attr('class','line3start')
+            .attr('x',width-30)
+            .attr("y",height-140)  ;
+    t3.transition(2000)
+            .delay(4000)
+            .attr('class', 'line3end');
+    t3.transition(2000)
+            .delay(8000)
+            .attr('class', 'line3start');
     var v4=svg.selectAll("path.line4start").data([data]);
     v4.enter().append("path").attr('class', 'line4start')
             .attr("d", lineP3);
@@ -215,6 +272,17 @@ var svg = d3.select("body").append("svg")
             .delay(6000)
             .attr('class', 'line4end');
     v4.transition(2000)
+            .delay(8000)
+            .attr('class', 'line4start');
+    var t4 =svg.append("text")
+            .text("Javascript")
+            .attr('class','line4start')
+            .attr('x',width-300)
+            .attr("y",height-110)  ;
+    t4.transition(2000)
+            .delay(6000)
+            .attr('class', 'line4end');
+    t4.transition(2000)
             .delay(8000)
             .attr('class', 'line4start');
 

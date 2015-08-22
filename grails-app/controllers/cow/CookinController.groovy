@@ -1396,6 +1396,9 @@ class CookinController {
     def pieChart() {
         render (view: 'pie-chart')
     }
+    def steepcurve() {
+        render (view: 'steepcurve')
+    }
     def poly() {
         render (view: 'poly')
     }

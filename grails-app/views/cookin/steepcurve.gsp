@@ -38,7 +38,7 @@ body {
     stroke: steelblue;
     stroke-width: 2.5px;
     font-family: "sans-serif";
-    font-size: 28px;
+    font-size: 32px;
 }
 .lineend {
     fill: none;
@@ -213,16 +213,20 @@ var svg = d3.select("body").append("svg")
     v.enter().append("path").attr('class', 'line')
             .attr("d", line);
 
-    v.transition(5000)
+    v.transition()
+            .duration(4000)
             .delay(8000)
             .attr("d", line2);
     var t =svg.append("text")
             .text("D3")
             .attr('class','lineend')
             .attr('x',width-300)
-            .attr("y",20)  ;
-    t.transition(2000)
+            .attr("y",600)  ;
+    t.transition()
+            .duration(4000)
             .delay(8000)
+            .attr('x',width-400)
+            .attr("y",20)
             .attr('class', 'line');
 
     var v2=svg.selectAll("path.line2start").data([data]);
@@ -239,19 +243,19 @@ var svg = d3.select("body").append("svg")
             .attr('class','line2start')
             .attr('x',width-320)
             .attr("y",height-190)  ;
-    t2.transition(2000)
+    t2.transition()
             .delay(2000)
             .attr('class', 'line2end');
-    t2.transition(2000)
+    t2.transition()
             .delay(8000)
             .attr('class', 'line2start');
     var v3=svg.selectAll("path.line3start").data([data]);
     v3.enter().append("path").attr('class', 'line3start')
             .attr("d", lineP2);
-    v3.transition(2000)
+    v3.transition()
             .delay(4000)
             .attr('class', 'line3end');
-    v3.transition(2000)
+    v3.transition()
             .delay(8000)
             .attr('class', 'line3start');
     var t3 =svg.append("text")
@@ -259,19 +263,19 @@ var svg = d3.select("body").append("svg")
             .attr('class','line3start')
             .attr('x',width-30)
             .attr("y",height-140)  ;
-    t3.transition(2000)
+    t3.transition()
             .delay(4000)
             .attr('class', 'line3end');
-    t3.transition(2000)
+    t3.transition()
             .delay(8000)
             .attr('class', 'line3start');
     var v4=svg.selectAll("path.line4start").data([data]);
     v4.enter().append("path").attr('class', 'line4start')
             .attr("d", lineP3);
-    v4.transition(2000)
+    v4.transition()
             .delay(6000)
             .attr('class', 'line4end');
-    v4.transition(2000)
+    v4.transition()
             .delay(8000)
             .attr('class', 'line4start');
     var t4 =svg.append("text")
@@ -279,10 +283,10 @@ var svg = d3.select("body").append("svg")
             .attr('class','line4start')
             .attr('x',width-300)
             .attr("y",height-110)  ;
-    t4.transition(2000)
+    t4.transition()
             .delay(6000)
             .attr('class', 'line4end');
-    t4.transition(2000)
+    t4.transition()
             .delay(8000)
             .attr('class', 'line4start');
 

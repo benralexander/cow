@@ -1387,6 +1387,9 @@ class CookinController {
     def areaChart() {
         render (view: 'area-chart')
     }
+    def sbox() {
+        render (view: 'sbox')
+    }
     def scatterplotChart() {
         render (view: 'scatterplot-chart')
     }

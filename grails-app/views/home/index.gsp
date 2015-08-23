@@ -260,7 +260,10 @@
     <dd>Can we use a map to interactively specify the geographical area from which we want to collect twitter messages?</dd>
 
     <dt><a href="<g:createLink controller='cookin' action='steepcurve'/>">steep curve</a></dt>
-    <dd>combine some curves</dd>
+    <dd>Qualitative graphic points out that the learning curve for D3 is some combination of multiple underlying learning curves</dd>
+
+    <dt><a href="<g:createLink controller='cookin' action='sbox'/>">super simple</a></dt>
+    <dd>absolutely minimal examples, not worth the time of day outside of an interactive presentation</dd>
 
 
 

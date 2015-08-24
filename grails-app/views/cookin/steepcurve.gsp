@@ -132,7 +132,7 @@ body {
 
     var margin = {top: 20, right: 20, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
-    height = 1000 - margin.top - margin.bottom;
+    height = 800 - margin.top - margin.bottom;
 
 var parseDate = d3.time.format("%d-%b-%y").parse;
 
@@ -242,7 +242,7 @@ var svg = d3.select("body").append("svg")
             .text("HTML")
             .attr('class','line2start')
             .attr('x',width-320)
-            .attr("y",height-190)  ;
+            .attr("y",height-160)  ;
     t2.transition()
             .delay(2000)
             .attr('class', 'line2end');
@@ -262,7 +262,7 @@ var svg = d3.select("body").append("svg")
             .text("CSS")
             .attr('class','line3start')
             .attr('x',width-30)
-            .attr("y",height-140)  ;
+            .attr("y",height-120)  ;
     t3.transition()
             .delay(4000)
             .attr('class', 'line3end');
@@ -282,7 +282,7 @@ var svg = d3.select("body").append("svg")
             .text("Javascript")
             .attr('class','line4start')
             .attr('x',width-300)
-            .attr("y",height-110)  ;
+            .attr("y",height-90)  ;
     t4.transition()
             .delay(6000)
             .attr('class', 'line4end');

@@ -32,6 +32,24 @@
                 .attr('class','fee')
                 .text(function(d) { return ""+d; });
 
+
+        // more practice
+        //
+        //  A function I want to call elsewhere.
+        //  Note that it takes a selection as a param
+        //
+        var myFun  =  function (sel) {
+            sel.attr('class','mmyNewClass');
+        };
+
+        // works, but not as nice
+        myFun(d3.select('body'));
+
+        // cleaner.  Well-suited for
+        //   function chaining.  Note that
+        //   the selection parameter is implicit
+        d3.select('body').call(myFun);
+
     </script>
 
 </body>

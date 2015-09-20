@@ -29,7 +29,7 @@
         ga('send', 'pageview');
 
     </script>
-
+    <meta name="wot-verification" content="8d52e9e2f0f07175b213"/>
     <r:layoutResources />
 </head>
 <body>

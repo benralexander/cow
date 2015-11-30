@@ -265,6 +265,9 @@
     <dt><a href="<g:createLink controller='cookin' action='sbox'/>">super simple</a></dt>
     <dd>absolutely minimal examples, not worth the time of day outside of an interactive presentation</dd>
 
+    <dt><a href="<g:createLink controller='cookin' action='mbar'/>">movable bar</a></dt>
+    <dd>horizontal bar chart to which I will add interactive elements</dd>
+
 
 
 

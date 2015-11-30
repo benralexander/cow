@@ -1453,6 +1453,9 @@ class CookinController {
     def windmill() {
         render (view: 'windmill')
     }
+    def mbar() {
+        render (view: 'mbar')
+    }
 
 
 

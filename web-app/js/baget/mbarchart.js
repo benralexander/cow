@@ -3,11 +3,6 @@
  *
  * This JavaScript file should be sufficient for creating a bar chart.
  *
- * In an effort to provide more flexibility this routine can support either an ordinal vertical
- * axis (which will space the bars out for you) or else a linear vertical axis (in which case
- * you need to provide the coordinates on the y-axis to describe where every bar goes).  I incorporated
- * this switch in order to allow for grouped bar charts.  Include a "position" field in your data
- * if you want to use the linear scaling.
  *
  */
 
@@ -19,41 +14,26 @@ var baget = baget || {};  // encapsulating variable
 
     baget.mBar = function (barChartName) {// name is optional, but allows you to clear specifically
 
-//
-//   Here's an example of the sort of data that this routine expect
-//
-//        var data = [
-//                { value: 12,
-//                    barname: 'Have T2D',
-//                    barsubname: '(cases)',
-//                    barsubnamelink:'http://www.google.com',
-//                    inbar: '',
-//                    descriptor: '(8 out of 6469)'},
-//                {value: 33,
-//                    barname: 'Do not have T2D',
-//                    barsubname: '(controls)',
-//                    barsubnamelink:'http://www.google.com',
-//                    inbar: '',
-//                    descriptor: '(21 out of 6364)'}
-//            ],
-//            roomForLabels = 120,
-//            maximumPossibleValue = 100,
-//            labelSpacer = 10;
 
         // public variables
         var data, // no defaults because we can't make a plot without some data to plot
-            roomForLabels = 120,
-            maximumPossibleValue = 100,
+            showGridLines = true,
+            blackTextAfterBar = false,
             labelSpacer = 10,
+            spaceForYAxisLabels = 40,
             integerValues = 0,// by default we show percentages, set value to one to show integers
             logXScale = 0,// by default go with a linear x axis.  Set value to 1 for log
             customBarColoring = 0,// by default don't color the bars differently.  Otherwise each one gets its own class
             customLegend = 0,// by default skip the legend.  Note that this legend (and legends in general) are tough to implement in a general form
             selection;   // no default because we can't make a plot without a place to put it
 
-        // private variables
+        // private variables (which serve as constants
         var  instance = {},
-            internalMin;
+            internalMin,
+            barHeight = 20,
+            expansionPercentage = 20,
+            numberOfGridlines = 10,
+            textLabelLengthFromEnd =10;
 
         var margin = {top: 30, right: 20, bottom: 50, left: 70},
             width = 800 - margin.left - margin.right,
@@ -66,31 +46,64 @@ var baget = baget || {};  // encapsulating variable
                 .each(function (data, eachGroupI) {      // d3 each: d=datum, i=index
 
                     var categories= [];
-                    var dollars = [];
+                    var values = [];
                     var colors = [];
+                    var minimum;
+                    var maximum;
 
                     data.map(function(d,i){
                         categories.push(d.category);
-                        dollars.push(d.dollar);
+                        values.push(d.value);
                         colors.push(d.color);
                     });
 
-                    var grid = d3.range(25).map(function(i){
-                        return {'x1':margin.left,'y1':margin.top,'x2':margin.left,'y2':height};
+                    // we will need these for scaling
+                    minimum = d3.min(values) ;
+                    maximum = d3.max(values) ;
+
+
+                    // let's calculate the domain and range. The only thing tricky is that we want to go a little below the minimum
+                    //  and above the maximum, sso we will need to calculate a range, then increase it by a percentage.  Use an
+                    //  immediately executed function to avoid leaving some local variables hanging around. Also, create some allowance
+                    //  for values with zero variance.
+                    var xscale;
+                    var expandedRange;
+                    (function(){
+                        expandedRange = [];
+                        if (minimum === maximum) {
+                            if (minimum === 0){  // can't really do much in a case like this, since every value is zero.
+                                expandedRange.push (0);
+                                expandedRange.push (1);
+                            }  else {   // no variance, but create a chart anyway. No expansion of range necessary
+                                expandedRange.push (0);
+                                var rangeExpansion = ((minimum)*expansionPercentage)/(100) ;
+                                expandedRange.push (minimum+rangeExpansion);
+                            }
+                        }  else {
+                            var rangeExpansion = ((maximum-minimum)*expansionPercentage)/(100) ;
+//                            expandedRange.push (d3.max ([0,minimum-rangeExpansion]));
+//                            expandedRange.push (maximum + rangeExpansion);
+                  //          expandedRange.push (d3.max ([0,minimum-(((minimum)*expansionPercentage)/(100))]));
+                            expandedRange.push (0);
+                            expandedRange.push (maximum + (((maximum)*expansionPercentage)/(100)));
+                        }
+                        xscale = d3.scale.linear()
+                            .domain(expandedRange)
+                            .range([margin.left+spaceForYAxisLabels,width-(margin.right+margin.left+spaceForYAxisLabels)]);
+                    }());
+
+                    var grid = d3.range(numberOfGridlines).map(function(i){
+                        return {'x1':margin.left+spaceForYAxisLabels,'y1':margin.top,'x2':margin.left,'y2':height-margin.bottom};
                     });
 
                     var tickVals = grid.map(function(d,i){
-                        if(i>0){ return i*10; }
-                        else if(i===0){ return "100";}
+                             return xscale(expandedRange[0]+(i*((expandedRange[1]-expandedRange[0])/numberOfGridlines)));
                     });
 
-                    var xscale = d3.scale.linear()
-                        .domain([10,250])
-                        .range([margin.left,width]);
 
                     var yscale = d3.scale.linear()
                         .domain([0,categories.length])
-                        .range([margin.top,height]);
+                        .range([margin.top,height-margin.bottom]);
 
                     var colorScale = d3.scale.quantize()
                         .domain([0,categories.length])
@@ -98,21 +111,24 @@ var baget = baget || {};  // encapsulating variable
 
                     var canvas = d3.select('#wrapper')
                         .append('svg')
-                        .attr({'width':width,'height':height});
+                        .attr({'width':width,'height':height+margin.top});
 
-                    canvas.append('g')
-                        .attr('id','grid')
-                        .attr('transform','translate(150,10)')
-                        .selectAll('line')
-                        .data(grid)
-                        .enter()
-                        .append('line')
-                        .attr({'x1':function(d,i){ return i*30; },
-                            'y1':function(d){ return d.y1; },
-                            'x2':function(d,i){ return i*30; },
-                            'y2':function(d){ return d.y2; }
-                        })
-                        .style({'stroke':'#adadad','stroke-width':'1px'});
+                    if (showGridLines=== true)  {
+                        canvas.append('g')
+                            .attr('id','grid')
+                            .attr('transform','translate('+margin.left+spaceForYAxisLabels+',0)')
+                            .selectAll('line')
+                            .data(grid)
+                            .enter()
+                            .append('line')
+                            .attr({'x1':function(d,i){ return tickVals[i]; },
+                                'y1':function(d){ return d.y1+margin.top; },
+                                'x2':function(d,i){ return tickVals[i]; },
+                                'y2':function(d){ return d.y2+margin.top; }
+                            })
+                            .style({'stroke':'#adadad','stroke-width':'1px'});
+                    }
+
 
                     var	xAxis = d3.svg.axis();
                     xAxis
@@ -126,44 +142,79 @@ var baget = baget || {};  // encapsulating variable
                         .scale(yscale)
                         .tickSize(2)
                         .tickFormat(function(d,i){ return categories[i]; })
-                        .tickValues(d3.range(17));
+                        .tickValues(d3.range(categories.length));
 
                     canvas.append('g')
-                        .attr("transform", "translate("+margin.left+","+margin.top+")")
+                        .attr("transform", "translate("+(margin.left+spaceForYAxisLabels)+","+(margin.top+(barHeight/2))+")")
                         .attr('id','yaxis')
-                        .call(yAxis);
+                        .call(yAxis)
+                        .call(function(me){
+                            me.selectAll('.domain').style('display','none');
+                        });
+
 
                     canvas.append('g')
-                        .attr("transform", "translate("+margin.left+","+(margin.top+height)+")")
+                        .attr("transform", "translate(0,"+(margin.top+height)+")")
                         .attr('id','xaxis')
-                        .call(xAxis);
+                        .call(xAxis)
+                        .call(function(me){
+                            me.selectAll('.domain').style('display','none');
+                        });
 
+
+                    // create each bar
                     canvas.append('g')
-                        .attr("transform", "translate("+margin.left+","+margin.top+")")
+                        .attr("transform", "translate("+(margin.left+spaceForYAxisLabels)+","+margin.top+")")
                         .attr('id','bars')
                         .selectAll('rect')
-                        .data(dollars)
+                        .data(values)
                         .enter()
                         .append('rect')
                         .attr('height',19)
-                        .attr({'x':0,'y':function(d,i){ return (yscale(i)+19); }})
+                        .attr({'x':0,'y':function(d,i){ return (yscale(i)); }})
                         .style('fill',function(d,i){ return colorScale(i); })
                         .attr('width',function(d){ return 0; });
 
-
+                    // give the bar length
                     d3.select("svg").selectAll("rect")
-                        .data(dollars)
+                        .data(values)
                         .transition()
                         .duration(1000)
                         .attr("width", function(d) {return xscale(d); });
 
+                    // label on bar
                     d3.select('#bars')
                         .selectAll('text')
-                        .data(dollars)
+                        .data(values)
                         .enter()
                         .append('text')
-                        .attr({'x':function(d) {return xscale(d)-200; },'y':function(d,i){ return yscale(i)+35; }})
-                        .text(function(d){ return d+"$"; }).style({'fill':'#fff','font-size':'14px'});
+                        .text(function(d){ return d; })
+                        .style('fill',function(d){
+                            if (blackTextAfterBar){
+                                return '#000';
+                            } else {
+                                return '#fff';
+                            }
+                        })
+                        .style('font-size','14px')
+                        .attr('class',function(d,i){
+                            return 'barlabel'+i;
+                        })
+                        .attr({'x':
+                            function(d,i) {
+                                var textElement = d3.select('.barlabel'+i);
+                                var textLength = textElement.node().getComputedTextLength()+textLabelLengthFromEnd;
+                                if (blackTextAfterBar){
+                                    return xscale(d)+textLabelLengthFromEnd;
+                                } else {
+                                    return xscale(d)-textLength;
+                                }
+                            },
+                            'y':
+                                function(d,i){
+                                    return yscale(i)+(barHeight/2)+4;
+                                }}) ;
+
 
 
                 });
@@ -194,15 +245,21 @@ var baget = baget || {};  // encapsulating variable
             return instance;
         };
 
-        instance.roomForLabels = function (x) {
-            if (!arguments.length) return roomForLabels;
-            roomForLabels = x;
+        instance.showGridLines = function (x) {
+            if (!arguments.length) return showGridLines;
+            showGridLines = x;
             return instance;
         };
 
-        instance.maximumPossibleValue = function (x) {
-            if (!arguments.length) return maximumPossibleValue;
-            maximumPossibleValue = x;
+        instance.blackTextAfterBar = function (x) {
+            if (!arguments.length) return blackTextAfterBar;
+            blackTextAfterBar = x;
+            return instance;
+        };
+
+        instance.spaceForYAxisLabels = function (x) {
+            if (!arguments.length) return spaceForYAxisLabels;
+            spaceForYAxisLabels = x;
             return instance;
         };
 

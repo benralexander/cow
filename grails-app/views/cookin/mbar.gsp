@@ -134,26 +134,33 @@
      * @type {{value: number, barname: string, barsubname: string, barsubnamelink: string, inbar: string, descriptor: string}[]}
      */
     var data = [
-                { category: 'aaa',
-                    dollar: 213,
+                { category: 'the',
+                    value: 230,
                     color: '#0000b4'},
-                { category: 'biker',
-                    dollar: 209,
-                    color: '#0082ca'},
-                { category: 'Berlin',
-                    dollar: 20,
-                    color: '#5500ca'},
-                { category: 'seafood special',
-                    dollar: 190,
-                    color: '#0094ff'}
+                { category: 'faster',
+                    value: 2,
+                    color: '#0082ca'}
+//                ,
+//                { category: 'we go',
+//                    value: 20,
+//                    color: '#5500ca'},
+//                { category: 'the',
+//                    value: 190,
+//                    color: '#009400'}
+//                { category: 'rounder',
+//                    value: 170,
+//                    color: '#3394aa'}
+//                { category: 'we get',
+//                    value: 150,
+//                    color: '#0000ff'}
             ],
             roomForLabels = 120,
             maximumPossibleValue = 1,
             labelSpacer = 10;
 
-    var margin = {top: 0, right: 20, bottom: 0, left: 70},
-            width = 800 - margin.left - margin.right,
-            height = 150 - margin.top - margin.bottom;
+    var margin = {top: 50, right: 20, bottom: 0, left: 70},
+            width = 600 - margin.left - margin.right,
+            height = 280 - margin.top - margin.bottom;
 
 
     d3.json("${createLink(controller:'cookin', action:'retrieveJson')}", function (error, json) {
@@ -162,8 +169,8 @@
                 .width(width)
                 .height(height)
                 .margin(margin)
-                .roomForLabels (roomForLabels)
-                .maximumPossibleValue (1)
+                .showGridLines (false)
+                .blackTextAfterBar (true)
                 .labelSpacer (labelSpacer)
                 .dataHanger("#chart",data);
 

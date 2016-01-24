@@ -20,20 +20,23 @@ var baget = baget || {};  // encapsulating variable
             showGridLines = true,
             blackTextAfterBar = false,
             labelSpacer = 10,
-            spaceForYAxisLabels = 40,
+            spaceForYAxisLabels = 30,
+            staticBarSize = false,// if true then obey the default for barHeight.  Otherwise calculate this value dynamically.
             integerValues = 0,// by default we show percentages, set value to one to show integers
             logXScale = 0,// by default go with a linear x axis.  Set value to 1 for log
             customBarColoring = 0,// by default don't color the bars differently.  Otherwise each one gets its own class
             customLegend = 0,// by default skip the legend.  Note that this legend (and legends in general) are tough to implement in a general form
+            minimumXValue = 0,// by default treat access if it must be nonnegative
             selection;   // no default because we can't make a plot without a place to put it
 
         // private variables (which serve as constants
         var  instance = {},
             internalMin,
-            barHeight = 20,
+            barHeight = 60,
             expansionPercentage = 20,
             numberOfGridlines = 10,
-            textLabelLengthFromEnd =10;
+            textLabelLengthFromEnd =10,
+            verticalSpaceForXAxis =20;
 
         var margin = {top: 30, right: 20, bottom: 50, left: 70},
             width = 800 - margin.left - margin.right,
@@ -111,7 +114,7 @@ var baget = baget || {};  // encapsulating variable
 
                     var canvas = d3.select('#wrapper')
                         .append('svg')
-                        .attr({'width':width,'height':height+margin.top});
+                        .attr({'width':width,'height':height+margin.top+margin.bottom+verticalSpaceForXAxis});
 
                     if (showGridLines=== true)  {
                         canvas.append('g')
@@ -129,13 +132,25 @@ var baget = baget || {};  // encapsulating variable
                             .style({'stroke':'#adadad','stroke-width':'1px'});
                     }
 
-
+                    // horizontal axis
                     var	xAxis = d3.svg.axis();
                     xAxis
                         .orient('bottom')
                         .scale(xscale)
-                        .tickValues(tickVals);
+                        .tickValues([0,100,200,260]);
+//                        .tickFormat(function(d,i){
+//                            return d;
+//                        });
 
+
+                    // unless we have been requested to hold the bar size constant, pick a nice value based on the amount
+                    // of vertical space we have to work with
+                    if (!staticBarSize){
+                        barHeight = (height-margin.top-margin.bottom)/(categories.length+1);
+                    }
+
+
+                    // vertical axis
                     var	yAxis = d3.svg.axis();
                     yAxis
                         .orient('left')
@@ -154,7 +169,7 @@ var baget = baget || {};  // encapsulating variable
 
 
                     canvas.append('g')
-                        .attr("transform", "translate(0,"+(margin.top+height)+")")
+                        .attr("transform", "translate("+(margin.left+spaceForYAxisLabels)+","+(margin.top+height)+")")
                         .attr('id','xaxis')
                         .call(xAxis)
                         .call(function(me){
@@ -170,20 +185,25 @@ var baget = baget || {};  // encapsulating variable
                         .data(values)
                         .enter()
                         .append('rect')
-                        .attr('height',19)
-                        .attr({'x':0,'y':function(d,i){ return (yscale(i)); }})
+                        .attr('height',barHeight)
+                        .attr({'x':xscale(minimumXValue),'y':function(d,i){ return (yscale(i)); }})
                         .style('fill',function(d,i){ return colorScale(i); })
-                        .attr('width',function(d){ return 0; });
+                        .attr('width',function(d){
+                            return xscale(minimumXValue)-xscale(minimumXValue);
+                        });
 
                     // give the bar length
                     d3.select("svg").selectAll("rect")
                         .data(values)
                         .transition()
                         .duration(1000)
-                        .attr("width", function(d) {return xscale(d); });
+                        .attr("width", function(d) {
+                            return xscale(d)-xscale(minimumXValue);
+                        });
 
                     // label on bar
-                    d3.select('#bars')
+                  //  d3.select('#bars')
+                    d3.select("svg").select("rect")
                         .selectAll('text')
                         .data(values)
                         .enter()
@@ -232,7 +252,7 @@ var baget = baget || {};  // encapsulating variable
                 .append('svg')
                 .attr('class', 'chart')
                 .attr('width', width*1.5)
-                .attr('height', height*1.4);
+                .attr('height', height+margin.top+margin.bottom);
 
             return instance;
         };

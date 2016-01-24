@@ -138,29 +138,29 @@
                     value: 230,
                     color: '#0000b4'},
                 { category: 'faster',
-                    value: 2,
+                    value: 8,
                     color: '#0082ca'}
-//                ,
-//                { category: 'we go',
-//                    value: 20,
-//                    color: '#5500ca'},
-//                { category: 'the',
-//                    value: 190,
-//                    color: '#009400'}
-//                { category: 'rounder',
-//                    value: 170,
-//                    color: '#3394aa'}
-//                { category: 'we get',
-//                    value: 150,
-//                    color: '#0000ff'}
+                ,
+                { category: 'we go',
+                    value: 20,
+                    color: '#5500ca'},
+                { category: 'the',
+                    value: 190,
+                    color: '#009400'},
+                { category: 'rounder',
+                    value: 170,
+                    color: '#3394aa'} ,
+                { category: 'we get',
+                    value: 150,
+                    color: '#0000ff'}
             ],
             roomForLabels = 120,
             maximumPossibleValue = 1,
             labelSpacer = 10;
 
-    var margin = {top: 50, right: 20, bottom: 0, left: 70},
-            width = 600 - margin.left - margin.right,
-            height = 280 - margin.top - margin.bottom;
+    var margin = {top: 50, right: 20, bottom: 0, left: 30},
+            width = 1500 - margin.left - margin.right,
+            height = 780 - margin.top - margin.bottom;
 
 
     d3.json("${createLink(controller:'cookin', action:'retrieveJson')}", function (error, json) {

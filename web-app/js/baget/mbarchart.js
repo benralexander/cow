@@ -137,7 +137,7 @@ var baget = baget || {};  // encapsulating variable
                     xAxis
                         .orient('bottom')
                         .scale(xscale)
-                        .tickValues([0,100,200,260]);
+//                        .tickValues([0,100,200,260]);
 //                        .tickFormat(function(d,i){
 //                            return d;
 //                        });
@@ -203,7 +203,7 @@ var baget = baget || {};  // encapsulating variable
 
                     // label on bar
                   //  d3.select('#bars')
-                    d3.select("svg").select("rect")
+                    d3.select("#bars")
                         .selectAll('text')
                         .data(values)
                         .enter()
